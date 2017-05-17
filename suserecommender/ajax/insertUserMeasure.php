@@ -4,7 +4,7 @@
 
 	$database = new medoo();
 	
-	$data = $database->insert("usermeasure_soc",array(
+	$data = $database->insert("usermeasure",array(
 
 			"userId" 				=> $_POST['userId'],
 			"measureId"				=> $_POST['measureId'],

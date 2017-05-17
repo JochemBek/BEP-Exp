@@ -59,8 +59,7 @@ var RaschRecommenderModel = function( options ){
       return a.difficulty-b.difficulty;
     });
   }).done(function(){
-  // console.log("Measure 5: " + measures[5].description);
-   getNewQuestions();
+    getNewQuestions();
  });
 
   
@@ -97,7 +96,6 @@ var RaschRecommenderModel = function( options ){
   ****Kort gezegd: huurhuizen onder 4; tuinen zijn even ****
   *********************************************************/
   var filterMeasures = function(){
-    console.log("Woon: " + woon)
     for( i=0; i<measures.length; i++ ){
       console.log("Going through measure " + i + " now: Filter: " + measures[i].filter);
       // Excluding recommendations that are inappropriate for the user's housing situation.
@@ -114,7 +112,6 @@ var RaschRecommenderModel = function( options ){
       }
     }
     
-    console.log("AMNT Filtered measures: " + filterMeasures.length)
     createMeasures();
 
   }
@@ -126,6 +123,7 @@ var RaschRecommenderModel = function( options ){
 
   // Array shuffle function
   shuffle = function( array ){
+    console.log("Array to shuffle: " + array);
     var currentIndex = array.length, 
     temporaryValue, randomIndex;
 
@@ -180,10 +178,9 @@ var RaschRecommenderModel = function( options ){
     
     $.post( "ajax/insertUser.php", 
       {
-        conditie: 2
+        conditie: o.condition
       }).done( function( data ) {
       currentUserId = data;
-      console.log("Current user: " + currentUserId);
     });
 
     notifyObservers('userCreated');
@@ -215,19 +212,18 @@ var RaschRecommenderModel = function( options ){
 //FILTER HIER************
 
     selectedMeasures  = [];
-
+    
     setArray = split( filteredMeasures, o.numberOfSets );
-    console.log("Foutje hier: " + setArray.length)
     for( i=0; i < o.numberOfSets; i++ ){
       var rand = Math.floor( Math.random() * setArray[i].length );
       selectedMeasures.push( setArray[i][rand] );
     }
 
     // Add two of the new measures to the list (Dit doet nu dus niks :)
-    shuffle( newMeasures );
-    for( i=0; i < o.newMeasureNumber; i++ ){
-      selectedMeasures.push( newMeasures[i] );
-    }
+    //shuffle( newMeasures );
+    //for( i=0; i < o.newMeasureNumber; i++ ){
+      //selectedMeasures.push( newMeasures[i] );
+    //}
     // randomize the order of the selected measures
     shuffle( selectedMeasures );
     filterMeasureDone();
@@ -243,6 +239,7 @@ var RaschRecommenderModel = function( options ){
     }
     else{
       // Create the recommendation when the conditions are met
+      console.log("Dat was phase 1");
       createRecommendation();
     }
   }
@@ -253,30 +250,7 @@ var RaschRecommenderModel = function( options ){
     var answer;
     // This checks if the measure is a existing one or one we are testing to put
     // on the rasch scale as new. The new ones dont have difficulty yet ofcourse.
-    if(currentMeasure.difficulty == null){
-      if( value == "yes" ){
-        answer = 1;
-      }
-      if( value == "no" ){
-        answer = 0;
-      }
-      if( value == "nvt" ){
-        answer = 2;
-      }
-      $.post( "ajax/insertUserNewMeasure.php", 
-        { 
-          userId: currentUserId,
-          measureId: currentMeasure.id,
-          answerPre: answer
-        }).done(function(){
-
-        newMeasure();
-
-      });
-    }
-    else{
-
-      if( value == "yes" ){
+    if( value == "yes" ){
         yes ++;
         answer = 1;
         // only pushed to history if the answer is yes or nvt
@@ -290,6 +264,8 @@ var RaschRecommenderModel = function( options ){
         nvt++;
         measureHistory.push( currentMeasure );
       }
+      
+      console.log("Posting answer to db");
 
       $.post( "ajax/insertUserMeasure.php", 
         { 
@@ -301,7 +277,6 @@ var RaschRecommenderModel = function( options ){
         newMeasure();
         // When measure is saved get the next one
       });
-    }
     
     
   }
