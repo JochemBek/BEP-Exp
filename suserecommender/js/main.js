@@ -1,13 +1,12 @@
 $(function(){
 
 	var raschRecommenderModel 			= new RaschRecommenderModel();
-	var facebookApi 					= new FacebookApi( raschRecommenderModel );
 
 	var headerView 						= new HeaderView( raschRecommenderModel, $( "#boxHeader" ) );
 	var headerController 				= new HeaderController( raschRecommenderModel, informedConsentView );
 
-	var informedConsentView 			= new InformedConsentView( raschRecommenderModel, $( "#informedConsent" ), facebookApi );
-	var informedConsentController 		= new InformedConsentController( raschRecommenderModel, informedConsentView, facebookApi );
+	var informedConsentView 			= new InformedConsentView( raschRecommenderModel, $( "#informedConsent" ) );
+	var informedConsentController 		= new InformedConsentController( raschRecommenderModel, informedConsentView );
 
 	var filterMeasureView				= new FilterMeasureView( raschRecommenderModel, $( "#filterMeasure") );
 	var filterMeasureController			= new FilterMeasureController( raschRecommenderModel, filterMeasureView );

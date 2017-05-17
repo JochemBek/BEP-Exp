@@ -3,18 +3,18 @@
 	require 'medoo.min.php';
 
 	$database = new medoo();
-
-	$max = $database->max("users_soc",'id');
 	
-	$data = $database->insert("users_soc",array(
+	$database->insert("measures",[
+		"id" => 80,
+		"description" => 'Hu!'
+	]);
 
+	$max = $database->max("users",'id');
+	
+	$database->insert("users",[
 			"id"			=> $max+1,
-			"facebookId"	=> $_POST['facebookId'],
-			"email"			=> $_POST['email'],
-			"gender"		=> $_POST['gender'],
-			"conditie" 		=> $_POST['conditie'],
-			
-	));
+			"conditie" 		=> $_POST['conditie']
+	]);
 	
 	echo $max+1;
 

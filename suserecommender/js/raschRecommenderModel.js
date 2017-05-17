@@ -52,14 +52,14 @@ var RaschRecommenderModel = function( options ){
 
 
   $.get( "ajax/selectMeasures.php", function( data ){
-    console.log("Data: " + data);
+    //console.log("Data: " + data);
     measures = $.parseJSON( data );
     // Sort according to difficulty
     measures = measures.sort(function (a,b){
       return a.difficulty-b.difficulty;
     });
   }).done(function(){
-   console.log("Measure 5: " + measures[5].description);
+  // console.log("Measure 5: " + measures[5].description);
    getNewQuestions();
  });
 
@@ -174,34 +174,16 @@ var RaschRecommenderModel = function( options ){
   // Create the user, add it to the database, and assign the
   // experimental condition.
 
-  createNonFBUser = function(){
-
+  createUser = function( ){
+    
+    console.log("Creating user");
+    
     $.post( "ajax/insertUser.php", 
       {
-        facebookId: -1,
-        email: "",
-        gender: -1,
-        conditie: o.condition
-
+        conditie: 2
       }).done( function( data ) {
       currentUserId = data;
-
-    });
-
-    notifyObservers('userCreated');
-  }
-
-  createUser = function( fbid, mail, gender ){
-
-    $.post( "ajax/insertUser.php", 
-      {
-        facebookId: fbid,
-        email: mail,
-        gender: gender,
-        conditie: o.condition
-      }).done( function( data ) {
-      currentUserId = data;
-      facebookId = fbid;
+      console.log("Current user: " + currentUserId);
     });
 
     notifyObservers('userCreated');
@@ -804,7 +786,6 @@ setInterested = function (value){
   this.stepCounter          = stepCounter;
   this.abilitySpot          = abilitySpot;
 
-  this.createNonFBUser            = createNonFBUser;
   this.createUser                 = createUser;
   this.updateUser                 = updateUser;
   this.filterMeasures             = filterMeasures;

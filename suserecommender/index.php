@@ -75,10 +75,6 @@
         </div>
     </div>
 
-    <div id="result_friends"></div>
-    <div id="fb-root"></div>
-
-
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
@@ -86,7 +82,6 @@
 
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/jquery.raty.js"></script>
-        <script src="js/vendor/facebook.js"></script>
 
         <script src="js/main.js"></script>
         <script src="js/raschRecommenderModel.js"></script>
@@ -120,7 +115,6 @@
 
         <script src="js/view/dataConsentView.js"></script>
         <script src="js/controller/dataConsentController.js"></script>
-
-
+        
     </body>
 </html>
