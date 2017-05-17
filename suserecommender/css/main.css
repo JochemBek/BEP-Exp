@@ -1,0 +1,161 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body{
+	background:url(http://subtlepatterns.com/patterns/wood_pattern.png);
+	padding-top:0px;
+}
+
+a {
+	cursor:pointer;
+}
+
+h1{
+	font-family: 'Lato', sans-serif;
+	text-transform: uppercase;
+	font-size: 41px;
+}
+
+#tuelogo{
+	float:right; 
+	margin-top: -63px;
+}
+
+h1 small{
+	font-family: Arial, Helvetica, Sans-serif;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;	
+}
+
+#friendtext{
+	text-align: right;
+	color: #008000;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#friendimage{
+	background-image: url(http://pixabay.com/static/uploads/photo/2012/04/18/19/01/green-37583_640.png);
+	background-repeat: no-repeat;
+	padding-left: 30px;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.wrapper{
+	width: 100%;
+	margin-bottom: 40px;
+	background: rgba(255,255,255,0.4);
+	height:90px;
+	color:#5bc0de;
+}
+
+#measureAbility h3.text-center{
+	margin-top: 10px;
+	margin-bottom: 25px;
+}
+
+#setQuestions{
+	margin-top: -20px;
+}
+
+#setQuestions .radio-inline+.radio-inline, #setQuestions .checkbox-inline+.checkbox-inline{
+	margin-left: 20px;
+}
+
+#setQuestions .radioContainer{
+
+}
+
+#legend{
+	margin-left: 50%;
+	font-size: 12px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	text-align: center;
+	padding-right: 38px;
+}
+
+.radioContainer{
+	width: 50%;
+	display: inline-block;
+	text-align: center;
+}
+
+#legend span{
+	
+}
+
+#mainApplication{
+	background:url(http://subtlepatterns.com/patterns/cream_dust.png);
+	padding-bottom:20px;
+	padding-top:20px;
+	box-shadow: 0px -3px 3px rgba(1,1,1,0.1);
+}
+
+#fbBox{
+	border: thin solid #ccc;
+	float: left;
+	background: #fff;
+	padding: 10px;
+}
+
+#boxHeader{
+	background: #5bc0de;
+	color: #fff;
+	padding-bottom:15px;
+	padding-top: 1px;
+}
+
+#boxHeader h2{
+	font-family: 'Lato', sans-serif;
+	text-transform: uppercase;
+}
+
+#boxHeader p{
+	font-weight:bold;
+}
+
+
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus{
+	background-color: #5bc0de;
+	border-color: #5bc0de;
+	background-image: none;
+	text-shadow: 0 -1px 0 #5bc0de;
+}
+
+#recommendationList li{
+	cursor:move;
+}
+
+@media all and (max-width: 480px){
+  #setQuestions .radio-inline+.radio-inline, #setQuestions .checkbox-inline+.checkbox-inline{
+  		margin-left:0px;
+  }
+}
+@media all and (max-width: 620px){
+	#legend span:nth-child(2){
+		display:none;
+	}
+	#legend span{
+		font-size:10px;
+	}
+	#legend {
+		padding-right: 10px;
+	}
+	
+}
+
+@media all and (min-width:480px) and (max-width: 620px){
+	#setQuestions .radio-inline+.radio-inline, #setQuestions .checkbox-inline+.checkbox-inline{
+		margin-left: 10px;
+	}
+}
+
+
+
+
