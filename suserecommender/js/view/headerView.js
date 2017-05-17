@@ -4,7 +4,7 @@ var HeaderView = function ( model, container ){
 					  Variable Declarations
 	***********************************************************/
 	//var h2 						= $( "<h2>Welkom!</h2>" );
-	var h2						= $( "<h2>Welkom!</h2>");
+	var h2						= $( "<h2>Welkom op onze website!</h2>");
 	var p 						= $( "<p></p>" );
 	var vrienden 				= [];
 	var counter = 1;
@@ -22,7 +22,7 @@ var HeaderView = function ( model, container ){
 	/***********************************************************
 							 Update
 	***********************************************************/
-	
+
 	model.addObserver( this );
 	this.update = function( args ){
 
