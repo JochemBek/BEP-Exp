@@ -41,7 +41,7 @@ var RaschRecommenderModel = function( options ){
   var measures, newMeasures, measureQuestions, currentUserId, woon, value, geslacht, commentaar, bericht, consent,
     facebookId, email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, voorselectie = [], wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [], 
-    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0;
+    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [];
 
   // Get all the required data from the database
   // Fill the array with all the measures in the database
@@ -77,13 +77,13 @@ var RaschRecommenderModel = function( options ){
 
   /***************SATISFACTION QUESTIONS **********/
 
-  var selectSatisfactionQuestions = function(){
+  /*var selectSatisfactionQuestions = function(){
     $.get( "ajax/selectSatisfactionQuestions.php", function( data ){
       satisfactionQuestions = $.parseJSON( data );
     }).done(function(){
       notifyObservers( "questionsReady" );
     });
-  }
+  }*/
 
 
   /*************UITLEG FILTERING****************************
@@ -152,7 +152,7 @@ var RaschRecommenderModel = function( options ){
   }
 
   // returns the closest difficulty to the given value (easy for center condition)
-  getClosest = function( array, value ){
+  /*getClosest = function( array, value ){
     var closest = null;
     $.each( array, function(){
       if ( closest == null ){ 
@@ -163,7 +163,7 @@ var RaschRecommenderModel = function( options ){
       }
     })
     return closest;
-  }
+  }*/
 
   /***********************************************************
             Private Functions
@@ -180,8 +180,8 @@ var RaschRecommenderModel = function( options ){
       {
         conditie: o.condition
       }).done( function( data ) {
-      currentUserId = data;
-    });
+        currentUserId = data;
+      });
 
     notifyObservers('userCreated');
   }
@@ -301,241 +301,58 @@ var RaschRecommenderModel = function( options ){
     });
     ability       = count / abilitySet.length;
 
-
     var recomArray    = [];
     for( i=0; i<measures.length; i++ ){
       // Not adding recommendations that user is already doing. Returns -1 if not in both arrays
-      if( $.inArray( measures[i],measureHistory ) == -1 ){
+      if( $.inArray( measures[i], measureHistory ) == -1 ){
         recomArray.push( measures[i] );
       }
     }
+    
+    // Take all measures that are not yet shown in phase 1, and check whether they are at the ability of the user, or one above, or two above
+    for (i=0; i < recomArray.length; i++) {
+      console.log("Testing if measure " + recomArray[i].id + " from bin " + recomArray[i].bin);
+      if (recomArray[i].bin == abilitySpot) {
+        onLevel.push(recomArray[i]);
+        console.log("Measure " + i + " from bin " + recomArray[i].bin + " added to onLevel" );
+      } else if (recomArray[i].bin == abilitySpot + 1) {
+        oneAboveLevel.push(recomArray[i]);
+        console.log("Measure " + i + " from bin " + recomArray[i].bin + " added to oneAboveLevel" );
+      } else if (recomArray[i].bin == abilitySpot + 2) {
+        twoAboveLevel.push(recomArray[i]);
+        console.log("Measure " + i + " from bin " + recomArray[i].bin + " added to twoAboveLevel" );
+      }
+    }
+    
+    
+    // Shuffle recommendation arrays, and leave the first 4 measures
+    shuffle(onLevel);
+    shuffle(oneAboveLevel);
+    shuffle(twoAboveLevel);
+    onLevel.splice(3, 1);
+    oneAboveLevel.splice(3, 1);
+    twoAboveLevel.splice(3, 1);
+    
+    notifyObservers( "recommendationReady" );
+
+
+    
+    
+    
+    
+    
+    
 
  /********************* ALGORTIME GEBASEERD OP DE abilitySpot WAAR JE ZIT ************
  ********************** KAN ALLEEN MET 12 SETS VANWEGE DE DATABASE ******************/
-      // Voor abilitySpot 1
-      if( abilitySpot == 1){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norOne > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norOne;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revOne;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 2
-      if( abilitySpot == 2){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norTwo > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norTwo;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revTwo;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-            // Voor abilitySpot 3
-      if( abilitySpot == 3){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norThree > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norThree;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revThree;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 4
-      if( abilitySpot == 4){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norFour > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norFour;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revFour;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 5
-      if( abilitySpot == 5){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norFive > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norFive;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revFive;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 6
-      if( abilitySpot == 6){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norSix > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norSix;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revSix;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 7
-      if( abilitySpot == 7){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norSeven > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norSeven;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revSeven;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 8
-      if( abilitySpot == 8){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norEight > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norEight;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revEight;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 9
-      if( abilitySpot == 9){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norNine > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norNine;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revNine;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 10
-      if( abilitySpot == 10){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norTen > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norTen;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revTen;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 11
-      if( abilitySpot == 11){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norEleven > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norEleven;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revEleven;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-      // Voor abilitySpot 12
-      if( abilitySpot == 12){
-        
-        for( i=0; i<recomArray.length; i++){
-          if (recomArray[i].norTwelve > 0){
-            if (o.condition == 1){
-              recomArray[i].friends = recomArray[i].norTwelve;
-            }
-            if (o.condition == 2){
-              recomArray[i].friends = recomArray[i].revTwelve;
-            }
-            voorselectie.push(recomArray[i]);
-          }
-          if( voorselectie.length > 0 ){
-            shuffle(voorselectie);
-          }
-        }
-      }
-    
+    /*
     for(i=0; i<o.numberOfRecommendations; i++){
       recommendation.push(voorselectie[i]);
       if(i == (o.numberOfRecommendations - 1)){
         insertRecommendation();
         notifyObservers( "recommendationReady" );
       }
-    }
+    }*/
 
   }
 
