@@ -7,8 +7,6 @@ var RecommendationView = function( model,container ){
 	/***********************************************************
 					  Variable Declarations
 	***********************************************************/
-	var beschrijving = $();
-
 
 	var omschrijvingsblok		= $( "<div id='description'>");
 	var vraagstelling			= $( "<h4 id='vraagstelling' style='margin-left:30%; width:70%; float:left;'>Selecteer van onderstaande maatregelen uw 1e en 2e keuze die u het liefste in de nabije toekomst zou willen uitvoeren. Klik tevens op 'dit doe ik al' als u een maatregel al uitvoert.</h4>");
@@ -18,8 +16,8 @@ var RecommendationView = function( model,container ){
 	var nee						= $( "<div id='nee' style='font-weight:bold; display:inline-block; width:40%'>2e keuze</div>");
 	var doeikal 				= $( "<div id='doeikal' style='font-weight:bold; display:inline-block; width:30%'>Dit doe ik al</div>");
 	var ondersteregel			= $( "<div id='ondersteregel' style='margin-left:68.5%; width: 28%; text-align:center'>");
-	ondersteregel.append(ja,nee,doeikal);
-	omschrijvingsblok.append(vraagstelling,ondersteregel);
+	/*ondersteregel.append(ja,nee,doeikal);
+	omschrijvingsblok.append(vraagstelling,ondersteregel);*/
 
 	var div						= $( "<div id='blok' style='width: 30%; float: left'>");
 	var recommendationList		= $( "<ul id='recommendationList' class='list-group' style='width:70%; float:left;'>" );
@@ -32,25 +30,34 @@ var RecommendationView = function( model,container ){
 	***********************************************************/
 	
 	findRecommendations = function(){ 
+		var description; 
+		var recommend;
+		
 		var advisor = model.getAdvisor();
 		if (advisor == 0) { // non-expert
 			console.log("Advisor is een non-expert");
+			description = $("<div> <p> Johnny is not an expert. </p> </div>");
 		}  
 		if (advisor == 1) { // expert
 			console.log("Advisor is een expert");
+			description = $("<div> <p> Peter is an expert. </p> </div>");
 		}
 		
 		var form = model.getForm();
 		console.log("De vorm is: " + form);
-		if (form == 0) { // telling
-			console.log("De vorm is telling");
-		} 
-		if (form == 1) { // sharing
-			console.log("De vorm is sharing");
-		}
 		
 		var recommendations = model.getRecommendations();
 		console.log("De recommendation on level is : " + recommendations[0].description);
+		
+		
+		if (form == 0) { // telling
+			recommend = $("<div> <p>" + recommendations[0].name + " </p> </div> <div> <p>" + recommendations[1].name + " </p> </div> <div> <p>" + recommendations[2].name + " </p> </div>"); 
+		} 
+		if (form == 1) { // sharing
+			recommend = $("<div> <p>" + recommendations[0].name + " </p> </div> <div> <p>" + recommendations[1].name + " </p> </div> <div> <p>" + recommendations[2].name + " </p> </div>"); // Hiervoor moeten we in de DB een extra column maken met telling vorm, en dan hier veranderen
+		}
+		
+		omschrijvingsblok.append(description, recommend);
 		
 	}
 	
@@ -184,7 +191,7 @@ var RecommendationView = function( model,container ){
 			findRecommendations();
 			setTimeout(function() {
 			    container.slideUp();
-			    container.append( volgendeButton );
+			    container.append( omschrijvingsblok, volgendeButton );
 			    container.slideDown();
 			}, 1000);
 		}
