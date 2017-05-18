@@ -15,7 +15,7 @@ var RaschRecommenderModel = function( options ){
     //als het goed is hoort hier de relatie bij: Probability = 1 / (1+e^(-(ability - difficulty )))
     //1 logit is gelijk aan 0.731 (dus 73.1%); 2 logit verschil is gelijk aan 88% dat iemand iets niet doet
 
-    condition               : Math.ceil( Math.random() * 3 ), // dit is voor USE 1.1
+    condition               : Math.ceil( Math.random() * 4 ), // dit is voor USE 1.1
 
     /***********EXPLANATION OF LIST BUILD-UP CONDITIONS*************
        1 = Social Condition with normal amounts
@@ -24,7 +24,7 @@ var RaschRecommenderModel = function( options ){
     ****************************************************************/
 
     numberOfLists           : 1,      //aantal aanbevelingslijsten
-    numberOfConditions      : 3,      //aantal condities voor maatregelen (dus erboven, erop, eronder)
+    numberOfConditions      : 4,      //aantal condities voor maatregelen (dus erboven, erop, eronder)
     newMeasureNumber        : 0,      // turned off new measures (!!!)
 
   };
@@ -41,7 +41,7 @@ var RaschRecommenderModel = function( options ){
   var measures, newMeasures, measureQuestions, currentUserId, woon, value, geslacht, commentaar, bericht, consent,
     facebookId, email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, voorselectie = [], wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [], 
-    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [];
+    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [], atRecom = 1;
 
   // Get all the required data from the database
   // Fill the array with all the measures in the database
@@ -77,13 +77,13 @@ var RaschRecommenderModel = function( options ){
 
   /***************SATISFACTION QUESTIONS **********/
 
-  /*var selectSatisfactionQuestions = function(){
+  var selectSatisfactionQuestions = function(){
     $.get( "ajax/selectSatisfactionQuestions.php", function( data ){
       satisfactionQuestions = $.parseJSON( data );
     }).done(function(){
       notifyObservers( "questionsReady" );
     });
-  }*/
+  }
 
 
   /*************UITLEG FILTERING****************************
@@ -163,7 +163,7 @@ var RaschRecommenderModel = function( options ){
       }
     })
     return closest;
-  }*/
+  }
 
   /***********************************************************
             Private Functions
@@ -334,26 +334,6 @@ var RaschRecommenderModel = function( options ){
     twoAboveLevel.splice(3, 1);
     
     notifyObservers( "recommendationReady" );
-
-
-    
-    
-    
-    
-    
-    
-
- /********************* ALGORTIME GEBASEERD OP DE abilitySpot WAAR JE ZIT ************
- ********************** KAN ALLEEN MET 12 SETS VANWEGE DE DATABASE ******************/
-    /*
-    for(i=0; i<o.numberOfRecommendations; i++){
-      recommendation.push(voorselectie[i]);
-      if(i == (o.numberOfRecommendations - 1)){
-        insertRecommendation();
-        notifyObservers( "recommendationReady" );
-      }
-    }*/
-
   }
 
   filterMeasureDone = function(){
@@ -482,6 +462,79 @@ var RaschRecommenderModel = function( options ){
   getRecommendation = function(){
     return recommendation;
   }
+  
+  getAdvisor = function(){
+    console.log("User gaat naar recommendation set " + atRecom + " en heeft conditie " + o.condition);
+    var advisor;
+    if (atRecom == 1) {
+      if (o.condition == 1 || o.condition == 3) {
+        advisor = 0;
+      } else {
+        advisor = 1;
+      }
+    } else if (atRecom == 2) {
+      if (o.condition == 1 || o.condition == 2) {
+        advisor = 1; 
+      } else { 
+        advisor = 0;
+      } 
+    } else if (atRecom == 3) { 
+      if (o.condition == 1 || o.condition == 2) {
+        advisor = 0;
+      } else {
+        advisor = 1;
+      }
+    } else { 
+      if (o.condition == 1 || o.condition == 3) {
+        advisor = 1; 
+      } else {
+        advisor = 0;
+      }
+    }
+    return advisor;
+  }
+  
+  getForm = function(){
+    var form;
+    if (atRecom == 1) {
+      if (o.condition == 1 || o.condition == 2) {
+        form = 1;
+      } else {
+        form = 0;
+      }
+    } else if (atRecom == 2) {
+      if (o.condition == 1 || o.condition == 3) {
+        form = 1; 
+      } else { 
+        form = 0;
+      } 
+    } else if (atRecom == 3) { 
+      if (o.condition == 1 || o.condition == 3) {
+        form = 0;
+      } else {
+        form = 1;
+      }
+    } else { 
+      if (o.condition == 1 || o.condition == 2) {
+        form = 0; 
+      } else {
+        form = 0;
+      }
+    }
+    
+    console.log("De vorm is in model: " + form);
+    return form;
+  }
+  
+  getRecommendations = function(){
+    var setOfRec = [];
+    
+    setOfRec.push(onLevel[atRecom-1]);
+    setOfRec.push(oneAboveLevel[atRecom-1]);
+    setOfRec.push(twoAboveLevel[atRecom-1]);
+    
+    return setOfRec;
+  }
 
   getMeasureQuestions = function(){
     return measureQuestions;
@@ -517,7 +570,7 @@ setInterested = function (value){
     }
   }
 
-    getAbilityScaled = function(){
+  getAbilityScaled = function(){
     var judgementScale = 10;
     abilityScaled   = Math.round( ( yes + ( ( yes / o.numberOfSets ) * nvt ) ) / (o.numberOfSets / judgementScale) ) ; // het moet op een schaal van 1 tot 10
     return abilityScaled;
@@ -586,6 +639,9 @@ setInterested = function (value){
   this.createRecommendation       = createRecommendation;
   
   this.getMeasure               = getMeasure;
+  this.getAdvisor               = getAdvisor;
+  this.getForm                  = getForm;
+  this.getRecommendations       = getRecommendations;
   this.informationDone          = informationDone;
   this.setRecommendationDone    = setRecommendationDone;
   this.satisfactionDone         = satisfactionDone;

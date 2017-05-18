@@ -1,9 +1,13 @@
+/* JOCHEM: 
+Dit wordt de view voor de recommendations; slide 5 van de mockup 
+*/
+
 var RecommendationView = function( model,container ){
 
 	/***********************************************************
 					  Variable Declarations
 	***********************************************************/
-	
+	var beschrijving = $();
 
 
 	var omschrijvingsblok		= $( "<div id='description'>");
@@ -26,6 +30,30 @@ var RecommendationView = function( model,container ){
 	/***********************************************************
 						Private Variables
 	***********************************************************/
+	
+	findRecommendations = function(){ 
+		var advisor = model.getAdvisor();
+		if (advisor == 0) { // non-expert
+			console.log("Advisor is een non-expert");
+		}  
+		if (advisor == 1) { // expert
+			console.log("Advisor is een expert");
+		}
+		
+		var form = model.getForm();
+		console.log("De vorm is: " + form);
+		if (form == 0) { // telling
+			console.log("De vorm is telling");
+		} 
+		if (form == 1) { // sharing
+			console.log("De vorm is sharing");
+		}
+		
+		var recommendations = model.getRecommendations();
+		console.log("De recommendation on level is : " + recommendations[0].description);
+		
+	}
+	
 	
 	updateRecommendationList = function(){
 
@@ -152,10 +180,11 @@ var RecommendationView = function( model,container ){
 	model.addObserver( this );
 	this.update = function( args ){
 		if( args == "informationDone" ){
-			updateRecommendationList();
+			//updateRecommendationList();
+			findRecommendations();
 			setTimeout(function() {
 			    container.slideUp();
-			    container.append( omschrijvingsblok, div, recommendationList, volgendeButton );
+			    container.append( volgendeButton );
 			    container.slideDown();
 			}, 1000);
 		}

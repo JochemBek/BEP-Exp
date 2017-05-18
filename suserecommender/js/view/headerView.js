@@ -44,7 +44,6 @@ var HeaderView = function ( model, container ){
 
 		if( args == "informationDone" ){
 			h2.html( "Uw persoonlijke aanbevelingslijst" );
-			p.html( "Hieronder volgen een aantal maatregelen om energie te besparen die u wellicht nog niet uitvoert en u mogelijk aanspreken. We vragen u vriendelijk om de eerste en tweede keuze te selecteren van de maatregelen die het u het liefste in de nabije toekomst zou willen uitvoeren.<br><br>Klik op 'dit doe ik al' als u een maatregel al uitvoert. Om meer informatie te krijgen kunt u met uw muis over de naam van een maatregel heen bewegen. Zodra u tevreden bent met uw keuzes, klik dan op [Volgende]." );
 		}
 
 		if( args == "setRecommendationDone" ){
