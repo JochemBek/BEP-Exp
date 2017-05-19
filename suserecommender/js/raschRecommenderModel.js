@@ -11,7 +11,7 @@ var RaschRecommenderModel = function( options ){
 
     numberOfSets            : 12, // Size for each sample measure, change to 12 for new experiment
     numberOfRecommendations : 6,  //number of recommendations, total for three sets
-    logitSize               : 0.5,  // the size of a logit in the used scale 
+    logitSize               : 0.5,  // the size of a logit in the used scale
     //als het goed is hoort hier de relatie bij: Probability = 1 / (1+e^(-(ability - difficulty )))
     //1 logit is gelijk aan 0.731 (dus 73.1%); 2 logit verschil is gelijk aan 88% dat iemand iets niet doet
 
@@ -37,10 +37,10 @@ var RaschRecommenderModel = function( options ){
   /***********************************************************
             Variable Declarations
   ***********************************************************/
-  
+
   var measures, newMeasures, measureQuestions, currentUserId, woon, value, geslacht, commentaar, bericht, consent,
     facebookId, email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, voorselectie = [], wantedRecommendations = [],
-    setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [], 
+    setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
     stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [], atRecom = 1;
 
   // Get all the required data from the database
@@ -48,7 +48,7 @@ var RaschRecommenderModel = function( options ){
   $.get( "ajax/selectMeasureQuestions.php", function( data ){
     measureQuestions = $.parseJSON( data );
   });
-  
+
 
 
   $.get( "ajax/selectMeasures.php", function( data ){
@@ -62,9 +62,9 @@ var RaschRecommenderModel = function( options ){
     getNewQuestions();
  });
 
-  
-  
-  
+
+
+
    var getNewQuestions = function(){
     // Get the new measures for calculating the level on rash scale - niet relevant nu maar kan geen kwaad
     $.get( "ajax/selectNewMeasures.php", function( data ){
@@ -91,7 +91,7 @@ var RaschRecommenderModel = function( options ){
   *** 1. = niet geschikt voor huurwoningen              ****
   *** 2. = niet geschikt voor woningen zonder tuin      ****
   *** 3. = niet geschikt voor 1. en 2.                  ****
-  ********************************************************** 
+  **********************************************************
   ****Zie voor woonsituatie-waarde filterMeasureView.js ****
   ****Kort gezegd: huurhuizen onder 4; tuinen zijn even ****
   *********************************************************/
@@ -102,16 +102,16 @@ var RaschRecommenderModel = function( options ){
       if( measures[i].filter == 0 ){
         filteredMeasures.push( measures[i] );
       }else if( measures[i].filter == 1 && woon > 3) {
-        filteredMeasures.push( measures[i] ); // maatregelen voor koophuizen alleen erin voor degene met een koophuis 
+        filteredMeasures.push( measures[i] ); // maatregelen voor koophuizen alleen erin voor degene met een koophuis
       }else if( measures[i].filter == 2 && woon % 2 === 0){
         filteredMeasures.push( measures[i] ); // maatregelen voor tuinen alleen erin voor degene met een tuin
       }else if( measures[i].filter == 3 && woon > 3 && woon % 2 === 0){
         filteredMeasures.push( measures[i] ); // een combinatie van de 2 is evident
-      } else { 
+      } else {
         console.log("Should be filtered");
       }
     }
-    
+
     createMeasures();
 
   }
@@ -124,7 +124,7 @@ var RaschRecommenderModel = function( options ){
   // Array shuffle function
   shuffle = function( array ){
     console.log("Array to shuffle: " + array);
-    var currentIndex = array.length, 
+    var currentIndex = array.length,
     temporaryValue, randomIndex;
 
       // While there remain elements to shuffle...
@@ -155,7 +155,7 @@ var RaschRecommenderModel = function( options ){
   /*getClosest = function( array, value ){
     var closest = null;
     $.each( array, function(){
-      if ( closest == null ){ 
+      if ( closest == null ){
         closest = this;
       }
       else if( Math.abs( this.difficulty - value ) < Math.abs( closest.difficulty - value ) ){
@@ -173,10 +173,10 @@ var RaschRecommenderModel = function( options ){
   // experimental condition.
 
   createUser = function( ){
-    
+
     console.log("Creating user");
-    
-    $.post( "ajax/insertUser.php", 
+
+    $.post( "ajax/insertUser.php",
       {
         conditie: o.condition
       }).done( function( data ) {
@@ -185,12 +185,12 @@ var RaschRecommenderModel = function( options ){
 
     notifyObservers('userCreated');
   }
-  
+
   // After the user has filled out everything, update the user data.
   updateUser = function(){
 
-    $.post( "ajax/updateUser.php", 
-      { 
+    $.post( "ajax/updateUser.php",
+      {
         userId: currentUserId,
         ability: ability,
         woonsituatie: woon,
@@ -200,7 +200,7 @@ var RaschRecommenderModel = function( options ){
         inkomen: inkomen,
         interested: interested,
         email: email,
-        emailSent: emailSent, 
+        emailSent: emailSent,
         consent: consent,
         comments: commentaar
       });
@@ -208,11 +208,11 @@ var RaschRecommenderModel = function( options ){
 
   // Take samples from the pool of measures after they've been loaded
   createMeasures = function(){
-    
+
 //FILTER HIER************
 
     selectedMeasures  = [];
-    
+
     setArray = split( filteredMeasures, o.numberOfSets );
     for( i=0; i < o.numberOfSets; i++ ){
       var rand = Math.floor( Math.random() * setArray[i].length );
@@ -229,7 +229,7 @@ var RaschRecommenderModel = function( options ){
     filterMeasureDone();
     newMeasure();
   }
-  
+
   // Get a measure to present to the user
   newMeasure = function(){
     if( stepCounter < (o.numberOfSets + o.newMeasureNumber) ){
@@ -264,11 +264,11 @@ var RaschRecommenderModel = function( options ){
         nvt++;
         measureHistory.push( currentMeasure );
       }
-      
+
       console.log("Posting answer to db");
 
-      $.post( "ajax/insertUserMeasure.php", 
-        { 
+      $.post( "ajax/insertUserMeasure.php",
+        {
           userId: currentUserId,
           measureId: currentMeasure.id,
           answerPre: answer
@@ -277,8 +277,8 @@ var RaschRecommenderModel = function( options ){
         newMeasure();
         // When measure is saved get the next one
       });
-    
-    
+
+
   }
 
   // Create the recommendation from the ability depending on the condition.
@@ -308,7 +308,7 @@ var RaschRecommenderModel = function( options ){
         recomArray.push( measures[i] );
       }
     }
-    
+
     // Take all measures that are not yet shown in phase 1, and check whether they are at the ability of the user, or one above, or two above
     for (i=0; i < recomArray.length; i++) {
       console.log("Testing if measure " + recomArray[i].id + " from bin " + recomArray[i].bin);
@@ -323,8 +323,8 @@ var RaschRecommenderModel = function( options ){
         console.log("Measure " + i + " from bin " + recomArray[i].bin + " added to twoAboveLevel" );
       }
     }
-    
-    
+
+
     // Shuffle recommendation arrays, and leave the first 4 measures
     shuffle(onLevel);
     shuffle(oneAboveLevel);
@@ -332,7 +332,7 @@ var RaschRecommenderModel = function( options ){
     onLevel.splice(3, 1);
     oneAboveLevel.splice(3, 1);
     twoAboveLevel.splice(3, 1);
-    
+
     notifyObservers( "recommendationReady" );
   }
 
@@ -341,8 +341,8 @@ var RaschRecommenderModel = function( options ){
   }
 
   trackHover = function ( index, hoverIn ){
-    $.post( "ajax/insertTrackHover.php", 
-      { 
+    $.post( "ajax/insertTrackHover.php",
+      {
         userId: currentUserId,
         ability: ability,
         measureId: recommendation[index].id,
@@ -353,8 +353,8 @@ var RaschRecommenderModel = function( options ){
   insertRecommendation = function(){
     if(o.condition == 3){
       for(i=0; i<recommendation.length; i++){
-        $.post( "ajax/insertRecommendation.php", 
-        { 
+        $.post( "ajax/insertRecommendation.php",
+        {
           userId: currentUserId,
           ability: ability,
           measureId: recommendation[i].id,
@@ -365,8 +365,8 @@ var RaschRecommenderModel = function( options ){
       }
     }else{
       for(i=0; i<recommendation.length; i++){
-        $.post( "ajax/insertRecommendation.php", 
-        { 
+        $.post( "ajax/insertRecommendation.php",
+        {
           userId: currentUserId,
           ability: ability,
           measureId: recommendation[i].id,
@@ -380,7 +380,7 @@ var RaschRecommenderModel = function( options ){
 
     // To add a facebook friend to a user. Accepts the facebook friend object
   insertFacebookFriend = function( friend, score ){
-    $.post( "ajax/insertFacebookFriend.php", 
+    $.post( "ajax/insertFacebookFriend.php",
       {
         facebookId: facebookId,
         friendId: friend.id,
@@ -391,8 +391,8 @@ var RaschRecommenderModel = function( options ){
   }
 
   setUserRecommendation = function (measureId, answer){
-    $.post( "ajax/insertUserRecommendation.php", 
-      { 
+    $.post( "ajax/insertUserRecommendation.php",
+      {
         userId: currentUserId,
         measureId: measureId,
         answerPost: answer // in deze recommender is het een antwoord op Wel/niet doen
@@ -406,13 +406,13 @@ var RaschRecommenderModel = function( options ){
       wantedRecommendations.push(recommendation[i]);
       }
     }
-    //createMessage();   
+    //createMessage();
   }
 
 
   setUserSelection = function (measureId, answer){
-    $.post( "ajax/insertUserSelection.php", 
-      { 
+    $.post( "ajax/insertUserSelection.php",
+      {
         userId: currentUserId,
         ability: ability,
         measureId: measureId,
@@ -421,7 +421,7 @@ var RaschRecommenderModel = function( options ){
     sendRecommendation(measureId);
   }
 
-  
+
   createMessage = function(){
     var textstring="";
     for(i=0; i<wantedRecommendations.length; i++){
@@ -434,8 +434,8 @@ var RaschRecommenderModel = function( options ){
   }
 
   setUserSatisfactionQuestion = function( questionId, answer ){
-    $.post( "ajax/insertUserSatisfactionQuestion.php", 
-      { 
+    $.post( "ajax/insertUserSatisfactionQuestion.php",
+      {
         userId: currentUserId,
         questionId: questionId,
         value: answer
@@ -462,7 +462,7 @@ var RaschRecommenderModel = function( options ){
   getRecommendation = function(){
     return recommendation;
   }
-  
+
   getAdvisor = function(){
     console.log("User gaat naar recommendation set " + atRecom + " en heeft conditie " + o.condition);
     var advisor;
@@ -474,26 +474,26 @@ var RaschRecommenderModel = function( options ){
       }
     } else if (atRecom == 2) {
       if (o.condition == 1 || o.condition == 2) {
-        advisor = 1; 
-      } else { 
+        advisor = 1;
+      } else {
         advisor = 0;
-      } 
-    } else if (atRecom == 3) { 
+      }
+    } else if (atRecom == 3) {
       if (o.condition == 1 || o.condition == 2) {
         advisor = 0;
       } else {
         advisor = 1;
       }
-    } else { 
+    } else {
       if (o.condition == 1 || o.condition == 3) {
-        advisor = 1; 
+        advisor = 1;
       } else {
         advisor = 0;
       }
     }
     return advisor;
   }
-  
+
   getForm = function(){
     var form;
     if (atRecom == 1) {
@@ -504,35 +504,35 @@ var RaschRecommenderModel = function( options ){
       }
     } else if (atRecom == 2) {
       if (o.condition == 1 || o.condition == 3) {
-        form = 1; 
-      } else { 
+        form = 1;
+      } else {
         form = 0;
-      } 
-    } else if (atRecom == 3) { 
+      }
+    } else if (atRecom == 3) {
       if (o.condition == 1 || o.condition == 3) {
         form = 0;
       } else {
         form = 1;
       }
-    } else { 
+    } else {
       if (o.condition == 1 || o.condition == 2) {
-        form = 0; 
+        form = 0;
       } else {
         form = 0;
       }
     }
-    
+
     console.log("De vorm is in model: " + form);
     return form;
   }
-  
+
   getRecommendations = function(){
     var setOfRec = [];
-    
+
     setOfRec.push(onLevel[atRecom-1]);
     setOfRec.push(oneAboveLevel[atRecom-1]);
     setOfRec.push(twoAboveLevel[atRecom-1]);
-    
+
     return setOfRec;
   }
 
@@ -622,11 +622,15 @@ setInterested = function (value){
     notifyObservers("expDone");
   }
 
+  introProbingDone = function(){
+    notifyObservers("introProbingDone");
+  }
+
   /***********************************************************
             Public Functions
   ***********************************************************/
 // dit is nodig om ze vanuit een andere js te kunnen aanroepen
-  this.o                    = o;  
+  this.o                    = o;
   this.recommendationLength = recommendationLength;
   this.stepCounter          = stepCounter;
   this.abilitySpot          = abilitySpot;
@@ -637,7 +641,7 @@ setInterested = function (value){
   this.createMeasures             = createMeasures;
   this.newMeasure                 = newMeasure;
   this.createRecommendation       = createRecommendation;
-  
+
   this.getMeasure               = getMeasure;
   this.getAdvisor               = getAdvisor;
   this.getForm                  = getForm;
@@ -670,6 +674,7 @@ setInterested = function (value){
   this.setCommentaar        = setCommentaar;
   this.setLeeftijd          = setLeeftijd;
   this.experimentDone       = experimentDone;
+  this.introProbingDone     = introProbingDone;
 
   /***********************************************************
             Observable Pattern

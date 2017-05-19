@@ -11,6 +11,9 @@ $(function(){
 	var filterMeasureView				= new FilterMeasureView( raschRecommenderModel, $( "#filterMeasure") );
 	var filterMeasureController			= new FilterMeasureController( raschRecommenderModel, filterMeasureView );
 
+	var introProbingView				= new IntroProbingView( raschRecommenderModel, $( "#introduceProbes" ) );
+	var introProbingController		= new IntroProbingController( raschRecommenderModel, introProbingView );
+
 	var measureAbilityView				= new MeasureAbilityView( raschRecommenderModel, $( "#measureAbility" ) );
 	var measureAbilityController		= new MeasureAbilityController( raschRecommenderModel, measureAbilityView );
 

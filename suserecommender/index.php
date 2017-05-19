@@ -53,6 +53,9 @@
                 <div id="filterMeasure" >
                 </div>
 
+                <div id="introduceProbes" >
+                </div>
+
                 <div id="measureAbility">
                 </div>
 
@@ -94,6 +97,9 @@
 
         <script src="js/view/filterMeasureView.js"></script>
         <script src="js/controller/filterMeasureController.js"></script>
+
+        <script src="js/view/introProbingView.js"></script>
+        <script src="js/controller/introProbingController.js"></script>
 
         <script src="js/view/measureAbilityView.js"></script>
         <script src="js/controller/measureAbilityController.js"></script>

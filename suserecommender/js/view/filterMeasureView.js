@@ -1,7 +1,7 @@
 var FilterMeasureView = function (model, container){
-	
+
 	var volgendeButton	= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
-	
+
 
 	/***WOONSITUATIE VARIABLE EXPLAINED:***************
 	*** 1. Studentenhuis 		   ********************
@@ -49,7 +49,7 @@ var FilterMeasureView = function (model, container){
 		}
 	});
 
-	
+
 	/*******PUBLIC DECLARATIONS************
 	**************************************/
 	this.volgendeButton = volgendeButton;
@@ -61,6 +61,7 @@ var FilterMeasureView = function (model, container){
 		}
 
 		if ( args == "filterReady" ){
+			console.log("Close Filter Measures, proceed to Intro Probing.");
 			container.hide();
 		}
 	}
