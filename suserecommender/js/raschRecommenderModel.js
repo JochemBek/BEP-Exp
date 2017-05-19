@@ -41,7 +41,35 @@ var RaschRecommenderModel = function( options ){
   var measures, newMeasures, measureQuestions, currentUserId, woon, value, geslacht, commentaar, bericht, consent,
     facebookId, email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, voorselectie = [], wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
-    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [], atRecom = 1;
+    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [], 
+    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [];
+  
+  defaultQualityQuestions = [
+    {   
+      nr: 1, 
+      text: "Ik vind de maatregelen leuk." 
+    },
+    {
+      nr: 2, 
+      text: "Ik vind de maatregelen niet leuk."
+    },
+    {   
+      nr: 3, 
+      text: "Ik vind de maatregelen leuk." 
+    },
+    {
+      nr: 4, 
+      text: "Ik vind de maatregelen niet leuk."
+    },
+    {   
+      nr: 5, 
+      text: "Ik vind de maatregelen leuk." 
+    },
+    {
+      nr: 6, 
+      text: "Ik vind de maatregelen niet leuk."
+    }
+  ];
 
   // Get all the required data from the database
   // Fill the array with all the measures in the database
@@ -243,6 +271,10 @@ var RaschRecommenderModel = function( options ){
       createRecommendation();
     }
   }
+  
+  newQualityQuestions = function(){ 
+    notifyObservers( 'recommendationsDone');
+  }
 
 
   // Used when the user votes, can take either "yes", "no" or "nvt" as parameters.
@@ -292,7 +324,10 @@ var RaschRecommenderModel = function( options ){
         leastSuitable: scale[2]
       }).done(function(){
       
-      console.log("The scale is saved in the DB");  
+      console.log("The scale is saved in the DB");
+      
+      newQualityQuestions();
+        
     });
     
   }
@@ -544,20 +579,25 @@ var RaschRecommenderModel = function( options ){
 
   getRecommendations = function(){
     var setOfRec = [];
+    var shuffledSetOfRec = [];
 
     setOfRec.push(onLevel[atRecom-1]);
     setOfRec.push(oneAboveLevel[atRecom-1]);
     setOfRec.push(twoAboveLevel[atRecom-1]);
 
-    return setOfRec;
+    shuffledSetOfRec = shuffle(setOfRec);
+
+    return shuffledSetOfRec;
   }
 
   getMeasureQuestions = function(){
     return measureQuestions;
   }
 
-  getSatisfactionQuestions = function(){
-    return satisfactionQuestions;
+  getQualityQuestions = function(){
+    qualityQuestions = shuffle(defaultQualityQuestions);
+    
+    return qualityQuestions;
   }
 
   setLeeftijd = function( value ){
@@ -656,6 +696,7 @@ setInterested = function (value){
   this.filterMeasures             = filterMeasures;
   this.createMeasures             = createMeasures;
   this.newMeasure                 = newMeasure;
+  this.newQualityQuestions        = newQualityQuestions;
   this.createRecommendation       = createRecommendation;
 
   this.getMeasure               = getMeasure;
@@ -666,7 +707,7 @@ setInterested = function (value){
   this.setRecommendationDone    = setRecommendationDone;
   this.satisfactionDone         = satisfactionDone;
   this.getRecommendation        = getRecommendation;
-  this.getSatisfactionQuestions = getSatisfactionQuestions;
+  this.getQualityQuestions      = getQualityQuestions;
   this.demographicsDone         = demographicsDone;
   this.getMeasureQuestions      = getMeasureQuestions;
 

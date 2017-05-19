@@ -263,7 +263,11 @@ var RecommendationView = function( model,container ){
 			findRecommendations(makeDraggable);
 			container.show();
 		}
-		if( args == "setRecommendationDone" ){
+		if ( args == "screenDone" ) {
+			findRecommendations(makeDraggable);
+			container.show();
+		}
+		if( args == "recommendationsDone" ){
 			container.hide();
 		}
 	}
