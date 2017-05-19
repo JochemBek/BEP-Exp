@@ -1,6 +1,21 @@
 var RecommendationController = function( model, view ){
 
 	view.volgendeButton.click(function(){
+		if($(".rec").length == 0) {
+			var sortedSlots = $("#dropspot").sortable("toArray");
+			
+			model.setSuitabilityScale(sortedSlots);
+			
+			/*var firstSlot = sortedSlots[0];
+			var secondSlot = sortedSlots[1];
+			var thirdSlot = sortedSlots[2];
+			
+			console.log("De volgorde is: " + firstSlot + ", " + secondSlot + ", " + thirdSlot);*/
+			
+		} else { 
+			alert( 'U heeft waarschijnlijk nog niet alle maatregelen naar een plek op de schaal gesleept. Dit doe u door op de maatregel te klikken met de linkermuisknop, deze vast te houden, en de maatregel met de muis te bewegen naar de juiste plek op de schaal.' );
+		}
+		/*
 		var totalNumber = 2;
 		var val11 = $('input[name=first]:checked').val();
 		var val22 = $('input[name=second]:checked').val();
@@ -28,11 +43,11 @@ var RecommendationController = function( model, view ){
 				}
 				/*
 				if($('input[name=first]:checked') && $('input[name=second]:checked')){
-*/
+*//*
 			}).promise().done(function(){
 				model.setRecommendationDone();	
 			});
-		}
+		}*/
 	});
 
 }

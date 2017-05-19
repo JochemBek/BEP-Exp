@@ -8,20 +8,11 @@ var RecommendationView = function( model,container ){
 					  Variable Declarations
 	***********************************************************/
 
-	var omschrijvingsblok		= $( "<div id='description'>");
-	var vraagstelling			= $( "<h4 id='vraagstelling' style='margin-left:30%; width:70%; float:left;'>Selecteer van onderstaande maatregelen uw 1e en 2e keuze die u het liefste in de nabije toekomst zou willen uitvoeren. Klik tevens op 'dit doe ik al' als u een maatregel al uitvoert.</h4>");
-	
-	var leeghalfblok			= $( "<div id='leeghalfblok' style='width:40%'>");
-	var ja						= $( "<div id='ja' style='font-weight:bold; display:inline-block; width:20%'>1e keuze</div>");
-	var nee						= $( "<div id='nee' style='font-weight:bold; display:inline-block; width:40%'>2e keuze</div>");
-	var doeikal 				= $( "<div id='doeikal' style='font-weight:bold; display:inline-block; width:30%'>Dit doe ik al</div>");
-	var ondersteregel			= $( "<div id='ondersteregel' style='margin-left:68.5%; width: 28%; text-align:center'>");
-	/*ondersteregel.append(ja,nee,doeikal);
-	omschrijvingsblok.append(vraagstelling,ondersteregel);*/
+	var recommendations 		= [];
 
-	var div						= $( "<div id='blok' style='width: 30%; float: left'>");
-	var recommendationList		= $( "<ul id='recommendationList' class='list-group' style='width:70%; float:left;'>" );
-	var hoverlist				= $( "<ul id='hoverlist' class='list-group'>" );
+	var omschrijvingsblok		= $( "<div id='description'>");
+	
+	var dropContainer 			= $( "<ul id='dropspot'> <li id='slotOne' class='drop'> </li> <li id='slotTwo' class='drop'> </li> <li id='slotThree' class='drop'> </li> </ul>" );
 	var volgendeButton	 		= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 
 	
@@ -29,7 +20,7 @@ var RecommendationView = function( model,container ){
 						Private Variables
 	***********************************************************/
 	
-	findRecommendations = function(){ 
+	findRecommendations = function(callback){ 
 		var description; 
 		var recommend;
 		
@@ -46,22 +37,103 @@ var RecommendationView = function( model,container ){
 		var form = model.getForm();
 		console.log("De vorm is: " + form);
 		
-		var recommendations = model.getRecommendations();
+		recommendations = model.getRecommendations();
 		console.log("De recommendation on level is : " + recommendations[0].description);
 		
 		
 		if (form == 0) { // telling
-			recommend = $("<div> <p>" + recommendations[0].name + " </p> </div> <div> <p>" + recommendations[1].name + " </p> </div> <div> <p>" + recommendations[2].name + " </p> </div>"); 
+			recommend = $("<div id='" + recommendations[0].id + "' class='rec rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec rec3'> <p>" + recommendations[2].name + " </p> </div>"); 
 		} 
 		if (form == 1) { // sharing
-			recommend = $("<div> <p>" + recommendations[0].name + " </p> </div> <div> <p>" + recommendations[1].name + " </p> </div> <div> <p>" + recommendations[2].name + " </p> </div>"); // Hiervoor moeten we in de DB een extra column maken met telling vorm, en dan hier veranderen
+			recommend = $("<div id='" + recommendations[0].id + "' class='rec rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec rec3'> <p>" + recommendations[2].name + " </p> </div>"); 
 		}
 		
 		omschrijvingsblok.append(description, recommend);
+		container.append(omschrijvingsblok, dropContainer, volgendeButton );
+
+		
+		callback.call();
 		
 	}
 	
+	makeDraggable = function() {
+		$('.rec1').draggable();
+		$('.rec2').draggable();
+		$('.rec3').draggable();
+		$('#dropspot').sortable({
+			axis: "y"
+		});
+				
+		$('#slotOne').droppable({
+			accept: ".rec",
+			tolerance: "pointer",
+			activate: function(event, ui) {
+				console.log("You can now drop!");
+				$(this).addClass("highlightDrop");
+			},
+			over: function(event, ui) {
+				console.log("Over!");
+				$(this).removeClass("highlightDrop");
+				$(this).addClass("over");
+			},
+			drop: function(event , ui) {
+				$(this).droppable('option', 'accept', ui.draggable);
+				console.log("Dropped!");
+				$(this).removeClass("over");
+				$(this).addClass("dropped");
+				var rec = $(ui.draggable).attr('id');
+				$(ui.draggable).remove();
+				$(this).attr('id', rec);
+			}
+		});
+		$('#slotTwo').droppable({
+			accept: ".rec",
+			tolerance: "pointer",
+			activate: function(event, ui) {
+				console.log("You can now drop!");
+				$(this).addClass("highlightDrop");
+			},
+			over: function(event, ui) {
+				console.log("Over!");
+				$(this).removeClass("highlightDrop");
+				$(this).addClass("over");
+			},
+			drop: function(event , ui) {
+				$(this).droppable('option', 'accept', ui.draggable);
+				console.log("Dropped!");
+				$(this).removeClass("over");
+				$(this).addClass("dropped");
+				var rec = $(ui.draggable).attr('id');
+				$(ui.draggable).remove();
+				$(this).attr('id', rec);
+			}
+		});
+		$('#slotThree').droppable({
+			accept: ".rec",
+			tolerance: "pointer",
+			activate: function(event, ui) {
+				console.log("You can now drop!");
+				$(this).addClass("highlightDrop");
+			},
+			over: function(event, ui) {
+				console.log("Over!");
+				$(this).removeClass("highlightDrop");
+				$(this).addClass("over");
+			},
+			drop: function(event , ui) {
+				$(this).droppable('option', 'accept', ui.draggable);
+				console.log("Dropped!");
+				$(this).removeClass("over");
+				$(this).addClass("dropped");
+				var rec = $(ui.draggable).attr('id');
+				$(ui.draggable).remove();
+				$(this).attr('id', rec);
+			}
+		});
+
+	}
 	
+	/*
 	updateRecommendationList = function(){
 
 		//retrieve measure questions, at the moment it's just an object (not an array)
@@ -146,7 +218,7 @@ var RecommendationView = function( model,container ){
 				});
 				$(this).addClass('active');
 			});
-*/
+*//*
 			b.mouseover(function() {
 				var idx = $('#recommendationList li').index(this);
 				$('#hoverlist li').eq(idx).show();
@@ -159,7 +231,7 @@ var RecommendationView = function( model,container ){
 				$( this ).css("background-color","white");
 				model.trackHover(idt, 0); //betekent dat je het vak in gaat
 			});
-
+*/
 			/* DIT WERKT WEL MAAR DIT IS LAYOUT-TECHNISCH EEN CRIME
 			b.hover(
 				function() {
@@ -168,16 +240,16 @@ var RecommendationView = function( model,container ){
 				function() {
 					$(this).find( "span:last").remove();
 				});
-*/
+*//*
 		}
 		div.append(hoverlist);
-	}
+	}*/
 
 	/***********************************************************
 						Public Variables
 	***********************************************************/
 
-	this.recommendationList 	= recommendationList;
+	//this.recommendationList 	= recommendationList;
 	this.volgendeButton 		= volgendeButton;
 
 	/***********************************************************
@@ -188,12 +260,8 @@ var RecommendationView = function( model,container ){
 	this.update = function( args ){
 		if( args == "informationDone" ){
 			//updateRecommendationList();
-			findRecommendations();
-			setTimeout(function() {
-			    container.slideUp();
-			    container.append( omschrijvingsblok, volgendeButton );
-			    container.slideDown();
-			}, 1000);
+			findRecommendations(makeDraggable);
+			container.show();
 		}
 		if( args == "setRecommendationDone" ){
 			container.hide();

@@ -248,8 +248,6 @@ var RaschRecommenderModel = function( options ){
   // Used when the user votes, can take either "yes", "no" or "nvt" as parameters.
   setUserMeasure = function( value ){
     var answer;
-    // This checks if the measure is a existing one or one we are testing to put
-    // on the rasch scale as new. The new ones dont have difficulty yet ofcourse.
     if( value == "yes" ){
         yes ++;
         answer = 1;
@@ -279,6 +277,24 @@ var RaschRecommenderModel = function( options ){
       });
 
 
+  }
+  
+  setSuitabilityScale = function( array ) {
+    var scale = array;
+    
+    $.post("ajax/insertSuitabilityScale.php", 
+      {
+        userId: currentUserId,
+        conditie: o.condition,
+        screen: atRecom,
+        mostSuitable: scale[0],
+        averageSuitable: scale[1],
+        leastSuitable: scale[2]
+      }).done(function(){
+      
+      console.log("The scale is saved in the DB");  
+    });
+    
   }
 
   // Create the recommendation from the ability depending on the condition.
@@ -656,6 +672,7 @@ setInterested = function (value){
 
   this.trackHover                   = trackHover;
   this.setUserMeasure               = setUserMeasure;
+  this.setSuitabilityScale          = setSuitabilityScale;
   this.setUserRecommendation        = setUserRecommendation;
   this.setUserSatisfactionQuestion  = setUserSatisfactionQuestion;
   this.setUserSelection             = setUserSelection;

@@ -105,6 +105,29 @@ div.btn-group {
 
 }
 
+#dropspot { 
+	height: 300px;
+	width: 200px;
+}
+
+.drop {
+	height: 100px;
+	width: 200px;
+	border-style: solid; 
+}
+
+.dropped {
+	background-color: yellow;
+}
+
+.over {
+	background-color: grey;
+}
+
+.highlightDrop {
+	background-color: green;
+}
+
 #legend{
 	margin-left: 50%;
 	font-size: 12px;
