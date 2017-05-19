@@ -75,6 +75,8 @@
                 </div>
 
             </div>
+
+          <div id="boxFooter" class='col-md-8 col-md-offset-0' style='width:100%'>
         </div>
     </div>
 

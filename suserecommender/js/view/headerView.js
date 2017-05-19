@@ -31,12 +31,12 @@ var HeaderView = function ( model, container ){
 			p.html( "Als onderdeel van ons aanbevelingssysteem stellen we u eerst twee vragen over uw woonsituatie en inkomensniveau. Deze informatie gebruiken wij om onze aanbevelingen te verbeteren.");
 		}
 
-		if( args == "measureReady" ){
+		if( args == "filterReady" ){
 			h2.html( "Vragen Energiegebruik - Introductie" );
 			p.html("");
 		}
 
-		if( args == "introProbingDone"){
+		if( args == "measureReady"){
 			h2.html( "Vragen Energiegebruik  "+counter+" / "+model.o.numberOfSets+"");
 			p.html( "Nu stellen we u eerst een aantal vragen over uw huidige energie-besparende activiteiten. Geef steeds aan of u de betreffende energiebesparende maatregel al uitvoert of niet. Als de maatregel voor u onmogelijk is - bijvoorbeeld: u heeft geen tuin, dus daarom geen zuinige tuinlampen - klik dan op N.V.T. (niet van toepassing)");
 			counter++;

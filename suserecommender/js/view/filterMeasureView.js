@@ -1,6 +1,6 @@
 var FilterMeasureView = function (model, container){
 
-	var volgendeButton	= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+	var volgendeButton	= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 
 
 	/***WOONSITUATIE VARIABLE EXPLAINED:***************

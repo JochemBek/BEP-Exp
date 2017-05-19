@@ -5,7 +5,8 @@
    ========================================================================== */
 
 body{
-	background:url(http://subtlepatterns.com/patterns/wood_pattern.png);
+	background:url(https://img.clipartfest.com/31fc9a7c580a6f937caf469e5478d9d7_light-blue-blue-background-textured-solid-color-backgrounds-clipart_4256-2832.jpeg);
+	background-repeat: space;
 	padding-top:0px;
 }
 
@@ -20,7 +21,7 @@ h1{
 }
 
 #tuelogo{
-	float:right; 
+	float:right;
 	margin-top: -63px;
 }
 
@@ -28,7 +29,7 @@ h1 small{
 	font-family: Arial, Helvetica, Sans-serif;
 	font-weight: 500;
 	line-height: 1.1;
-	color: inherit;	
+	color: inherit;
 }
 
 #friendtext{
@@ -39,19 +40,52 @@ h1 small{
 }
 
 #friendimage{
-	background-image: url(http://pixabay.com/static/uploads/photo/2012/04/18/19/01/green-37583_640.png);
+	background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/fresh_snow.png);
 	background-repeat: no-repeat;
 	padding-left: 30px;
 	margin-right: 10px;
 	display: inline-block;
 }
 
+.button {
+ text-decoration: none;
+ color: rgba(255, 255, 255, 0.8);
+ background: #195B94;
+ padding: 15px 40px;
+ border-radius: 4px;
+ font-weight: normal;
+ text-transform: uppercase;
+ transition: all 0.2s ease-in-out;
+}
+.btn-group-wrap {
+    text-align: center;
+}
+
+div.btn-group {
+    margin: 0 auto;
+    text-align: center;
+    width: inherit;
+    display: inline-block;
+}
+
+.glow-button-green:hover {
+ color: rgba(255, 255, 255, 1);
+ box-shadow: 0 5px 15px rgba(0, 188, 0, .4);
+}
+.glow-button-red:hover {
+ color: rgba(255, 255, 255, 1);
+ box-shadow: 0 5px 15px rgba(205, 0, 0, .4);
+}
+.glow-button-yellow:hover {
+ color: rgba(255, 255, 255, 1);
+ box-shadow: 0 5px 15px rgba(255,219,0, .4);
+}
 .wrapper{
 	width: 100%;
 	margin-bottom: 40px;
 	background: rgba(255,255,255,0.4);
 	height:90px;
-	color:#5bc0de;
+	color:#195B94;
 }
 
 #measureAbility h3.text-center{
@@ -87,7 +121,7 @@ h1 small{
 }
 
 #legend span{
-	
+
 }
 
 #mainApplication{
@@ -105,7 +139,7 @@ h1 small{
 }
 
 #boxHeader{
-	background: #5bc0de;
+	background: #195B94;
 	color: #fff;
 	padding-bottom:15px;
 	padding-top: 1px;
@@ -120,12 +154,18 @@ h1 small{
 	font-weight:bold;
 }
 
+#boxFooter{
+	background: #195B94;
+	color: #fff;
+	padding-bottom:15px;
+	padding-top: 1px;
+}
 
 a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus{
-	background-color: #5bc0de;
-	border-color: #5bc0de;
+	background-color: #195B94;
+	border-color: #195B94;
 	background-image: none;
-	text-shadow: 0 -1px 0 #5bc0de;
+	text-shadow: 0 -1px 0 #195B94;
 }
 
 #recommendationList li{
@@ -147,7 +187,7 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	#legend {
 		padding-right: 10px;
 	}
-	
+
 }
 
 @media all and (min-width:480px) and (max-width: 620px){
@@ -155,7 +195,3 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 		margin-left: 10px;
 	}
 }
-
-
-
-

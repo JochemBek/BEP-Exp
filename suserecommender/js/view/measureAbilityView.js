@@ -9,15 +9,15 @@ var MeasureAbilityView = function(model, container){
 	var item									= $( "<div class='list-group-item'>" );
 	var h3										= $( "<h3 class='list-group-item-heading'>" );
 	var description	 					= $( "<p style='font-style: italic;' class='list-group-item-text'>" );
-	var yesButton							= $( "<a class='btn btn-default' role='button'>Ja</a>" );
-	var noButton							= $( "<a class='btn btn-default' role='button'>Nee</a>" );
-	var notusefulButton				= $( "<a class='btn btn-default' role='button'>N.V.T</a>" );
-	var buttonGroup 					= $( "<div class='btn-group btn-group-justified'> ");
+	var yesButton							= $( "<a class='btn btn-default button glow-button-green btn-lg' role='button'>Ja</a>" );
+	var noButton							= $( "<a class='btn btn-default button glow-button-red btn-lg' role='button'>Nee </a>" );
+	var notusefulButton				= $( "<a class='btn btn-default button glow-button-yellow pull-right' role='button'>N.V.T.</a>" );
+	var buttonGroup 					= $( "<div class='btn-group text-align:center'> ");
 
-			buttonGroup 	.append( noButton, notusefulButton, yesButton );
+			buttonGroup 	.append( noButton, yesButton );
 			list 					.append( item );
 			item 					.append( h3, description )
-			container			.append( h2, list, buttonGroup ); // die container staat ook in de model-functie en betekent dat ie weergegeven wordt.
+			container			.append( h2, list, buttonGroup, notusefulButton ); // die container staat ook in de model-functie en betekent dat ie weergegeven wordt.
 
 	/***********************************************************
 						Private Variables
@@ -45,7 +45,8 @@ var MeasureAbilityView = function(model, container){
 	this.update = function( args ){
 		//if( args == "NUFFNIET"){
 		if( args == "introProbingDone" ){
-			container.delay(1000).slideDown();
+			container.show();
+			//delay(10).slideDown();
 		}
 		if( args == "measureReady" ){
 			updateMeasure();
