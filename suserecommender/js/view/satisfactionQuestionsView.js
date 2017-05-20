@@ -15,6 +15,10 @@ var SatisfactionQuestionsView = function (model, container){
 						Private Variables
 	***********************************************************/
 
+	cleanUpQuality = function () {
+		$('.list-group').empty();
+	}
+
 	updateQuestions = function(){
 		var questions = model.getQualityQuestions();
 		
@@ -45,7 +49,7 @@ var SatisfactionQuestionsView = function (model, container){
 	this.update = function( args ){
 
 		if( args == 'recommendationsDone' ){
-			updateQuestions();
+			$.when(cleanUpQuality()).then(updateQuestions());
 			container.show();
 		}
 

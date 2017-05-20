@@ -16,6 +16,10 @@ var ExtraQuestionsView = function (model, container){
 						Private Variables
 	***********************************************************/
 
+	cleanUp = function() {
+		$('.extraQuestions-group').empty();
+	}
+
 	displayRecomQuestions = function(){
 		var recommendations = model.getRecommendations();
     var units = []; 
@@ -45,7 +49,7 @@ var ExtraQuestionsView = function (model, container){
 	this.update = function( args ){
 
 		if( args == 'qualityQuestionsDone' ){
-			displayRecomQuestions();
+			$.when(cleanUp()).then(displayRecomQuestions());
       console.log("Extra Questions View is in actiones!");
 			container.show();
 		}
