@@ -21,7 +21,7 @@ var SatisfactionQuestionsView = function (model, container){
 		var questionElements = [];
 		
 		for(var i = 0; i < questions.length; i++) {
-			questionElements[i] = $("<div id='" + questions[i].nr + "' class='question'> <p>'" + questions[i].text + "'</p> <div> <ul class='likert'> <li> Helemaal mee oneens </li> <li><input type='radio' name='guilty' value='1' /></li> <li><input type='radio' name='guilty' value='2' /></li> <li><input type='radio' name='guilty' value='3' /></li> <li><input type='radio' name='guilty' value='4' /></li> <li><input type='radio' name='guilty' value='5' /></li> <li> Helemaal mee eens </li> </ul> </div>");
+			questionElements[i] = $("<div id='" + questions[i].nr + "' class='question'> <p>'" + questions[i].text + "'</p> <div> <ul id='q" + questions[i].nr + "cont' class='likert'> <li> Helemaal mee oneens </li> <li><input type='radio' name='q" + questions[i].nr + "' value='1' /></li> <li><input type='radio' name='q" + questions[i].nr + "' value='2' /></li> <li><input type='radio' name='q" + questions[i].nr + "' value='3' /></li> <li><input type='radio' name='q" + questions[i].nr + "' value='4' /></li> <li><input type='radio' name='q" + questions[i].nr + "' value='5' /></li> <li> Helemaal mee eens </li> </ul> </div>");
 		}
 		
 		for(var i = 0; i < questions.length; i++) {

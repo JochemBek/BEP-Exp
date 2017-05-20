@@ -57,16 +57,6 @@ h1 small{
  text-transform: uppercase;
  transition: all 0.2s ease-in-out;
 }
-
-#btnyes{
-	padding: 20px 60px;
-}
-#btnno{
-	padding: 20px 60px;
-}
-#btnnvt{
-	padding: 5px 12px;
-}
 .btn-group-wrap {
     text-align: center;
 }
@@ -76,11 +66,6 @@ div.btn-group {
     text-align: center;
     width: inherit;
     display: inline-block;
-}
-
-.list-group{
-	width: 100%;
-	margin: auto;
 }
 
 .glow-button-green:hover {
@@ -103,14 +88,6 @@ div.btn-group {
 	color:#195B94;
 }
 
-.wrapper1{
-	width: 100%;
-	margin-top: 25px;
-	background: rgba(255,255,255,0);
-	height:80px;
-	color:#195B94;
-}
-
 #measureAbility h3.text-center{
 	margin-top: 10px;
 	margin-bottom: 25px;
@@ -128,7 +105,7 @@ div.btn-group {
 
 }
 
-#dropspot {
+#dropspot { 
 	height: 300px;
 	width: 200px;
 }
@@ -136,7 +113,7 @@ div.btn-group {
 .drop {
 	height: 100px;
 	width: 200px;
-	border-style: solid;
+	border-style: solid; 
 }
 
 .dropped {

@@ -67,6 +67,9 @@
 
                 <div id="satisfactionQuestions">
                 </div>
+                
+                <div id="extraQuestions">
+                </div>
 
                 <div id="demographics">
                 </div>
@@ -114,6 +117,9 @@
 
         <script src="js/view/satisfactionQuestionsView.js"></script>
         <script src="js/controller/satisfactionQuestionsController.js"></script>
+        
+        <script src="js/view/extraQuestionsView.js"></script>
+        <script src="js/controller/extraQuestionsController.js"></script>
 
         <script src="js/view/demographicsView.js"></script>
         <script src="js/controller/demographicsController.js"></script>

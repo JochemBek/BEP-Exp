@@ -1,7 +1,7 @@
-var SatisfactionQuestionsController = function(model, view) {
+var ExtraQuestionsController = function(model, view) {
 	
 	view.volgendeButton.click(function(){
-		var $questions = $(".question");
+		/*var $questions = $(".question");
 		if($questions.find("input:radio:checked").length == $questions.length) { 
 			console.log("Questions done!");
 			$('.question').each(function() {
@@ -13,6 +13,6 @@ var SatisfactionQuestionsController = function(model, view) {
 			model.qualityQuestionsDone();
 		} else {
 			alert(' U hebt waarschijnlijk een vraag vergeten!');
-		}
+		}*/
 	});
  }
