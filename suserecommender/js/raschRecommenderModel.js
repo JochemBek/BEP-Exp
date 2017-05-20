@@ -204,9 +204,9 @@ var RaschRecommenderModel = function( options ){
         currentUserId = data;
       });
 
-    //notifyObservers('userCreated');
+    notifyObservers('userCreated');
     
-    notifyObservers('manCheck');
+    //notifyObservers('manCheck');
   }
 
   // After the user has filled out everything, update the user data.

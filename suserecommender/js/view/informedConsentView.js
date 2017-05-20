@@ -30,10 +30,6 @@ var InformedConsentView = function(model, container){
 			console.log("Close informed consent, proceed to Filter Measures");
 			container.hide();
 		}
-		
-		if( args == "manCheck") {
-			container.hide();
-		}
 	}
 
 }
