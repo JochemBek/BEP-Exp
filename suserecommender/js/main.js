@@ -25,6 +25,9 @@ $(function(){
 
 	var satisfactionQuestionsView		= new SatisfactionQuestionsView( raschRecommenderModel, $( "#satisfactionQuestions" ) );
 	var satisfactionQuestionsController = new SatisfactionQuestionsController ( raschRecommenderModel, satisfactionQuestionsView );
+	
+	var extraQuestionsView 					= new ExtraQuestionsView( raschRecommenderModel, $("#extraQuestions") );
+	var extraQuestionsController 				= new ExtraQuestionsController (raschRecommenderModel, extraQuestionsView );
 
 	var demographicsView				= new DemographicsView( raschRecommenderModel, $( "#demographics" ) );
 	var demographicsController 			= new DemographicsController( raschRecommenderModel, demographicsView );

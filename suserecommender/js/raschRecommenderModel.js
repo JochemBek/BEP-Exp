@@ -584,7 +584,6 @@ var RaschRecommenderModel = function( options ){
 
   getQualityQuestions = function(){
     qualityQuestions = shuffle(defaultQualityQuestions);
-    
     return qualityQuestions;
   }
 

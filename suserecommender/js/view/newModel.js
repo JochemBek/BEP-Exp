@@ -1,5 +1,0 @@
-var newModel = function (options) {
-  
-  
-  
-}
