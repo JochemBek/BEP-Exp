@@ -41,32 +41,32 @@ var RaschRecommenderModel = function( options ){
   var measures, newMeasures, measureQuestions, currentUserId, woon, value, geslacht, commentaar, bericht, consent,
     facebookId, email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, voorselectie = [], wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
-    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [], 
+    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
     atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [];
-  
+
   defaultQualityQuestions = [
-    {   
-      nr: 1, 
-      text: "Ik vind de maatregelen leuk." 
+    {
+      nr: 1,
+      text: "Ik vind de maatregelen leuk."
     },
     {
-      nr: 2, 
+      nr: 2,
       text: "Ik vind de maatregelen niet leuk."
     },
-    {   
-      nr: 3, 
-      text: "Ik vind de maatregelen leuk." 
+    {
+      nr: 3,
+      text: "Ik vind de maatregelen leuk."
     },
     {
-      nr: 4, 
+      nr: 4,
       text: "Ik vind de maatregelen niet leuk."
     },
-    {   
-      nr: 5, 
-      text: "Ik vind de maatregelen leuk." 
+    {
+      nr: 5,
+      text: "Ik vind de maatregelen leuk."
     },
     {
-      nr: 6, 
+      nr: 6,
       text: "Ik vind de maatregelen niet leuk."
     }
   ];
@@ -225,7 +225,7 @@ var RaschRecommenderModel = function( options ){
     // randomize the order of the selected measures
     shuffle( selectedMeasures );
     filterMeasureDone();
-    newMeasure();
+
   }
 
   // Get a measure to present to the user
@@ -241,8 +241,8 @@ var RaschRecommenderModel = function( options ){
       createRecommendation();
     }
   }
-  
-  newQualityQuestions = function(){ 
+
+  newQualityQuestions = function(){
     notifyObservers( 'recommendationsDone');
   }
 
@@ -280,11 +280,11 @@ var RaschRecommenderModel = function( options ){
 
 
   }
-  
+
   setSuitabilityScale = function( array ) {
     var scale = array;
-    
-    $.post("ajax/insertSuitabilityScale.php", 
+
+    $.post("ajax/insertSuitabilityScale.php",
       {
         userId: currentUserId,
         conditie: o.condition,
@@ -293,20 +293,20 @@ var RaschRecommenderModel = function( options ){
         averageSuitable: scale[1],
         leastSuitable: scale[2]
       }).done(function(){
-      
+
       console.log("The scale is saved in the DB");
-      
+
       newQualityQuestions();
-        
+
     });
-    
+
   }
-  
+
   setQualityQuestion = function(question, value) {
-    var questionId = question; 
+    var questionId = question;
     var val = value;
-    
-    $.post("ajax/insertQualityQuestion.php", 
+
+    $.post("ajax/insertQualityQuestion.php",
       {
         userId: currentUserId,
         conditie: o.condition,
@@ -314,10 +314,10 @@ var RaschRecommenderModel = function( options ){
         questionId: questionId,
         value: val
       }).done(function(){
-      
+
       console.log("The question + answer are saved in the DB");
     });
-    
+
   }
 
   // Create the recommendation from the ability depending on the condition.
@@ -667,6 +667,7 @@ setInterested = function (value){
 
   introProbingDone = function(){
     notifyObservers("introProbingDone");
+    newMeasure();
   }
 
   /***********************************************************
