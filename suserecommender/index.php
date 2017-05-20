@@ -71,6 +71,9 @@
                 <div id="extraQuestions">
                 </div>
 
+                <div id="manCheck">
+                </div>
+
                 <div id="demographics">
                 </div>
 
@@ -120,6 +123,9 @@
         
         <script src="js/view/extraQuestionsView.js"></script>
         <script src="js/controller/extraQuestionsController.js"></script>
+        
+        <script src="js/view/manCheckView.js"></script>
+        <script src="js/controller/manCheckController.js"></script>
 
         <script src="js/view/demographicsView.js"></script>
         <script src="js/controller/demographicsController.js"></script>

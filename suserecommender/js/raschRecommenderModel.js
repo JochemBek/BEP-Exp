@@ -42,7 +42,7 @@ var RaschRecommenderModel = function( options ){
     facebookId, email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, voorselectie = [], wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
     stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
-    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [];
+    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [];
 
   defaultQualityQuestions = [
     {
@@ -68,6 +68,29 @@ var RaschRecommenderModel = function( options ){
     {
       nr: 6,
       text: "Ik vind de maatregelen niet leuk."
+    }
+  ];
+  
+  defaultManCheckQuestions = [
+    {
+      nr: 1,
+      text: "Hij straalt autoriteit uit. "
+    },
+    {
+      nr: 2,
+      text: "Hij is kundig."
+    },
+    {
+      nr: 3,
+      text: "Hij weet waar hij het over heeft."
+    },
+    {
+      nr: 4,
+      text: "Naar hem zou ik in de toekomst ook luisteren."
+    },
+    {
+      nr: 5,
+      text: "Hij is onbekwaam."
     }
   ];
 
@@ -181,7 +204,9 @@ var RaschRecommenderModel = function( options ){
         currentUserId = data;
       });
 
-    notifyObservers('userCreated');
+    //notifyObservers('userCreated');
+    
+    notifyObservers('manCheck');
   }
 
   // After the user has filled out everything, update the user data.
@@ -350,6 +375,25 @@ var RaschRecommenderModel = function( options ){
       }).done(function(){
 
       console.log("The checkbox answers are saved in the DB");
+    });
+  }
+  
+  
+  setManCheckQuestion = function(expertise, question, value) {
+    var isExpert = expertise;
+    var questionId = question;
+    var val = value;
+
+    $.post("ajax/insertManCheck.php",
+      {
+        userId: currentUserId,
+        conditie: o.condition,
+        isExpert: expertise,
+        questionId: questionId,
+        value: val
+      }).done(function(){
+
+      console.log("The ManChecks are saved in the DB");
     });
   }
 
@@ -535,7 +579,12 @@ var RaschRecommenderModel = function( options ){
       notifyObservers( "nextRecommendation" );
     } else {
       console.log("Feest, u bent klaar!");
+      notifyObservers( "manCheck" );
     }
+  }
+  
+  manCheckQuestionsDone = function() {
+    notifyObservers("manCheckDone");
   }
 
   getMeasure = function(){
@@ -629,6 +678,17 @@ var RaschRecommenderModel = function( options ){
   getQualityQuestions = function(){
     qualityQuestions = shuffle(defaultQualityQuestions);
     return qualityQuestions;
+  }
+  
+  getManCheckQuestions = function(){
+    var manCheckQuestions = shuffle(defaultManCheckQuestions);
+    return manCheckQuestions;
+  }
+  
+  getRandomAdvisor = function(){
+    var experts = [0, 1];
+    var firstExpert = shuffle(experts);
+    return firstExpert[0];    
   }
 
   setLeeftijd = function( value ){
@@ -739,7 +799,10 @@ setInterested = function (value){
   this.setRecommendationDone    = setRecommendationDone;
   this.qualityQuestionsDone     = qualityQuestionsDone;
   this.extraQuestionsDone       = extraQuestionsDone;
+  this.manCheckQuestionsDone    = manCheckQuestionsDone;
   this.getRecommendation        = getRecommendation;
+  this.getManCheckQuestions     = getManCheckQuestions;
+  this.getRandomAdvisor         = getRandomAdvisor;
   this.getQualityQuestions      = getQualityQuestions;
   this.demographicsDone         = demographicsDone;
   this.getMeasureQuestions      = getMeasureQuestions;
@@ -749,6 +812,7 @@ setInterested = function (value){
   this.setSuitabilityScale          = setSuitabilityScale;
   this.setQualityQuestion           = setQualityQuestion;
   this.setExtraQuestion             = setExtraQuestion;
+  this.setManCheckQuestion          = setManCheckQuestion;
   this.setUserRecommendation        = setUserRecommendation;
   this.setUserSatisfactionQuestion  = setUserSatisfactionQuestion;
   this.setUserSelection             = setUserSelection;

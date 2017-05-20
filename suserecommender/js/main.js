@@ -28,6 +28,9 @@ $(function(){
 	
 	var extraQuestionsView 					= new ExtraQuestionsView( raschRecommenderModel, $("#extraQuestions") );
 	var extraQuestionsController 				= new ExtraQuestionsController (raschRecommenderModel, extraQuestionsView );
+	
+	var manCheckView 								= new ManCheckView( raschRecommenderModel, $("#manCheck") );
+	var manCheckController 							= new ManCheckController(raschRecommenderModel, manCheckView );
 
 	var demographicsView				= new DemographicsView( raschRecommenderModel, $( "#demographics" ) );
 	var demographicsController 			= new DemographicsController( raschRecommenderModel, demographicsView );
