@@ -73,11 +73,6 @@ var RaschRecommenderModel = function( options ){
 
   // Get all the required data from the database
   // Fill the array with all the measures in the database
-  $.get( "ajax/selectMeasureQuestions.php", function( data ){
-    measureQuestions = $.parseJSON( data );
-  });
-
-
 
   $.get( "ajax/selectMeasures.php", function( data ){
     //console.log("Data: " + data);
@@ -86,32 +81,7 @@ var RaschRecommenderModel = function( options ){
     measures = measures.sort(function (a,b){
       return a.difficulty-b.difficulty;
     });
-  }).done(function(){
-    getNewQuestions();
- });
-
-
-
-
-   var getNewQuestions = function(){
-    // Get the new measures for calculating the level on rash scale - niet relevant nu maar kan geen kwaad
-    $.get( "ajax/selectNewMeasures.php", function( data ){
-      newMeasures = $.parseJSON( data );
-    }).done(function(){
-
-      selectSatisfactionQuestions();
-    });
-  }
-
-  /***************SATISFACTION QUESTIONS **********/
-
-  var selectSatisfactionQuestions = function(){
-    $.get( "ajax/selectSatisfactionQuestions.php", function( data ){
-      satisfactionQuestions = $.parseJSON( data );
-    }).done(function(){
-      notifyObservers( "questionsReady" );
-    });
-  }
+  });
 
 
   /*************UITLEG FILTERING****************************
@@ -331,6 +301,24 @@ var RaschRecommenderModel = function( options ){
     });
     
   }
+  
+  setQualityQuestion = function(question, value) {
+    var questionId = question; 
+    var val = value;
+    
+    $.post("ajax/insertQualityQuestion.php", 
+      {
+        userId: currentUserId,
+        conditie: o.condition,
+        screen: atRecom,
+        questionId: questionId,
+        value: val
+      }).done(function(){
+      
+      console.log("The question + answer are saved in the DB");
+    });
+    
+  }
 
   // Create the recommendation from the ability depending on the condition.
 
@@ -502,8 +490,8 @@ var RaschRecommenderModel = function( options ){
 	notifyObservers( "setRecommendationDone" );
   }
 
-  satisfactionDone = function(){
-    notifyObservers( "satisfactionDone" );
+  qualityQuestionsDone = function(){
+    notifyObservers( "qualityQuestionsDone" );
   }
 
   getMeasure = function(){
@@ -569,7 +557,7 @@ var RaschRecommenderModel = function( options ){
       if (o.condition == 1 || o.condition == 2) {
         form = 0;
       } else {
-        form = 0;
+        form = 1;
       }
     }
 
@@ -705,7 +693,7 @@ setInterested = function (value){
   this.getRecommendations       = getRecommendations;
   this.informationDone          = informationDone;
   this.setRecommendationDone    = setRecommendationDone;
-  this.satisfactionDone         = satisfactionDone;
+  this.qualityQuestionsDone     = qualityQuestionsDone;
   this.getRecommendation        = getRecommendation;
   this.getQualityQuestions      = getQualityQuestions;
   this.demographicsDone         = demographicsDone;
@@ -714,6 +702,7 @@ setInterested = function (value){
   this.trackHover                   = trackHover;
   this.setUserMeasure               = setUserMeasure;
   this.setSuitabilityScale          = setSuitabilityScale;
+  this.setQualityQuestion           = setQualityQuestion;
   this.setUserRecommendation        = setUserRecommendation;
   this.setUserSatisfactionQuestion  = setUserSatisfactionQuestion;
   this.setUserSelection             = setUserSelection;
