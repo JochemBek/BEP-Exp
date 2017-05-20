@@ -21,7 +21,7 @@ var ExtraQuestionsView = function (model, container){
     var units = []; 
 		
 		for(var i = 0; i < recommendations.length; i++) {
-			units[i] = $("<div id='recom" + recommendations[i].id + "' class='recomunit'> <p> " + recommendations[i].description + " </p> </div> ");
+			units[i] = $("<div id='" + recommendations[i].id + "' class='recomunit'> <p> " + recommendations[i].description + " </p> <input type='checkbox' name='wantEmail' value='wantEmail' class='wantEmail'> <input type='checkbox' name='alreadyDo' value='alreadyDo' class='alreadyDo'>  </div> ");
 		}
 		
 		for(var i = 0; i < units.length; i++) {
@@ -49,10 +49,10 @@ var ExtraQuestionsView = function (model, container){
       console.log("Extra Questions View is in actiones!");
 			container.show();
 		}
-/*
-		if( args == '' ){
+
+		if( args == 'extraQuestionsDone' ){
 			container.hide();
-		}*/
+		}
 	}
 
 	container.hide();

@@ -12,8 +12,8 @@ var RecommendationView = function( model,container ){
 
 	var omschrijvingsblok		= $( "<div id='description'>");
 	
-	var dropContainer 			= $( "<ul id='dropspot'> <li id='slotOne' class='drop'> </li> <li id='slotTwo' class='drop'> </li> <li id='slotThree' class='drop'> </li> </ul>" );
 	var volgendeButton	 		= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+	var cont = 1;
 
 	
 	/***********************************************************
@@ -23,23 +23,22 @@ var RecommendationView = function( model,container ){
 	findRecommendations = function(callback){ 
 		var description; 
 		var recommend;
+		var dropContainer 			= $( "<ul id='dropspot'> <li id='slotOne' class='drop'> </li> <li id='slotTwo' class='drop'> </li> <li id='slotThree' class='drop'> </li> </ul>" );
 		
 		var advisor = model.getAdvisor();
 		if (advisor == 0) { // non-expert
 			console.log("Advisor is een non-expert");
-			description = $("<div> <p> Johnny is not an expert. </p> </div>");
+			description = $("<div class='advisorDescr'> <p> Johnny is not an expert. </p> </div>");
 		}  
 		if (advisor == 1) { // expert
 			console.log("Advisor is een expert");
-			description = $("<div> <p> Peter is an expert. </p> </div>");
+			description = $("<div class='advisorDescr'> <p> Peter is an expert. </p> </div>");
 		}
 		
 		var form = model.getForm();
 		console.log("De vorm is: " + form);
 		
-		recommendations = model.getRecommendations();
-		console.log("De recommendation on level is : " + recommendations[0].description);
-		
+		recommendations = model.getRecommendations();		
 		
 		if (form == 0) { // telling
 			recommend = $("<div id='" + recommendations[0].id + "' class='rec rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec rec3'> <p>" + recommendations[2].name + " </p> </div>"); 
@@ -50,20 +49,21 @@ var RecommendationView = function( model,container ){
 		
 		omschrijvingsblok.append(description, recommend);
 		container.append(omschrijvingsblok, dropContainer, volgendeButton );
-
+		console.log(dropContainer);
 		
 		callback.call();
-		
 	}
 	
 	makeDraggable = function() {
 		$('.rec1').draggable();
 		$('.rec2').draggable();
 		$('.rec3').draggable();
+		
 		$('#dropspot').sortable({
 			axis: "y"
 		});
-				
+		
+		console.log("I'm making droppables etc!");		
 		$('#slotOne').droppable({
 			accept: ".rec",
 			tolerance: "pointer",
@@ -130,7 +130,18 @@ var RecommendationView = function( model,container ){
 				$(this).attr('id', rec);
 			}
 		});
-
+	}
+	
+	clearUp = function() {
+		console.log("Clearing up!");
+		$('.advisorDescr').remove();
+		$('#dropspot').sortable("destroy");
+		$('#dropspot').remove();
+		
+		$('.drop').each(function() {
+			$(this).droppable("destroy");
+			$(this).remove();
+		});		
 	}
 	
 	/*
@@ -263,12 +274,12 @@ var RecommendationView = function( model,container ){
 			findRecommendations(makeDraggable);
 			container.show();
 		}
-		if ( args == "screenDone" ) {
-			findRecommendations(makeDraggable);
-			container.show();
-		}
 		if( args == "recommendationsDone" ){
 			container.hide();
+		}
+		if( args == "nextRecommendation") {
+			$.when(clearUp()).then(findRecommendations(makeDraggable));
+			container.show();
 		}
 	}
 

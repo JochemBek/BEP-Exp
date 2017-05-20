@@ -319,6 +319,39 @@ var RaschRecommenderModel = function( options ){
     });
 
   }
+  
+  setExtraQuestion = function(question, wantEmail, alreadyDo) {
+    var questionId = question;
+    var wantEmailB = wantEmail;
+    var alreadyDoB = alreadyDo;
+    var wantEmail;
+    var alreadyDo; 
+    
+    if(wantEmailB == false) {
+      wantEmail = 0;
+    } else {
+      wantEmail = 1;
+    }
+    
+    if(alreadyDoB == false) {
+      alreadyDo = 0;
+    } else {
+      alreadyDo = 1;
+    }
+    
+    $.post("ajax/insertExtraQuestion.php",
+      {
+        userId: currentUserId,
+        conditie: o.condition,
+        screen: atRecom,
+        questionId: questionId,
+        wantEmail: wantEmail,
+        alreadyDo: alreadyDo
+      }).done(function(){
+
+      console.log("The checkbox answers are saved in the DB");
+    });
+  }
 
   // Create the recommendation from the ability depending on the condition.
 
@@ -492,6 +525,17 @@ var RaschRecommenderModel = function( options ){
 
   qualityQuestionsDone = function(){
     notifyObservers( "qualityQuestionsDone" );
+  }
+  
+  extraQuestionsDone = function() {
+    atRecom++;
+    notifyObservers("extraQuestionsDone");
+    if(atRecom < 5) {
+      console.log("Next Recommendation plox!");
+      notifyObservers( "nextRecommendation" );
+    } else {
+      console.log("Feest, u bent klaar!");
+    }
   }
 
   getMeasure = function(){
@@ -694,6 +738,7 @@ setInterested = function (value){
   this.informationDone          = informationDone;
   this.setRecommendationDone    = setRecommendationDone;
   this.qualityQuestionsDone     = qualityQuestionsDone;
+  this.extraQuestionsDone       = extraQuestionsDone;
   this.getRecommendation        = getRecommendation;
   this.getQualityQuestions      = getQualityQuestions;
   this.demographicsDone         = demographicsDone;
@@ -703,6 +748,7 @@ setInterested = function (value){
   this.setUserMeasure               = setUserMeasure;
   this.setSuitabilityScale          = setSuitabilityScale;
   this.setQualityQuestion           = setQualityQuestion;
+  this.setExtraQuestion             = setExtraQuestion;
   this.setUserRecommendation        = setUserRecommendation;
   this.setUserSatisfactionQuestion  = setUserSatisfactionQuestion;
   this.setUserSelection             = setUserSelection;

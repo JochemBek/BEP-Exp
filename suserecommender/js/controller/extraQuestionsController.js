@@ -1,18 +1,18 @@
 var ExtraQuestionsController = function(model, view) {
 	
 	view.volgendeButton.click(function(){
-		/*var $questions = $(".question");
-		if($questions.find("input:radio:checked").length == $questions.length) { 
-			console.log("Questions done!");
-			$('.question').each(function() {
-				var qs = $(this).attr('id');
-				var val = $(this).find('input:checked').val();
-				console.log("Question: " + qs + " and value: " + val);
-				model.setQualityQuestion(qs, val);
-			});
-			model.qualityQuestionsDone();
-		} else {
-			alert(' U hebt waarschijnlijk een vraag vergeten!');
-		}*/
+		console.log("Questions done!");
+		$('.recomunit').each(function() {
+			var qs = $(this).attr('id');
+		
+			var wantEmailElement = $(this).find(".wantEmail");
+			var alreadyDoElement = $(this).find(".alreadyDo");
+			var wantEmail = wantEmailElement.is(':checked');
+			var alreadyDo = alreadyDoElement.is(':checked');
+			console.log("Question: " + qs + " has box wantEmail: " + wantEmail + " and box alreadyDo: " + alreadyDo);
+			model.setExtraQuestion(qs, wantEmail, alreadyDo);
+		});
+		model.extraQuestionsDone();
+		
 	});
  }
