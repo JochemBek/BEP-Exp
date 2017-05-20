@@ -43,12 +43,12 @@ var HeaderView = function ( model, container ){
 		}
 
 		if( args == "recommendationReady"){
-			h2.html( "Uw besparingsscore" );
-			p.html( "Hieronder staat uw berekend, die we hebben berekend middels uw gegeven antwoorden.");
+			h2.html( "Advies - Introductie" );
+			p.html( " ");
 		}
 
 		if( args == "informationDone" ){
-			h2.html( "Uw persoonlijke aanbevelingslijst" );
+			h2.html( "Advies - 1/4" );
 		}
 
 		if( args == "setRecommendationDone" ){

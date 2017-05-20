@@ -41,32 +41,32 @@ var RaschRecommenderModel = function( options ){
   var measures, newMeasures, measureQuestions, currentUserId, woon, value, geslacht, commentaar, bericht, consent,
     facebookId, email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, voorselectie = [], wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
-    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [], 
+    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
     atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [];
-  
+
   defaultQualityQuestions = [
-    {   
-      nr: 1, 
-      text: "Ik vind de maatregelen leuk." 
+    {
+      nr: 1,
+      text: "Ik vind de maatregelen leuk."
     },
     {
-      nr: 2, 
+      nr: 2,
       text: "Ik vind de maatregelen niet leuk."
     },
-    {   
-      nr: 3, 
-      text: "Ik vind de maatregelen leuk." 
+    {
+      nr: 3,
+      text: "Ik vind de maatregelen leuk."
     },
     {
-      nr: 4, 
+      nr: 4,
       text: "Ik vind de maatregelen niet leuk."
     },
-    {   
-      nr: 5, 
-      text: "Ik vind de maatregelen leuk." 
+    {
+      nr: 5,
+      text: "Ik vind de maatregelen leuk."
     },
     {
-      nr: 6, 
+      nr: 6,
       text: "Ik vind de maatregelen niet leuk."
     }
   ];
@@ -110,6 +110,7 @@ var RaschRecommenderModel = function( options ){
       satisfactionQuestions = $.parseJSON( data );
     }).done(function(){
       notifyObservers( "questionsReady" );
+      console.log("state is set to questionsReady");
     });
   }
 
@@ -212,6 +213,7 @@ var RaschRecommenderModel = function( options ){
       });
 
     notifyObservers('userCreated');
+    console.log("state is set to userCreated");
   }
 
   // After the user has filled out everything, update the user data.
@@ -255,7 +257,7 @@ var RaschRecommenderModel = function( options ){
     // randomize the order of the selected measures
     shuffle( selectedMeasures );
     filterMeasureDone();
-    newMeasure();
+
   }
 
   // Get a measure to present to the user
@@ -264,6 +266,7 @@ var RaschRecommenderModel = function( options ){
       currentMeasure = selectedMeasures[stepCounter];
       stepCounter++;
       notifyObservers( 'measureReady' );
+      console.log("state is set to measureReady");
     }
     else{
       // Create the recommendation when the conditions are met
@@ -271,9 +274,10 @@ var RaschRecommenderModel = function( options ){
       createRecommendation();
     }
   }
-  
-  newQualityQuestions = function(){ 
+
+  newQualityQuestions = function(){
     notifyObservers( 'recommendationsDone');
+    console.log("state is set to recommendationsDone");
   }
 
 
@@ -310,11 +314,11 @@ var RaschRecommenderModel = function( options ){
 
 
   }
-  
+
   setSuitabilityScale = function( array ) {
     var scale = array;
-    
-    $.post("ajax/insertSuitabilityScale.php", 
+
+    $.post("ajax/insertSuitabilityScale.php",
       {
         userId: currentUserId,
         conditie: o.condition,
@@ -323,13 +327,13 @@ var RaschRecommenderModel = function( options ){
         averageSuitable: scale[1],
         leastSuitable: scale[2]
       }).done(function(){
-      
+
       console.log("The scale is saved in the DB");
-      
+
       newQualityQuestions();
-        
+
     });
-    
+
   }
 
   // Create the recommendation from the ability depending on the condition.
@@ -385,10 +389,12 @@ var RaschRecommenderModel = function( options ){
     twoAboveLevel.splice(3, 1);
 
     notifyObservers( "recommendationReady" );
+    console.log("state is set to recommendationReady");
   }
 
   filterMeasureDone = function(){
     notifyObservers( "filterReady" );
+    console.log("state is set to filterReady");
   }
 
   trackHover = function ( index, hoverIn ){
@@ -495,15 +501,18 @@ var RaschRecommenderModel = function( options ){
 
   informationDone = function(){
     notifyObservers( "informationDone" );
+    console.log("state is set to informationDone");
   }
 
   setRecommendationDone = function(){
     createMessage();
 	notifyObservers( "setRecommendationDone" );
+  console.log("state is set to setRecommendationDone");
   }
 
   satisfactionDone = function(){
     notifyObservers( "satisfactionDone" );
+    console.log("state is set to satisfactionDone");
   }
 
   getMeasure = function(){
@@ -596,7 +605,7 @@ var RaschRecommenderModel = function( options ){
 
   getQualityQuestions = function(){
     qualityQuestions = shuffle(defaultQualityQuestions);
-    
+
     return qualityQuestions;
   }
 
@@ -672,14 +681,18 @@ setInterested = function (value){
 
   demographicsDone = function(){
     notifyObservers( "demographicsDone" );
+    console.log("state is set to semographicsDone");
   }
 
   experimentDone = function(){
     notifyObservers("expDone");
+    console.log("state is set to expDone");
   }
 
   introProbingDone = function(){
+      newMeasure();
     notifyObservers("introProbingDone");
+    console.log("state is set to introProbingDone");
   }
 
   /***********************************************************
