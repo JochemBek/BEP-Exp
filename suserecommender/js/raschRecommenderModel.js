@@ -38,10 +38,10 @@ var RaschRecommenderModel = function( options ){
             Variable Declarations
   ***********************************************************/
 
-  var measures, newMeasures, measureQuestions, currentUserId, woon, value, geslacht, commentaar, bericht, consent,
-    facebookId, email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, voorselectie = [], wantedRecommendations = [],
+  var measures, currentUserId, woon, value, geslacht, commentaar, bericht, consent,
+    email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
-    stepCounter = 0, ability = 0, abilityScaled = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
+    stepCounter = 0, ability = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
     atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [];
 
   defaultQualityQuestions = [
@@ -132,9 +132,7 @@ var RaschRecommenderModel = function( options ){
         console.log("Should be filtered");
       }
     }
-
     createMeasures();
-
   }
 
 
@@ -172,20 +170,6 @@ var RaschRecommenderModel = function( options ){
     return out;
   }
 
-  // returns the closest difficulty to the given value (easy for center condition)
-  /*getClosest = function( array, value ){
-    var closest = null;
-    $.each( array, function(){
-      if ( closest == null ){
-        closest = this;
-      }
-      else if( Math.abs( this.difficulty - value ) < Math.abs( closest.difficulty - value ) ){
-        closest = this;
-      }
-    })
-    return closest;
-  }
-
   /***********************************************************
             Private Functions
   ***********************************************************/
@@ -194,7 +178,6 @@ var RaschRecommenderModel = function( options ){
   // experimental condition.
 
   createUser = function( ){
-
     console.log("Creating user");
 
     $.post( "ajax/insertUser.php",
@@ -242,15 +225,9 @@ var RaschRecommenderModel = function( options ){
       selectedMeasures.push( setArray[i][rand] );
     }
 
-    // Add two of the new measures to the list (Dit doet nu dus niks :)
-    //shuffle( newMeasures );
-    //for( i=0; i < o.newMeasureNumber; i++ ){
-      //selectedMeasures.push( newMeasures[i] );
-    //}
     // randomize the order of the selected measures
     shuffle( selectedMeasures );
     filterMeasureDone();
-
   }
 
   // Get a measure to present to the user
@@ -298,12 +275,9 @@ var RaschRecommenderModel = function( options ){
           measureId: currentMeasure.id,
           answerPre: answer
         }).done(function(){
-
         newMeasure();
         // When measure is saved get the next one
       });
-
-
   }
 
   setSuitabilityScale = function( array ) {
@@ -320,11 +294,8 @@ var RaschRecommenderModel = function( options ){
       }).done(function(){
 
       console.log("The scale is saved in the DB");
-
       newQualityQuestions();
-
     });
-
   }
 
   setQualityQuestion = function(question, value) {
@@ -339,10 +310,8 @@ var RaschRecommenderModel = function( options ){
         questionId: questionId,
         value: val
       }).done(function(){
-
       console.log("The question + answer are saved in the DB");
     });
-
   }
   
   setExtraQuestion = function(question, wantEmail, alreadyDo) {
@@ -377,7 +346,6 @@ var RaschRecommenderModel = function( options ){
       console.log("The checkbox answers are saved in the DB");
     });
   }
-  
   
   setManCheckQuestion = function(expertise, question, value) {
     var isExpert = expertise;
@@ -466,55 +434,6 @@ var RaschRecommenderModel = function( options ){
       });
   }
 
-  insertRecommendation = function(){
-    if(o.condition == 3){
-      for(i=0; i<recommendation.length; i++){
-        $.post( "ajax/insertRecommendation.php",
-        {
-          userId: currentUserId,
-          ability: ability,
-          measureId: recommendation[i].id,
-          position: i+1,     // 1 is dus als 'ie bovenaan in de lijst staat
-          conditie: o.condition,
-          friends: -1
-        });
-      }
-    }else{
-      for(i=0; i<recommendation.length; i++){
-        $.post( "ajax/insertRecommendation.php",
-        {
-          userId: currentUserId,
-          ability: ability,
-          measureId: recommendation[i].id,
-          position: i+1,     // 1 is dus als 'ie bovenaan in de lijst staat
-          conditie: o.condition,
-          friends: recommendation[i].friends
-        });
-      }
-    }
-  }
-
-    // To add a facebook friend to a user. Accepts the facebook friend object
-  insertFacebookFriend = function( friend, score ){
-    $.post( "ajax/insertFacebookFriend.php",
-      {
-        facebookId: facebookId,
-        friendId: friend.id,
-        friendName: friend.name,
-        score: score,
-      }
-    );
-  }
-
-  setUserRecommendation = function (measureId, answer){
-    $.post( "ajax/insertUserRecommendation.php",
-      {
-        userId: currentUserId,
-        measureId: measureId,
-        answerPost: answer // in deze recommender is het een antwoord op Wel/niet doen
-      });
-  }
-
   //Collects recommendations that the user has indicated to like
   sendRecommendation = function ( measureId ){
     for(i=0; i<recommendation.length; i++){
@@ -524,19 +443,6 @@ var RaschRecommenderModel = function( options ){
     }
     //createMessage();
   }
-
-
-  setUserSelection = function (measureId, answer){
-    $.post( "ajax/insertUserSelection.php",
-      {
-        userId: currentUserId,
-        ability: ability,
-        measureId: measureId,
-        choice: answer // in deze recommender is het een antwoord op Wel/niet doen
-      });
-    sendRecommendation(measureId);
-  }
-
 
   createMessage = function(){
     var textstring="";
@@ -549,22 +455,13 @@ var RaschRecommenderModel = function( options ){
 	 console.log(wantedRecommendations);
   }
 
-  setUserSatisfactionQuestion = function( questionId, answer ){
-    $.post( "ajax/insertUserSatisfactionQuestion.php",
-      {
-        userId: currentUserId,
-        questionId: questionId,
-        value: answer
-      });
-  }
-
   informationDone = function(){
     notifyObservers( "informationDone" );
   }
 
   setRecommendationDone = function(){
     createMessage();
-	notifyObservers( "setRecommendationDone" );
+	   notifyObservers( "setRecommendationDone" );
   }
 
   qualityQuestionsDone = function(){
@@ -671,10 +568,6 @@ var RaschRecommenderModel = function( options ){
     return shuffledSetOfRec;
   }
 
-  getMeasureQuestions = function(){
-    return measureQuestions;
-  }
-
   getQualityQuestions = function(){
     qualityQuestions = shuffle(defaultQualityQuestions);
     return qualityQuestions;
@@ -715,12 +608,6 @@ setInterested = function (value){
         bericht: bericht
       });
     }
-  }
-
-  getAbilityScaled = function(){
-    var judgementScale = 10;
-    abilityScaled   = Math.round( ( yes + ( ( yes / o.numberOfSets ) * nvt ) ) / (o.numberOfSets / judgementScale) ) ; // het moet op een schaal van 1 tot 10
-    return abilityScaled;
   }
 
   trackWoonsituatie = function ( value ){
@@ -805,7 +692,6 @@ setInterested = function (value){
   this.getRandomAdvisor         = getRandomAdvisor;
   this.getQualityQuestions      = getQualityQuestions;
   this.demographicsDone         = demographicsDone;
-  this.getMeasureQuestions      = getMeasureQuestions;
 
   this.trackHover                   = trackHover;
   this.setUserMeasure               = setUserMeasure;
@@ -813,17 +699,12 @@ setInterested = function (value){
   this.setQualityQuestion           = setQualityQuestion;
   this.setExtraQuestion             = setExtraQuestion;
   this.setManCheckQuestion          = setManCheckQuestion;
-  this.setUserRecommendation        = setUserRecommendation;
-  this.setUserSatisfactionQuestion  = setUserSatisfactionQuestion;
-  this.setUserSelection             = setUserSelection;
-  this.insertFacebookFriend         = insertFacebookFriend;
 
   this.trackWoonsituatie    = trackWoonsituatie;
   this.trackInkomen         = trackInkomen;
   this.trackOpleiding       = trackOpleiding;
   this.trackGeslacht        = trackGeslacht;
   this.demographicsCheck    = demographicsCheck;
-  this.getAbilityScaled     = getAbilityScaled;
   this.setConsent           = setConsent;
   this.setInterested        = setInterested;
   this.setEmail             = setEmail;
