@@ -47,46 +47,46 @@ var RaschRecommenderModel = function( options ){
   defaultQualityQuestions = [
     {
       nr: 1,
-      text: "Ik vind de maatregelen leuk."
+      text: "De voorgestelde besparingsmaatregelen passen bij mijn voorkeuren."
     },
     {
       nr: 2,
-      text: "Ik vind de maatregelen niet leuk."
+      text: "De voorgestelde besparingsmaatregelen zijn relevant."
     },
     {
       nr: 3,
-      text: "Ik vind de maatregelen leuk."
+      text: "De voorgestelde besparingsmaatregelen zijn aantrekkelijk."
     },
     {
       nr: 4,
-      text: "Ik vind de maatregelen niet leuk."
+      text: "Ik vind geen enkele van de voorgestelde besparingsmaatregelen leuk."
     },
     {
       nr: 5,
-      text: "Ik vind de maatregelen leuk."
+      text: "De adviseur heeft te veel slechte besparingsmaatregelen voorgesteld."
     },
     {
       nr: 6,
-      text: "Ik vind de maatregelen niet leuk."
+      text: "Ik ben van plan om de maatregelen die zijn voorgesteld door de adviseur op te volgen."
     }
   ];
-  
+
   defaultManCheckQuestions = [
     {
       nr: 1,
-      text: "Hij straalt autoriteit uit. "
+      text: "Hij is een expert op het gebied van energiebesparing. "
     },
     {
       nr: 2,
-      text: "Hij is kundig."
+      text: "Hij heeft relevante ervaring."
     },
     {
       nr: 3,
-      text: "Hij weet waar hij het over heeft."
+      text: "Hij heeft voldoende kennis van zaken."
     },
     {
       nr: 4,
-      text: "Naar hem zou ik in de toekomst ook luisteren."
+      text: "Hij is bekwaam."
     },
     {
       nr: 5,
@@ -188,7 +188,7 @@ var RaschRecommenderModel = function( options ){
       });
 
     notifyObservers('userCreated');
-    
+
     //notifyObservers('manCheck');
   }
 
@@ -313,26 +313,26 @@ var RaschRecommenderModel = function( options ){
       console.log("The question + answer are saved in the DB");
     });
   }
-  
+
   setExtraQuestion = function(question, wantEmail, alreadyDo) {
     var questionId = question;
     var wantEmailB = wantEmail;
     var alreadyDoB = alreadyDo;
     var wantEmail;
-    var alreadyDo; 
-    
+    var alreadyDo;
+
     if(wantEmailB == false) {
       wantEmail = 0;
     } else {
       wantEmail = 1;
     }
-    
+
     if(alreadyDoB == false) {
       alreadyDo = 0;
     } else {
       alreadyDo = 1;
     }
-    
+
     $.post("ajax/insertExtraQuestion.php",
       {
         userId: currentUserId,
@@ -346,7 +346,7 @@ var RaschRecommenderModel = function( options ){
       console.log("The checkbox answers are saved in the DB");
     });
   }
-  
+
   setManCheckQuestion = function(expertise, question, value) {
     var isExpert = expertise;
     var questionId = question;
@@ -467,7 +467,7 @@ var RaschRecommenderModel = function( options ){
   qualityQuestionsDone = function(){
     notifyObservers( "qualityQuestionsDone" );
   }
-  
+
   extraQuestionsDone = function() {
     atRecom++;
     notifyObservers("extraQuestionsDone");
@@ -479,7 +479,7 @@ var RaschRecommenderModel = function( options ){
       notifyObservers( "manCheck" );
     }
   }
-  
+
   manCheckQuestionsDone = function() {
     notifyObservers("manCheckDone");
   }
@@ -572,16 +572,16 @@ var RaschRecommenderModel = function( options ){
     qualityQuestions = shuffle(defaultQualityQuestions);
     return qualityQuestions;
   }
-  
+
   getManCheckQuestions = function(){
     var manCheckQuestions = shuffle(defaultManCheckQuestions);
     return manCheckQuestions;
   }
-  
+
   getRandomAdvisor = function(){
     var experts = [0, 1];
     var firstExpert = shuffle(experts);
-    return firstExpert[0];    
+    return firstExpert[0];
   }
 
   setLeeftijd = function( value ){
@@ -699,6 +699,7 @@ setInterested = function (value){
   this.setQualityQuestion           = setQualityQuestion;
   this.setExtraQuestion             = setExtraQuestion;
   this.setManCheckQuestion          = setManCheckQuestion;
+  this.atRecom                      = atRecom;
 
   this.trackWoonsituatie    = trackWoonsituatie;
   this.trackInkomen         = trackInkomen;

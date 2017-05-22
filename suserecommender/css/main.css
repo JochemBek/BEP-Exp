@@ -60,7 +60,9 @@ h1 small{
 .btn-group-wrap {
     text-align: center;
 }
-
+.rec{
+	margin:auto;
+}
 div.btn-group {
     margin: 0 auto;
     text-align: center;

@@ -1,5 +1,5 @@
-/* JOCHEM: 
-Dit wordt de view voor de recommendations; slide 5 van de mockup 
+/* JOCHEM:
+Dit wordt de view voor de recommendations; slide 5 van de mockup
 */
 
 var RecommendationView = function( model,container ){
@@ -11,59 +11,59 @@ var RecommendationView = function( model,container ){
 	var recommendations 		= [];
 
 	var omschrijvingsblok		= $( "<div id='description'>");
-	
-	var volgendeButton	 		= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+
+	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 	var cont = 1;
 
-	
+
 	/***********************************************************
 						Private Variables
 	***********************************************************/
-	
-	findRecommendations = function(callback){ 
-		var description; 
+
+	findRecommendations = function(callback){
+		var description;
 		var recommend;
 		var dropContainer 			= $( "<ul id='dropspot'> <li id='slotOne' class='drop'> </li> <li id='slotTwo' class='drop'> </li> <li id='slotThree' class='drop'> </li> </ul>" );
-		
+
 		var advisor = model.getAdvisor();
 		if (advisor == 0) { // non-expert
 			console.log("Advisor is een non-expert");
-			description = $("<div class='advisorDescr'> <p> Johnny is not an expert. </p> </div>");
-		}  
+			description = $("<div class='advisorDescr'> <p> Joeri Cuijpers heeft al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden.  Hij heeft 3 suggesties voor u. Gebaseerd op uw eerder vastgestelde energieprofiel zijn deze mogelijk relevant voor u. Wij vragen u zijn aanbevelingen te sorteren op basis van de toepasselijkheid op uw huidige situatie.</p> </div>");
+		}
 		if (advisor == 1) { // expert
 			console.log("Advisor is een expert");
-			description = $("<div class='advisorDescr'> <p> Peter is an expert. </p> </div>");
+			description = $("<div class='advisorDescr'> <p> Richard Daelmans is een expert op het gebied van energiebesparing. Hij heeft 10 jaar werkervaring als energieconsulent. Hij heeft 3 aanbevelingen voor u, gebaseerd op uw eerder vastgestelde energieprofiel. Wij vragen u zijn aanbevelingen te sorteren op basis van de toepasselijkheid op uw huidige situatie.</p> </div>");
 		}
-		
+
 		var form = model.getForm();
 		console.log("De vorm is: " + form);
-		
-		recommendations = model.getRecommendations();		
-		
+
+		recommendations = model.getRecommendations();
+
 		if (form == 0) { // telling
-			recommend = $("<div id='" + recommendations[0].id + "' class='rec rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec rec3'> <p>" + recommendations[2].name + " </p> </div>"); 
-		} 
-		if (form == 1) { // sharing
-			recommend = $("<div id='" + recommendations[0].id + "' class='rec rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec rec3'> <p>" + recommendations[2].name + " </p> </div>"); 
+			recommend = $("<center><div id='" + recommendations[0].id + "' class='rec btn btn-primary rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec btn btn-primary rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec btn btn-primary rec3'> <p>" + recommendations[2].name + " </p> </div><center>");
 		}
-		
+		if (form == 1) { // sharing
+			recommend = $("<center><div id='" + recommendations[0].id + "' class='rec btn btn-primary rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec btn btn-primary rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec btn btn-primary rec3'> <p>" + recommendations[2].name + " </p> </div><center>");
+		}
+
 		omschrijvingsblok.append(description, recommend);
 		container.append(omschrijvingsblok, dropContainer, volgendeButton );
 		console.log(dropContainer);
-		
+
 		callback.call();
 	}
-	
+
 	makeDraggable = function() {
 		$('.rec1').draggable();
 		$('.rec2').draggable();
 		$('.rec3').draggable();
-		
+
 		$('#dropspot').sortable({
 			axis: "y"
 		});
-		
-		console.log("I'm making droppables etc!");		
+
+		console.log("I'm making droppables etc!");
 		$('#slotOne').droppable({
 			accept: ".rec",
 			tolerance: "pointer",
@@ -131,19 +131,19 @@ var RecommendationView = function( model,container ){
 			}
 		});
 	}
-	
+
 	clearUp = function() {
 		console.log("Clearing up!");
 		$('.advisorDescr').remove();
 		$('#dropspot').sortable("destroy");
 		$('#dropspot').remove();
-		
+
 		$('.drop').each(function() {
 			$(this).droppable("destroy");
 			$(this).remove();
-		});		
+		});
 	}
-	
+
 	/*
 	updateRecommendationList = function(){
 
@@ -169,10 +169,10 @@ var RecommendationView = function( model,container ){
 				b.attr('id', recommendation[i].id);
 			var title 			= $("<h4 class='list-group-item-heading'>");
 				title.html(recommendation[i].name);
-			
+
 			if ( model.o.condition == 1 || model.o.condition == 2 ){
 				var friends			= $("<p style='background-color:#0398C5; color:white; display:inline-block; font-size: 14px; font-weight:bold; padding-left:2%; padding-right:2%; margin-bottom:0px'> "+recommendation[i].friends+" gebruikers doen dit al</p>")
-			}		
+			}
 
 			var radioContainer	= $( "<div class='radio-group' style='margin-left:1px; display: inline-block; width:40%; margin-top:0px; margin-bottom:0px; padding:0px; text-align:center;'>" );
 				radioContainer.attr('id', recommendation[i].id);
@@ -192,7 +192,7 @@ var RecommendationView = function( model,container ){
 					var radio 			= $( '<input id="knop" type="radio" style="vertical-align:middle;">' );
 					var checkbox		= $( '<input id="box" type="checkbox" style="vertical-align:middle;">');
 				}
-				
+
 
 
 				if( k == 0 ){

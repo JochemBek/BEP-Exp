@@ -43,17 +43,18 @@ var HeaderView = function ( model, container ){
 		}
 
 		if( args == "recommendationReady"){
-			h2.html( "Uw besparingsscore" );
-			p.html( "Hieronder staat uw berekend, die we hebben berekend middels uw gegeven antwoorden.");
+			h2.html( "Aanbevelingen - Introductie" );
+			p.html( "");
 		}
 
 		if( args == "informationDone" ){
-			h2.html( "Uw persoonlijke aanbevelingslijst" );
+			h2.html( "Aanbevelingen - "+model.atRecom+"/4" );
+			p.html("");
 		}
 
 		if( args == "setRecommendationDone" ){
-			h2.html( "Uw mening over de lijst met aanbevelingen" );
-			p.html( "Hieronder volgen een aantal stellingen over de lijst met aanbevelingen.");
+			h2.html( "Evaluatie van Aanbevelingen -"+model.atRecom+"/4" );
+			p.html( "U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Green zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
 		}
 
 		if( args == "satisfactionDone" ){
