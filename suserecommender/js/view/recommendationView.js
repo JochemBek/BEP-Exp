@@ -55,9 +55,15 @@ var RecommendationView = function( model,container ){
 	}
 
 	makeDraggable = function() {
-		$('.rec1').draggable();
-		$('.rec2').draggable();
-		$('.rec3').draggable();
+		$('.rec1').draggable({
+      revert: true,
+    });
+		$('.rec2').draggable({
+      revert: true,
+    });
+		$('.rec3').draggable({
+      revert: true,
+    });
 
 		$('#dropspot').sortable({
 			axis: "y"
@@ -71,11 +77,18 @@ var RecommendationView = function( model,container ){
 				console.log("You can now drop!");
 				$(this).addClass("highlightDrop");
 			},
+      deactivate: function(event, ui) {
+        $(this).removeClass("highlightDrop");
+      },
 			over: function(event, ui) {
 				console.log("Over!");
 				$(this).removeClass("highlightDrop");
 				$(this).addClass("over");
 			},
+      out: function(event, ui) {
+        $(this).removeClass("over");
+        $(this).addClass("highlightDrop");
+      },
 			drop: function(event , ui) {
 				$(this).droppable('option', 'accept', ui.draggable);
 				console.log("Dropped!");
@@ -93,11 +106,18 @@ var RecommendationView = function( model,container ){
 				console.log("You can now drop!");
 				$(this).addClass("highlightDrop");
 			},
+      deactivate: function(event, ui) {
+        $(this).removeClass("highlightDrop");
+      },
 			over: function(event, ui) {
 				console.log("Over!");
 				$(this).removeClass("highlightDrop");
 				$(this).addClass("over");
 			},
+      out: function(event, ui) {
+        $(this).removeClass("over");
+        $(this).addClass("highlightDrop");
+      },
 			drop: function(event , ui) {
 				$(this).droppable('option', 'accept', ui.draggable);
 				console.log("Dropped!");
@@ -115,11 +135,18 @@ var RecommendationView = function( model,container ){
 				console.log("You can now drop!");
 				$(this).addClass("highlightDrop");
 			},
+      deactivate: function(event, ui) {
+        $(this).removeClass("highlightDrop");
+      },
 			over: function(event, ui) {
 				console.log("Over!");
 				$(this).removeClass("highlightDrop");
 				$(this).addClass("over");
 			},
+      out: function(event, ui) {
+        $(this).removeClass("over");
+        $(this).addClass("highlightDrop");
+      },
 			drop: function(event , ui) {
 				$(this).droppable('option', 'accept', ui.draggable);
 				console.log("Dropped!");
