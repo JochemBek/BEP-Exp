@@ -9,11 +9,15 @@ var RecommendationView = function( model,container ){
 	***********************************************************/
 
 	var recommendations 		= [];
-
 	var omschrijvingsblok		= $( "<div id='description'>");
-
 	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 	var cont = 1;
+	var nameadvisor;
+
+
+		var list									= $( "<div class='list-group'>" );
+		var item									= $( "<div class='list-group-item' id='parentbox'>" );
+		var image 								= $( "<div class='image' id='imgleft'>");
 
 
 	/***********************************************************
@@ -28,11 +32,15 @@ var RecommendationView = function( model,container ){
 		var advisor = model.getAdvisor();
 		if (advisor == 0) { // non-expert
 			console.log("Advisor is een non-expert");
-			description = $("<div class='advisorDescr'> <p> Joeri Cuijpers heeft al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden.  Hij heeft 3 suggesties voor u. Gebaseerd op uw eerder vastgestelde energieprofiel zijn deze mogelijk relevant voor u. Wij vragen u zijn aanbevelingen te sorteren op basis van de toepasselijkheid op uw huidige situatie.</p> </div>");
+			description = $("<div class='float:right advisorDescr' id='descrright'> <p> Ben Cuijpers heeft al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden.  Hij heeft 3 suggesties voor u. Gebaseerd op uw eerder vastgestelde energieprofiel zijn deze mogelijk relevant voor u. Wij vragen u zijn aanbevelingen te sorteren op basis van de toepasselijkheid op uw huidige situatie.</p> </div>");
+			image = $('<img src="img/JoeriCuijpers.jpg" height="100px" width="100px">');
+			nameadvisor = "Ben";
 		}
 		if (advisor == 1) { // expert
 			console.log("Advisor is een expert");
-			description = $("<div class='advisorDescr'> <p> Richard Daelmans is een expert op het gebied van energiebesparing. Hij heeft 10 jaar werkervaring als energieconsulent. Hij heeft 3 aanbevelingen voor u, gebaseerd op uw eerder vastgestelde energieprofiel. Wij vragen u zijn aanbevelingen te sorteren op basis van de toepasselijkheid op uw huidige situatie.</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Peter Daelmans is een expert op het gebied van energiebesparing. Hij heeft 10 jaar werkervaring als energieconsulent. Hij heeft 3 aanbevelingen voor u, gebaseerd op uw eerder vastgestelde energieprofiel. Wij vragen u zijn aanbevelingen te sorteren op basis van de toepasselijkheid op uw huidige situatie.</p> </div>");
+			image = $('<img src="img/RichardDaelmans.jpg" height="100px" width="100px">');
+			nameadvisor = "Peter";
 		}
 
 		var form = model.getForm();
@@ -47,11 +55,13 @@ var RecommendationView = function( model,container ){
 			recommend = $("<center><div id='" + recommendations[0].id + "' class='rec btn btn-primary rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec btn btn-primary rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec btn btn-primary rec3'> <p>" + recommendations[2].name + " </p> </div><center>");
 		}
 
-		omschrijvingsblok.append(description, recommend);
-		container.append(omschrijvingsblok, dropContainer, volgendeButton );
-		console.log(dropContainer);
-
-		callback.call();
+	var h4 										= $( "<h4 style='font-family: Lato, sans-serif;' class='text-center'>"+nameadvisor+" raadt u de volgende energiemaatregelen aan:</h3>" );
+		item 									.append(image, description);
+		list 									.append(item);
+		container							.append(omschrijvingsblok, dropContainer, volgendeButton );
+		omschrijvingsblok			.append(list, h4, recommend);
+		console								.log(dropContainer);
+		callback							.call();
 	}
 
 	makeDraggable = function() {

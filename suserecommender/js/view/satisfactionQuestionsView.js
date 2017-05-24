@@ -21,7 +21,7 @@ var SatisfactionQuestionsView = function (model, container){
 
 	updateQuestions = function(){
 		var questions = model.getQualityQuestions();
-
+		var legend 					= $( "<div id='legend'><span style='float:left'>Helemaal oneens</span><span>Neutraal</span><span  style='float:right'>Helemaal eens</span>" );
 		var questionElements = [];
 
 		for(var i = 0; i < questions.length; i++) {

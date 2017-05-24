@@ -5,7 +5,7 @@
    ========================================================================== */
 
 body{
-	background:url(https://img.clipartfest.com/31fc9a7c580a6f937caf469e5478d9d7_light-blue-blue-background-textured-solid-color-backgrounds-clipart_4256-2832.jpeg);
+	background-color: #99b7e5;
 	background-repeat: space;
 	padding-top:0px;
 }
@@ -30,21 +30,6 @@ h1 small{
 	font-weight: 500;
 	line-height: 1.1;
 	color: inherit;
-}
-
-#friendtext{
-	text-align: right;
-	color: #008000;
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#friendimage{
-	background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/fresh_snow.png);
-	background-repeat: no-repeat;
-	padding-left: 30px;
-	margin-right: 10px;
-	display: inline-block;
 }
 
 .button {
@@ -172,12 +157,20 @@ div.btn-group {
 }
 
 #mainApplication{
-	background:url(http://subtlepatterns.com/patterns/cream_dust.png);
+	background-color: #F6F9F9;
 	padding-bottom:20px;
 	padding-top:20px;
 	box-shadow: 0px -3px 3px rgba(1,1,1,0.1);
 }
-
+#parentbox {
+  display: flex;
+}
+#imgleft {
+  width: 150px;
+}
+#descrright {
+  flex: 1;
+}
 #fbBox{
 	border: thin solid #ccc;
 	float: left;
