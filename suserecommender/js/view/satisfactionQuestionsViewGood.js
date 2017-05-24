@@ -1,12 +1,12 @@
 var SatisfactionQuestionsView = function (model, container){
-	
+
 	/***********************************************************
 					  Variable Declarations
 	***********************************************************/
 
 	var measureQuestionList		= $( "<div class='list-group' id='setQuestions'>" );
-	var volgendeButton	 		= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
-	var clearfix				= $( '<div class="clearfix">' );
+	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+	var clearfix				= $( "<div class='clearfix'>" );
 	var questions;
 
 	container.append( measureQuestionList, volgendeButton, clearfix );
@@ -15,58 +15,41 @@ var SatisfactionQuestionsView = function (model, container){
 						Private Variables
 	***********************************************************/
 
+	cleanUpQuality = function () {
+		$('.list-group').empty();
+	}
+
 	updateQuestions = function(){
-		console.log("I'm here");
 		var questions = model.getQualityQuestions();
-		measureQuestionList.empty();
-
 		var legend 					= $( "<div id='legend'><span style='float:left'>Helemaal oneens</span><span>Neutraal</span><span  style='float:right'>Helemaal eens</span>" );
-		
-		$.each( questions, function(key, value) {
-			var item 			= $( "<div class='list-group-item'>" );
-				item 			.attr( 'id', value.nr );
-			var text 			= $( "<p style='margin-top:5px; float:left; width:50%' class='list-group-item-text'>" );
-				text 			.html(value.question)
-				item 			.append(text);
-			var radioContainer  = $( "<div class='radioContainer'>" );
+		var questionElements = [];
 
-			for( i=0; i < value.scale; i++ ){
-				var label = $( '<label class="radio-inline" style="width:8%">' );
-					var radio = $( '<input type="radio">' );
-						radio.attr( 'value', i+1 );
-						radio.attr( 'name', value.id );
-						label.append( radio );
-						//label.append( i+1 );
-					radioContainer.append( label );
-			}
-			item.append( radioContainer );
-			if( key == 0 || key == 5 || key == 9){
-				legend.clone().appendTo( measureQuestionList );
-				clearfix.clone().appendTo( measureQuestionList );
-			}
-			clearfix.clone().appendTo( item );
-			measureQuestionList.append( item );
-			
-		});
+		for(var i = 0; i < questions.length; i++) {
+			questionElements[i] = $("<div id='" + questions[i].nr + "' class='question'> <p>'" + questions[i].text + "'</p> <div> <ul id='q" + questions[i].nr + "cont' class='likert'> <li> Helemaal mee oneens </li> <li><input type='radio' name='q" + questions[i].nr + "' value='1' /></li> <li><input type='radio' name='q" + questions[i].nr + "' value='2' /></li> <li><input type='radio' name='q" + questions[i].nr + "' value='3' /></li> <li><input type='radio' name='q" + questions[i].nr + "' value='4' /></li> <li><input type='radio' name='q" + questions[i].nr + "' value='5' /></li> <li> Helemaal mee eens </li> </ul> </div>");
+		}
 
-	}	
+		for(var i = 0; i < questions.length; i++) {
+			measureQuestionList.append(questionElements[i]);
+		}
+
+	}
 
 	/***********************************************************
 						Public Variables
 	***********************************************************/
 
-	this.volgendeButton 		= volgendeButton;   
+	this.volgendeButton 		= volgendeButton;
 
 	/***********************************************************
 							 Update
 	***********************************************************/
-	
+
 	model.addObserver( this );
 
 	this.update = function( args ){
 
 		if( args == 'recommendationsDone' ){
-			updateQuestions();
+			$.when(cleanUpQuality()).then(updateQuestions());
 			container.show();
 		}
 

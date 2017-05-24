@@ -8,6 +8,7 @@ var HeaderView = function ( model, container ){
 	var p 						= $( "<p></p>" );
 	var vrienden 				= [];
 	var counter = 1;
+	var recom = 1;
 
 	container.append( h2,p );
 
@@ -48,7 +49,13 @@ var HeaderView = function ( model, container ){
 		}
 
 		if( args == "informationDone" ){
-			h2.html( "Aanbevelingen - "+model.o.atRecom+"/4" );
+			h2.html( "Aanbevelingen - "+model.atRecom+"/4" );
+			p.html("");
+		}
+		
+		if( args == "nextRecommendation" ){
+			recom++;
+			h2.html( "Aanbevelingen - "+recom+"/4" );
 			p.html("");
 		}
 

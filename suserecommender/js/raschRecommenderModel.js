@@ -47,27 +47,33 @@ var RaschRecommenderModel = function( options ){
   defaultQualityQuestions = [
     {
       nr: 1,
-      text: "De voorgestelde besparingsmaatregelen passen bij mijn voorkeuren."
+      question: "De voorgestelde besparingsmaatregelen passen bij mijn voorkeuren.",
+      scale: 7
     },
     {
       nr: 2,
-      text: "De voorgestelde besparingsmaatregelen zijn relevant."
+      question: "De voorgestelde besparingsmaatregelen zijn relevant.",
+      scale: 7
     },
     {
       nr: 3,
-      text: "De voorgestelde besparingsmaatregelen zijn aantrekkelijk."
+      question: "De voorgestelde besparingsmaatregelen zijn aantrekkelijk.",
+      scale: 7
     },
     {
       nr: 4,
-      text: "Ik vind geen enkele van de voorgestelde besparingsmaatregelen leuk."
+      question: "Ik vind geen enkele van de voorgestelde besparingsmaatregelen leuk.",
+      scale: 7
     },
     {
       nr: 5,
-      text: "De adviseur heeft te veel slechte besparingsmaatregelen voorgesteld."
+      question: "De adviseur heeft te veel slechte besparingsmaatregelen voorgesteld.",
+      scale: 7
     },
     {
       nr: 6,
-      text: "Ik ben van plan om de maatregelen die zijn voorgesteld door de adviseur op te volgen."
+      question: "Ik ben van plan om de maatregelen die zijn voorgesteld door de adviseur op te volgen.",
+      scale: 7
     }
   ];
 
@@ -473,6 +479,7 @@ var RaschRecommenderModel = function( options ){
     notifyObservers("extraQuestionsDone");
     if(atRecom < 5) {
       console.log("Next Recommendation plox!");
+      console.log("I am now at atRecom " + atRecom);
       notifyObservers( "nextRecommendation" );
     } else {
       console.log("Feest, u bent klaar!");
