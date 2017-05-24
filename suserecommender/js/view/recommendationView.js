@@ -49,10 +49,10 @@ var RecommendationView = function( model,container ){
 		recommendations = model.getRecommendations();
 
 		if (form == 0) { // telling
-			recommend = $("<center><div id='" + recommendations[0].id + "' class='rec btn btn-primary rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec btn btn-primary rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec btn btn-primary rec3'> <p>" + recommendations[2].name + " </p> </div><center>");
+			recommend = $("<center><div class='addmargin'><div id='" + recommendations[0].id + "' class='rec btn buttonrec rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec btn buttonrec rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec btn buttonrec rec3'> <p>" + recommendations[2].name + " </p> </div></div><center>");
 		}
 		if (form == 1) { // sharing
-			recommend = $("<center><div id='" + recommendations[0].id + "' class='rec btn btn-primary rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec btn btn-primary rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec btn btn-primary rec3'> <p>" + recommendations[2].name + " </p> </div><center>");
+			recommend = $("<center><div class='addmargin'><div id='" + recommendations[0].id + "' class='rec btn buttonrec rec1'> <p>" + recommendations[0].name + " </p> </div> <div id='" + recommendations[1].id + "' class='rec btn buttonrec rec2'> <p>" + recommendations[1].name + " </p> </div> <div id='" + recommendations[2].id + "' class='rec btn buttonrec rec3'> <p>" + recommendations[2].name + " </p> </div></div><center>");
 		}
 
 	var h4 										= $( "<h4 style='font-family: Lato, sans-serif;' class='text-center'>"+nameadvisor+" raadt u de volgende energiemaatregelen aan:</h3>" );
@@ -174,6 +174,8 @@ var RecommendationView = function( model,container ){
 		$('.advisorDescr').remove();
 		$('#dropspot').sortable("destroy");
 		$('#dropspot').remove();
+		$(item).empty();
+		$(omschrijvingsblok).empty();
 
 		$('.drop').each(function() {
 			$(this).droppable("destroy");
@@ -299,6 +301,7 @@ var RecommendationView = function( model,container ){
 
 	//this.recommendationList 	= recommendationList;
 	this.volgendeButton 		= volgendeButton;
+	this.nameadvisor 	= nameadvisor;
 
 	/***********************************************************
 							 Update

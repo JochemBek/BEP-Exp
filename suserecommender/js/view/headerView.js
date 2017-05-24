@@ -48,12 +48,12 @@ var HeaderView = function ( model, container ){
 		}
 
 		if( args == "informationDone" ){
-			h2.html( "Aanbevelingen - "+model.atRecom+"/4" );
+			h2.html( "Aanbevelingen - "+model.o.atRecom+"/4" );
 			p.html("");
 		}
 
 		if( args == "setRecommendationDone" ){
-			h2.html( "Evaluatie van Aanbevelingen -"+model.atRecom+"/4" );
+			h2.html( "Evaluatie van Aanbevelingen -"+model.o.atRecom+"/4" );
 			p.html( "U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Green zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
 		}
 

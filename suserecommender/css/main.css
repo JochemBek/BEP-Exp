@@ -42,6 +42,19 @@ h1 small{
  text-transform: uppercase;
  transition: all 0.2s ease-in-out;
 }
+.buttonrec {
+ text-decoration: none;
+ color: white;
+ background: #195B94;
+ width: 20vw;
+ height: 80px;
+ padding: 5px;
+ vertical-align: middle;
+ word-break: break-all;
+}
+.addmargin{
+	margin: 10px;
+}
 .btn-group-wrap {
     text-align: center;
 }
@@ -120,9 +133,14 @@ div.btn-group {
 }
 
 .drop {
-	height: 100px;
-	width: 200px;
-	border-style: solid;
+	width: 20vw;
+  height: 80px;
+  margin: 5px;
+	border-style: dashed;
+	border-radius: 5px;
+	border-color: grey;
+	border-spacing: 5px;
+	border-width: thin;
 }
 
 .dropped {
