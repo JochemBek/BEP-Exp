@@ -34,13 +34,14 @@ var SatisfactionQuestionsView = function (model, container){
 				var label = $( '<label class="radio-inline" style="width:8%">' );
 					var radio = $( '<input type="radio">' );
 						radio.attr( 'value', i+1 );
-						radio.attr( 'name', value.id );
+						radio.attr( 'name', value.nr );
 						label.append( radio );
 						//label.append( i+1 );
 					radioContainer.append( label );
 			}
+			
 			item.append( radioContainer );
-			if( key == 0 || key == 5 || key == 9){
+			if( key == 0 || key == 6 || key == 10){
 				legend.clone().appendTo( measureQuestionList );
 				clearfix.clone().appendTo( measureQuestionList );
 			}

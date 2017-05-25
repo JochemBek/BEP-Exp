@@ -304,9 +304,10 @@ var RaschRecommenderModel = function( options ){
     });
   }
 
-  setQualityQuestion = function(question, value) {
+  setQualityQuestion = function(question, value, place) {
     var questionId = question;
     var val = value;
+    var nrInOrder = place;
 
     $.post("ajax/insertQualityQuestion.php",
       {
@@ -314,7 +315,8 @@ var RaschRecommenderModel = function( options ){
         conditie: o.condition,
         screen: atRecom,
         questionId: questionId,
-        value: val
+        value: val,
+        nrInOrder: nrInOrder
       }).done(function(){
       console.log("The question + answer are saved in the DB");
     });

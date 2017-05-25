@@ -11,6 +11,7 @@
 			"screen" 				=> $_POST['screen'],
       "questionId" => $_POST['questionId'],
       "value" => $_POST['value'],
+			"nrInOrder" => $_POST['nrInOrder'],
       
 	));
 
