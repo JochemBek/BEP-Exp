@@ -67,6 +67,8 @@ h1 small{
 	float: left;
 	vertical-align: middle;
 	word-break:normal;
+	z-index: 10;
+
 
 }
 div.btn-group {
@@ -138,6 +140,7 @@ div.btn-group {
 #dropspot {
 	height: 300px;
 	width: 200px;
+	float:left;
 }
 ul {
   list-style-type:decimal;

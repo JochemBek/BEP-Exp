@@ -97,7 +97,8 @@ var RecommendationView = function( model,container ){
     });
 
 		$('#dropspot').sortable({
-			axis: "y"
+			axis: "y",
+			containment: "parent"
 		});
 
 		console.log("I'm making droppables etc!");
@@ -195,8 +196,11 @@ var RecommendationView = function( model,container ){
 		$('.advisorDescr').remove();
 		$('#dropspot').sortable("destroy");
 		$('#dropspot').remove();
-		$(item).empty();
-		$(omschrijvingsblok).empty();
+		$(image).empty();
+		$(advDescr).empty();
+		$(titleRecom).empty();
+		$(upperleft).empty();
+		$(image).empty();
 
 		$('.drop').each(function() {
 			$(this).droppable("destroy");
