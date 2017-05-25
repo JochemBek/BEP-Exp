@@ -88,12 +88,15 @@ var RecommendationView = function( model,container ){
 	makeDraggable = function() {
 		$('.rec1').draggable({
       revert: true,
+
     });
 		$('.rec2').draggable({
       revert: true,
+
     });
 		$('.rec3').draggable({
       revert: true,
+
     });
 
 		$('#dropspot').sortable({
@@ -128,6 +131,8 @@ var RecommendationView = function( model,container ){
 				$(this).addClass("dropped");
 				var rec = $(ui.draggable).attr('id');
 				$(ui.draggable).remove();
+				var $li = $('<div class="droppedtext">').html(ui.draggable.html());
+				         $li.appendTo(this);
 				$(this).attr('id', rec);
 			}
 		});
@@ -157,6 +162,8 @@ var RecommendationView = function( model,container ){
 				$(this).addClass("dropped");
 				var rec = $(ui.draggable).attr('id');
 				$(ui.draggable).remove();
+				var $li = $('<div class="droppedtext">').html(ui.draggable.html());
+				         $li.appendTo(this);
 				$(this).attr('id', rec);
 			}
 		});
@@ -186,6 +193,8 @@ var RecommendationView = function( model,container ){
 				$(this).addClass("dropped");
 				var rec = $(ui.draggable).attr('id');
 				$(ui.draggable).remove();
+				var $li = $('<div class="droppedtext">').html(ui.draggable.html());
+				         $li.appendTo(this);
 				$(this).attr('id', rec);
 			}
 		});
