@@ -68,7 +68,13 @@ h1 small{
 	vertical-align: middle;
 	word-break:normal;
 	z-index: 10;
+	display:flex;justify-content:center;align-items:center;
+}
 
+.dropped{
+	vertical-align: middle;
+	text-align: center;
+	background-color: #99b7e5;
 
 }
 div.btn-group {
@@ -138,9 +144,9 @@ div.btn-group {
 }
 
 #dropspot {
-	height: 300px;
+	height: 250px;
 	width: 200px;
-	float:left;
+
 }
 ul {
   list-style-type:decimal;
@@ -156,16 +162,12 @@ ul {
 	border-width: thin;
 }
 
-.dropped {
-	background-color: yellow;
-}
-
 .over {
-	background-color: grey;
+	background-color: #FFFF99;
 }
 
 .highlightDrop {
-	background-color: green;
+	background-color: #97E797;
 }
 
 #legend{
@@ -186,7 +188,6 @@ ul {
 #legend span{
 
 }
-
 #mainApplication{
 	background-color: #F6F9F9;
 	padding-bottom:20px;
@@ -211,15 +212,15 @@ ul {
 .childlower{
 	width: 50%;
 	padding: 20px;
-	 display: flex;
+
 }
 .child{
 	float:none;
 }
 
 #scaleDrop{
-	display:flex;justify-content:center;align-items:center;
-	position: relative;
+	display:grid;justify-content:center;align-items:center;text-align: center;
+	clear: both;
 }
 
 #fbBox{
