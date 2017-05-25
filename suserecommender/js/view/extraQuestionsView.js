@@ -4,7 +4,7 @@ var ExtraQuestionsView = function (model, container){
 					  Variable Declarations
 	***********************************************************/
 
-  var description = $(" <div> <p> U heeft zojuist drie suggesties over energie besparing gekregen. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan. </p> </div> ")
+  var description = $(" <div style='padding-bottom: 25px'> <p> U heeft zojuist drie suggesties over energie besparing gekregen. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan. </p> </div> ");
 	var extraQuestionList		= $( "<div class='extraQuestions-group' id='extraQuestions'>" );
 	var volgendeButton	 		= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 	var clearfix				= $( "<div class='clearfix'>" );

@@ -80,23 +80,28 @@ var RaschRecommenderModel = function( options ){
   defaultManCheckQuestions = [
     {
       nr: 1,
-      text: "Hij is een expert op het gebied van energiebesparing. "
+      text: "Hij is een expert op het gebied van energiebesparing. ",
+      scale: 7
     },
     {
       nr: 2,
-      text: "Hij heeft relevante ervaring."
+      text: "Hij heeft relevante ervaring.",
+      scale: 7
     },
     {
       nr: 3,
-      text: "Hij heeft voldoende kennis van zaken."
+      text: "Hij heeft voldoende kennis van zaken.",
+      scale: 7
     },
     {
       nr: 4,
-      text: "Hij is bekwaam."
+      text: "Hij is bekwaam.",
+      scale: 7
     },
     {
       nr: 5,
-      text: "Hij is onbekwaam."
+      text: "Hij is onbekwaam.",
+      scale: 7
     }
   ];
 
@@ -195,7 +200,6 @@ var RaschRecommenderModel = function( options ){
 
     notifyObservers('userCreated');
 
-    //notifyObservers('manCheck');
   }
 
   // After the user has filled out everything, update the user data.
