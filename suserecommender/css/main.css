@@ -46,11 +46,13 @@ h1 small{
  text-decoration: none;
  color: white;
  background: #195B94;
- width: 20vw;
+ width: 16vw;
  height: 80px;
  padding: 5px;
- vertical-align: middle;
- word-break: break-all;
+ margin-left: 5px;
+ margin-right: 5px;
+
+
 }
 .addmargin{
 	margin: 10px;
@@ -59,7 +61,13 @@ h1 small{
     text-align: center;
 }
 .rec{
-	margin:auto;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+	float: left;
+	vertical-align: middle;
+	word-break:normal;
+
 }
 div.btn-group {
     margin: 0 auto;
@@ -131,9 +139,11 @@ div.btn-group {
 	height: 300px;
 	width: 200px;
 }
-
+ul {
+  list-style-type:decimal;
+}
 .drop {
-	width: 20vw;
+	width: 16vw;
   height: 80px;
   margin: 5px;
 	border-style: dashed;
@@ -180,15 +190,35 @@ div.btn-group {
 	padding-top:20px;
 	box-shadow: 0px -3px 3px rgba(1,1,1,0.1);
 }
-#parentbox {
+#parentupper {
   display: flex;
 }
-#imgleft {
-  width: 150px;
+#leftupper {
+  width: 200px;
+	display:flex;justify-content:center;align-items:center;
 }
-#descrright {
+#rightupper {
   flex: 1;
+	padding: 20px;
 }
+
+.parentlower{
+  display: flex;
+}
+.childlower{
+	width: 50%;
+	padding: 20px;
+	 display: flex;
+}
+.child{
+	float:none;
+}
+
+#scaleDrop{
+	display:flex;justify-content:center;align-items:center;
+	position: relative;
+}
+
 #fbBox{
 	border: thin solid #ccc;
 	float: left;
