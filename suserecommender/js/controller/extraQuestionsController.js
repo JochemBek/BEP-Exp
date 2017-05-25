@@ -2,7 +2,7 @@ var ExtraQuestionsController = function(model, view) {
 	
 	view.volgendeButton.click(function(){
 		console.log("Questions done!");
-		$('.recomunit').each(function() {
+		$('.list-group-question').each(function() {
 			var qs = $(this).attr('id');
 		
 			var wantEmailElement = $(this).find(".wantEmail");
