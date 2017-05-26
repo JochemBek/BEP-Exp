@@ -4,12 +4,12 @@ var ExtraQuestionsView = function (model, container){
 					  Variable Declarations
 	***********************************************************/
 
-  var description = $(" <div style='padding-bottom: 25px'> <p> U heeft zojuist drie suggesties over energie besparing gekregen. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan. </p> </div> ");
+  var description = $(" <div style='padding-bottom: 25px'> <p> We willen u graag op weg helpen naar een bewuste leefstijl. U kunt daarom, indien u dit wenst, meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. U zal dan na afloop van dit experiment een mail ontvangen met de betreffende details. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan. </p> </div> ");
 	var extraQuestionList		= $( "<div class='extraQuestions-group' id='extraQuestions'>" );
 	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' id='extramargin' role='button'>Volgende &raquo;</a>" );
 	var clearfix				= $( "<div class='clearfix'>" );
 
-	container.append( extraQuestionList, volgendeButton, clearfix );
+	container.append( description, extraQuestionList, volgendeButton, clearfix );
 
 	/***********************************************************
 						Private Variables
@@ -30,7 +30,7 @@ var ExtraQuestionsView = function (model, container){
 				item.attr('id', value.id);
 			var textContainer = $("<div class='col-md-6'>");
 			var text = $( "<p class='list-group-item-text'>" );
-				text.html(value.description);
+				text.html(value.infinitive);
 				textContainer.append(text)
 			item.append(textContainer);
 

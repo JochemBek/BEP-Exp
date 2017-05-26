@@ -71,7 +71,7 @@ var HeaderView = function ( model, container ){
 
 		if( args == "qualityQuestionsDone" ){
 			h2.html( "Aanbevelingen - "+recom+"/4 - Evaluatie " );
-			p.html("We willen u graag op weg helpen naar een bewuste leefstijl. U kunt daarom, indien u dit wenst, meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. U zal dan na afloop van dit experiment een mail ontvangen met de betreffende details. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan.");
+			p.html("");
 		}
 
 
