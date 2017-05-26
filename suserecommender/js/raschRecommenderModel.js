@@ -104,6 +104,9 @@ var RaschRecommenderModel = function( options ){
       scale: 7
     }
   ];
+    
+  var expertDone = 0;
+  var nonExpertDone = 0;
 
   // Get all the required data from the database
   // Fill the array with all the measures in the database
@@ -199,7 +202,7 @@ var RaschRecommenderModel = function( options ){
       });
 
     notifyObservers('userCreated');
-
+    
   }
 
   // After the user has filled out everything, update the user data.
@@ -488,13 +491,30 @@ var RaschRecommenderModel = function( options ){
       console.log("I am now at atRecom " + atRecom);
       notifyObservers( "nextRecommendation" );
     } else {
-      console.log("Feest, u bent klaar!");
-      notifyObservers( "manCheck" );
+      var expertise = Math.floor(Math.random() * 1);     
+      if(expertise == 0) {
+        nonExpertDone = 1;
+        notifyObservers( "manCheckNonExpert" );
+      } else {
+        expertDone = 1;
+        notifyObservers( "manCheckExpert" );
+        console.log("ExpertDone: " + expertDone);
+      }
     }
   }
 
   manCheckQuestionsDone = function() {
-    notifyObservers("manCheckDone");
+    console.log("ExpertDone: " + expertDone + " and nonExpertDone: " + nonExpertDone);
+
+    if(expertDone == 1 && nonExpertDone == 0){
+      nonExpertDone = 1;
+      notifyObservers("manCheckNonExpert");
+    } else if(expertDone == 0 && nonExpertDone == 1) {
+      expertDone = 1;
+      notifyObservers("manCheckExpert")        
+    } else {
+      notifyObservers("manCheckDone");
+    }
   }
 
   getMeasure = function(){

@@ -4,7 +4,7 @@ var ManCheckController = function(model, view) {
 		var $expertqs = $("#expert");
     var $nonexpertqs = $("#nonexpert");
     
-		if($expertqs.find("input:radio:checked").length == 5 && $nonexpertqs.find("input:radio:checked").length == 5) { 
+		if($expertqs.find("input:radio:checked").length == 5) { 
 			console.log("Questions done!");
       
 			$('#expert .list-group-item').each(function() {
@@ -15,7 +15,9 @@ var ManCheckController = function(model, view) {
 				model.setManCheckQuestion(expertise, qs, val);
 			});
       
-      $('#nonexpert .list-group-item').each(function() {
+			model.manCheckQuestionsDone();
+		} else if ($nonexpertqs.find("input:radio:checked").length == 5) {
+			$('#nonexpert .list-group-item').each(function() {
         var expertise = 0;
 				var qs = $(this).attr('id');
 				var val = $(this).find('input:checked').val();

@@ -5,7 +5,7 @@ var ManCheckView = function (model, container){
 	***********************************************************/
 
 	var advisorContainer = $("<div style='padding-bottom: 40px' class='advisor-container row'>");
-  var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+	var volgendeButton	 		= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 	var clearfix				= $( "<div class='clearfix'>" );
 	var uitleg = $(" <div id='uitleg' style='padding-bottom: 30px'> <p class='descr'> </p> </div> ")
 	var legend 					= $( "<div id='legend'><span style='float:left'>Helemaal oneens</span><span>Neutraal</span><span  style='float:right'>Helemaal eens</span>" );
