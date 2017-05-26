@@ -101,7 +101,8 @@ var RecommendationView = function( model,container ){
 
 		$('#dropspot').sortable({
 			axis: "y",
-			containment: "parent"
+			containment: "parent",
+			tolerance: "pointer"
 		});
 
 		console.log("I'm making droppables etc!");
