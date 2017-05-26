@@ -7,7 +7,6 @@ Graag behouden:
 
 var InformationView = function( model, container, facebookApi){
 
-  var uitleg = $("<div> <p> U krijgt nu energietips van twee verschillende adviseurs. Zij hebben hun aanbevelingen gebaseerd op uw energieprofiel dat we in de vorige stap hebben vastgesteld. Elke adviseur zal zijn/haar advies aanbieden in twee sets van drie aanbevelingen. Na elke set zal u kort om een evaluatie gevraagd worden. </p> </div>");
   var volgendeButton       = $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo; </a>" );
   var clearfix         = $( '<div class="clearfix">' );
 
@@ -19,7 +18,7 @@ var InformationView = function( model, container, facebookApi){
     if ( args == "recommendationReady"){
         //The container is visible, the elements within it might be hidden
         container.show()
-        container.append(uitleg, clearfix, volgendeButton);
+        container.append( clearfix, volgendeButton);
       }
 
     if ( args == "informationDone" ){

@@ -7,7 +7,6 @@ var ManCheckView = function (model, container){
 	var advisorContainer = $("<div style='padding-bottom: 40px' class='advisor-container row'>");
   var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 	var clearfix				= $( "<div class='clearfix'>" );
-	var uitleg = $(" <div id='uitleg' style='padding-bottom: 30px'> <p class='descr'> </p> </div> ")
 	var legend 					= $( "<div id='legend'><span style='float:left'>Helemaal oneens</span><span>Neutraal</span><span  style='float:right'>Helemaal eens</span>" );
 
 	var imageNon = $('<img src="img/JoeriCuijpers.jpg" height="133px" width="133px" align="middle">');
@@ -15,7 +14,7 @@ var ManCheckView = function (model, container){
 	var imageExp = $('<img src="img/RichardDaelmans.jpg" height="133px" width="133px" align="middle">');
 	var textExp = $('<p> Richard Daelmans </p>');
 
-	container.append( uitleg, advisorContainer, volgendeButton, clearfix );
+	container.append( advisorContainer, volgendeButton, clearfix );
 
 
 	/***********************************************************
@@ -38,17 +37,11 @@ var ManCheckView = function (model, container){
 			advisor.append(textNon);
 			advisor.append(imageNon);
 			advisorContainer.attr('id', 'nonexpert');
-				var descr = $("<p class='descr'>");
-				descr.html("Beantwoord alstublieft de onderstaande vragen over Ben Cuijpers.");
-			$('#uitleg').append(descr);
 			expertDone = 1;
 		} else {
 			advisor.append(textExp);
 			advisor.append(imageExp);
 			advisorContainer.attr('id', 'expert');
-				var descr = $("<p class='descr'>");
-				descr.html("Beantwoord alstublieft de onderstaande vragen over Richard Daelmans.");
-			$('#uitleg').append(descr);
 			nonExpertDone = 1;
 		}
 

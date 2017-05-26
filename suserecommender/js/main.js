@@ -4,6 +4,9 @@ $(function(){
 
 	var headerView 						= new HeaderView( raschRecommenderModel, $( "#boxHeader" ) );
 	var headerController 				= new HeaderController( raschRecommenderModel, informedConsentView );
+	
+	var descriptionView 						= new DescriptionView( raschRecommenderModel, $( "#descriptionBox" ) );
+	var descriptionController 				= new DescriptionController( raschRecommenderModel, descriptionView );
 
 	var informedConsentView 			= new InformedConsentView( raschRecommenderModel, $( "#informedConsent" ) );
 	var informedConsentController 		= new InformedConsentController( raschRecommenderModel, informedConsentView );

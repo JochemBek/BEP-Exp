@@ -33,7 +33,7 @@
         <div class="container">
             <header class="row">
                 <div class="col-md-8 col-md-offset-0" style='width:100%'>
-                    <h1>Energieadvies op maat</h1>
+                    <h1>Energiebesparing op maat</h1>
                     <img id='tuelogo' src="img/tue.png" alt="TU/e" title="Technische Universiteit Eindhoven">
                 </div>
             </header>
@@ -43,6 +43,9 @@
     <div class="container">
         <div class="row">
             <div id="boxHeader" class='col-md-8 col-md-offset-0' style='width:100%'>
+
+            </div>
+            <div id="descriptionBox" class='col-md-8 col-md-offset-0' style='width:100%'>
 
             </div>
             <div id="mainApplication" class='col-md-8 col-md-offset-0' style='width:100%'>
@@ -99,6 +102,9 @@
 
         <script src="js/view/headerView.js"></script>
         <script src="js/controller/headerController.js"></script>
+        
+        <script src="js/view/descriptionView.js"></script>
+        <script src="js/controller/descriptionController.js"></script>
 
         <script src="js/view/informedConsentView.js"></script>
         <script src="js/controller/informedConsentController.js"></script>

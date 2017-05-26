@@ -30,59 +30,45 @@ var HeaderView = function ( model, container ){
 
 		if( args == "userCreated" ){
 			h2.html( "Korte vragen" );
-			p.html( "Als onderdeel van ons aanbevelingssysteem stellen we u eerst twee vragen over uw woonsituatie en inkomensniveau. Deze informatie gebruiken wij om onze aanbevelingen te verbeteren.");
 		}
 
 		if( args == "filterReady" ){
 			h2.html( "Vragen Energiegebruik - Introductie" );
-			p.html("");
 		}
 
 		if( args == "measureReady"){
 			h2.html( "Vragen Energiegebruik  "+counter+" / "+model.o.numberOfSets+"");
-			p.html( "Nu stellen we u eerst een aantal vragen over uw huidige energie-besparende activiteiten. Geef steeds aan of u de betreffende energiebesparende maatregel al uitvoert of niet. Als de maatregel voor u onmogelijk is - bijvoorbeeld: u heeft geen tuin, dus daarom geen zuinige tuinlampen - klik dan op N.V.T. (niet van toepassing)");
 			counter++;
 		}
 
 		if( args == "recommendationReady"){
 			h2.html( "Aanbevelingen - Introductie" );
-			p.html( "");
 		}
 
 		if( args == "informationDone" ){
 			h2.html( "Aanbevelingen - "+model.atRecom+"/4" );
-			p.html("Lees alstublieft eerst de instructies en voer daarna de opdracht uit.");
 		}
+		
 		if( args == "recommendationsDone" ){
 			h2.html( "Aanbevelingen - "+recom+"/4 - Evaluatie " );
-			var curadvisor = model.getAdvisor();
-			if (curadvisor == 0){
-			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Ben Cuijpers zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
-		} else {
-			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Daelmans zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
-		}}
-
+		}
 
 		if( args == "nextRecommendation" ){
 			recom++;
 			h2.html( "Aanbevelingen - "+recom+"/4" );
-			p.html("Lees alstublieft eerst de instructies en voer daarna de opdracht uit.");
 		}
 
 		if( args == "qualityQuestionsDone" ){
 			h2.html( "Aanbevelingen - "+recom+"/4 - Evaluatie " );
-			p.html("");
 		}
 
 
 		if( args == "extraQuestionsDone" ){
 			h2.html( "Aanbevelingen - Evaluatie" );
-			p.html("U heeft van twee personen suggesties ontvangen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen over deze personen.");
 		}
 
 		if( args == "manCheckDone" ){
 			h2.html( "Afsluitende vragen 1/2");
-			p.html( "Ten slotte willen we u nog kort een paar korte vragen stellen.");
 		}
 
 		if( args == "demographicsDone"){
@@ -91,7 +77,6 @@ var HeaderView = function ( model, container ){
 
 		if( args == "expDone"){
 			h2.html( "Hartelijk dank!");
-			p.html( "De loting zal plaatsvinden na de sluitingsdatum van het onderzoek.<br>Er wordt contact met u opgenomen indien u geselecteerd bent voor de Bol.com-waardebon t.w.v. €10,-. U kunt deze pagina nu wegklikken.");
 		}
 
 /*

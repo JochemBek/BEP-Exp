@@ -55,7 +55,7 @@ h1 small{
 
 }
 .addmargin{
-	margin: 10px;
+	margin: 20px;
 }
 .btn-group-wrap {
     text-align: center;
@@ -206,6 +206,7 @@ ul {
 #rightupper {
   flex: 1;
 	padding: 20px;
+	padding-top: 10px;
 }
 
 .parentlower{
@@ -244,15 +245,20 @@ ul {
 	text-transform: uppercase;
 }
 
-#boxHeader p{
-	font-weight:bold;
-}
-
 #boxFooter{
 	background: #195B94;
 	color: #fff;
 	padding-bottom:15px;
 	padding-top: 1px;
+}
+
+#descriptionBox {
+	background-color: white;
+	padding: 20px;
+}
+
+#descriptionBox p {
+	margin-bottom: 0px;
 }
 
 a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus{
