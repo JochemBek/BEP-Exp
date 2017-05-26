@@ -67,12 +67,12 @@ var RaschRecommenderModel = function( options ){
     },
     {
       nr: 5,
-      question: "De adviseur heeft te veel slechte besparingsmaatregelen voorgesteld.",
+      question: "Deze adviseur heeft te veel slechte besparingsmaatregelen voorgesteld.",
       scale: 7
     },
     {
       nr: 6,
-      question: "Ik ben van plan om de maatregelen die zijn voorgesteld door de adviseur op te volgen.",
+      question: "Ik ben van plan om de maatregelen die zijn voorgesteld door deze adviseur op te volgen.",
       scale: 7
     }
   ];
@@ -104,7 +104,7 @@ var RaschRecommenderModel = function( options ){
       scale: 7
     }
   ];
-    
+
   var expertDone = 0;
   var nonExpertDone = 0;
 
@@ -202,7 +202,7 @@ var RaschRecommenderModel = function( options ){
       });
 
     notifyObservers('userCreated');
-    
+
   }
 
   // After the user has filled out everything, update the user data.
@@ -491,7 +491,7 @@ var RaschRecommenderModel = function( options ){
       console.log("I am now at atRecom " + atRecom);
       notifyObservers( "nextRecommendation" );
     } else {
-      var expertise = Math.floor(Math.random() * 1);     
+      var expertise = Math.floor(Math.random() * 1);
       if(expertise == 0) {
         nonExpertDone = 1;
         notifyObservers( "manCheckNonExpert" );
@@ -511,7 +511,7 @@ var RaschRecommenderModel = function( options ){
       notifyObservers("manCheckNonExpert");
     } else if(expertDone == 0 && nonExpertDone == 1) {
       expertDone = 1;
-      notifyObservers("manCheckExpert")        
+      notifyObservers("manCheckExpert")
     } else {
       notifyObservers("manCheckDone");
     }

@@ -55,8 +55,13 @@ var HeaderView = function ( model, container ){
 		}
 		if( args == "recommendationsDone" ){
 			h2.html( "Aanbevelingen - "+recom+"/4 - Evaluatie " );
-			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door "+currentadvisor+" zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
-		}
+			var curadvisor = model.getAdvisor();
+			if (curadvisor == 0){
+			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Ben Cuijpers zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+		} else {
+			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Daelmans zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+		}}
+
 
 		if( args == "nextRecommendation" ){
 			recom++;
