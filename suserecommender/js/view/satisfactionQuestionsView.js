@@ -5,7 +5,7 @@ var SatisfactionQuestionsView = function (model, container){
 	***********************************************************/
 
 	var measureQuestionList		= $( "<div class='list-group' id='setQuestions'>" );
-	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' id='extramargin' role='button'>Volgende &raquo;</a>" );
 	var clearfix				= $( '<div class="clearfix">' );
 	var questions;
 

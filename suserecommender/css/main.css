@@ -104,7 +104,9 @@ div.btn-group {
 	color:#195B94;
 }
 
-
+#extramargin{
+	margin-top: 10px;
+}
 #btnyes{
     padding: 20px 60px;
 }

@@ -6,7 +6,7 @@ var ExtraQuestionsView = function (model, container){
 
   var description = $(" <div style='padding-bottom: 25px'> <p> U heeft zojuist drie suggesties over energie besparing gekregen. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan. </p> </div> ");
 	var extraQuestionList		= $( "<div class='extraQuestions-group' id='extraQuestions'>" );
-	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' id='extramargin' role='button'>Volgende &raquo;</a>" );
 	var clearfix				= $( "<div class='clearfix'>" );
 
 	container.append( extraQuestionList, volgendeButton, clearfix );
@@ -26,7 +26,7 @@ var ExtraQuestionsView = function (model, container){
 		extraQuestionList.append(legend);
 
 		$.each(recommendations, function(key, value) {
-			var item = $("<div class='list-group-question row'>");
+			var item = $("<div class='list-group-item row'>");
 				item.attr('id', value.id);
 			var textContainer = $("<div class='col-md-6'>");
 			var text = $( "<p class='list-group-item-text'>" );

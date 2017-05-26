@@ -95,7 +95,7 @@ var RaschRecommenderModel = function( options ){
     },
     {
       nr: 4,
-      text: "Hij is bekwaam.",
+      text: "Hij is gekwalificeerd.",
       scale: 7
     },
     {
