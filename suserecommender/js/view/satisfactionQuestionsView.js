@@ -1,11 +1,11 @@
 var SatisfactionQuestionsView = function (model, container){
-	
+
 	/***********************************************************
 					  Variable Declarations
 	***********************************************************/
 
 	var measureQuestionList		= $( "<div class='list-group' id='setQuestions'>" );
-	var volgendeButton	 		= $( "<a class='btn btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 	var clearfix				= $( '<div class="clearfix">' );
 	var questions;
 
@@ -21,7 +21,7 @@ var SatisfactionQuestionsView = function (model, container){
 		measureQuestionList.empty();
 
 		var legend 					= $( "<div id='legend'><span style='float:left'>Helemaal oneens</span><span>Neutraal</span><span  style='float:right'>Helemaal eens</span>" );
-		
+
 		$.each( questions, function(key, value) {
 			var item 			= $( "<div class='list-group-item'>" );
 				item 			.attr( 'id', value.nr );
@@ -39,7 +39,7 @@ var SatisfactionQuestionsView = function (model, container){
 						//label.append( i+1 );
 					radioContainer.append( label );
 			}
-			
+
 			item.append( radioContainer );
 			if( key == 0 || key == 6 || key == 10){
 				legend.clone().appendTo( measureQuestionList );
@@ -47,21 +47,21 @@ var SatisfactionQuestionsView = function (model, container){
 			}
 			clearfix.clone().appendTo( item );
 			measureQuestionList.append( item );
-			
+
 		});
 
-	}	
+	}
 
 	/***********************************************************
 						Public Variables
 	***********************************************************/
 
-	this.volgendeButton 		= volgendeButton;   
+	this.volgendeButton 		= volgendeButton;
 
 	/***********************************************************
 							 Update
 	***********************************************************/
-	
+
 	model.addObserver( this );
 
 	this.update = function( args ){
@@ -72,6 +72,7 @@ var SatisfactionQuestionsView = function (model, container){
 		}
 
 		if( args == 'qualityQuestionsDone' ){
+			console.log(args);
 			container.hide();
 		}
 	}

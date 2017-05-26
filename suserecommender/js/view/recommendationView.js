@@ -22,7 +22,7 @@ var RecommendationView = function( model,container ){
 	var advDescr						= $("<div class='childrightupper'></div>");
 	var titleRecom					= $("<div class='childrightupper'></div>");
 	var recomButtons				= $("<div class='childrightupper'></div>");
-	var taskExpl						= $("<div class='childlower'><p>Sorteer de drie gegeven adviezen. Sleep het advies dat u in uw huidige situatie als ‘meest toepasselijk’ ervaart naar het bovenste vakje. Sleep het advies dat u in uw huidige situatie als ‘minst toepasselijk’ ervaart naar het onderste vakje. Sleep het overgebleven advies naar het middelste vakje.</p></div>");
+	var taskExpl						= $("<div class='childlower'><p>Sorteer de drie gegeven adviezen. Sleep het advies dat u in uw huidige situatie als ‘meest toepasselijk’ ervaart naar het bovenste vakje. Sleep het advies dat u in uw huidige situatie als ‘minst toepasselijk’ ervaart naar het onderste vakje. Als u de volgorde nog wil veranderen, kunt u de vakjes in de lijst ook onderling verslepen.</p></div>");
 	var scaleDrop 					= $("<div class='childlower parent' id='scaleDrop'></div>");
 	var clearfix 						= $("<div class='clearfix'></div>")
 
@@ -48,13 +48,13 @@ var RecommendationView = function( model,container ){
 			console.log("Advisor is een non-expert");
 			description = $("<div class='advisorDescr' id='descrright'> <p> Ben Cuijpers heeft al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden.  Hij heeft 3 suggesties voor u. Gebaseerd op uw eerder vastgestelde energieprofiel zijn deze mogelijk relevant voor u. Wij vragen u zijn aanbevelingen te sorteren op basis van de toepasselijkheid op uw huidige situatie.</p> </div>");
 			image = $('<img src="img/JoeriCuijpers.jpg" height="200px" width="200px">');
-			nameadvisor = "Ben";
+			nameadvisor = "Ben Cuijpers";
 		}
 		if (advisor == 1) { // expert
 			console.log("Advisor is een expert");
 			description = $("<div class='advisorDescr' id='descrright'> <p> Peter Daelmans is een expert op het gebied van energiebesparing. Hij heeft 10 jaar werkervaring als energieconsulent. Hij heeft 3 aanbevelingen voor u, gebaseerd op uw eerder vastgestelde energieprofiel. Wij vragen u zijn aanbevelingen te sorteren op basis van de toepasselijkheid op uw huidige situatie.</p> </div>");
 			image = $('<img src="img/RichardDaelmans.jpg" height="200px" width="200px">');
-			nameadvisor = "Peter";
+			nameadvisor = "Peter Daelmans";
 		}
 
 		var form = model.getForm();
@@ -350,10 +350,12 @@ var RecommendationView = function( model,container ){
 			container.show();
 		}
 		if( args == "recommendationsDone" ){
+			console.log(args);
 			container.hide();
 		}
 		if( args == "nextRecommendation") {
 			$.when(clearUp()).then(findRecommendations(makeDraggable));
+			console.log(args);
 			container.show();
 		}
 	}

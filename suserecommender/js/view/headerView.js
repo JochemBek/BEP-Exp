@@ -50,18 +50,28 @@ var HeaderView = function ( model, container ){
 
 		if( args == "informationDone" ){
 			h2.html( "Aanbevelingen - "+model.atRecom+"/4" );
-			p.html("");
+			p.html("Lees alstublieft eerst de instructies en voer daarna de opdracht uit.");
 		}
-		
+		if( args == "recommendationsDone" ){
+			h2.html( "Aanbevelingen - "+recom+"/4 - Evaluatie " );
+			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Green zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+		}
+
 		if( args == "nextRecommendation" ){
 			recom++;
 			h2.html( "Aanbevelingen - "+recom+"/4" );
-			p.html("");
+			p.html("Lees alstublieft eerst de instructies en voer daarna de opdracht uit.");
 		}
 
-		if( args == "setRecommendationDone" ){
-			h2.html( "Evaluatie van Aanbevelingen -"+model.o.atRecom+"/4" );
-			p.html( "U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Green zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+		if( args == "qualityQuestionsDone" ){
+			h2.html( "Aanbevelingen - "+recom+"/4 - Evaluatie " );
+			p.html("We willen u graag op weg helpen naar een bewuste leefstijl. U kunt daarom, indien u dit wenst, meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. U zal na afloop van dit experiment een mail ontvangen met de betreffende details. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan.");
+		}
+
+
+		if( args == "extraQuestionsDone" ){
+			h2.html( "Aanbevelingen - Evaluatie" );
+			p.html("U heeft van twee personen suggesties ontvangen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen over deze personen.");
 		}
 
 		if( args == "satisfactionDone" ){
@@ -75,7 +85,7 @@ var HeaderView = function ( model, container ){
 
 		if( args == "expDone"){
 			h2.html( "Hartelijk dank!");
-			p.html( "De loting zal plaatsvinden na de sluitingsdatum van het onderzoek.<br>Er wordt contact met u opgenomen indien u geselecteerd bent voor de Bol.com-waardebon t.w.v. €20,-");
+			p.html( "De loting zal plaatsvinden na de sluitingsdatum van het onderzoek.<br>Er wordt contact met u opgenomen indien u geselecteerd bent voor de Bol.com-waardebon t.w.v. €10,-");
 		}
 
 /*
