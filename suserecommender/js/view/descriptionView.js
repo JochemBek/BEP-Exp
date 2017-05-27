@@ -58,9 +58,9 @@ var DescriptionView = function ( model, container ){
 		if( args == "recommendationsDone" ){
 			var curadvisor = model.getAdvisor();
 			if (curadvisor == 0){
-			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Ben Cuijpers zijn voorgelegd. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Ben Cuijpers zijn voorgedragen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
   		} else {
-  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Daelmans zijn voorgelegd. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Daelmans zijn voorgedragen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
   		}
       container.show();
     }
@@ -96,16 +96,12 @@ var DescriptionView = function ( model, container ){
 		}
 
 		if( args == "manCheckDone" ){
-			p.html( "Ten slotte willen we u nog kort een paar korte vragen stellen.");
+			p.html( "Beantwoord ten slotte alstublief de volgende korte vragen. Zorg ervoor dat u een e-mailadres opgeeft waar u toegang tot heeft. Wij contacteren u namelijk via e-mail over de loting en over besparingsmaatregelen waar u meer informatie over wenst.");
       container.show();
 		}
 
 		if( args == "demographicsDone"){
-      container.show();
-		}
-
-		if( args == "expDone"){
-			p.html( "De loting zal plaatsvinden na de sluitingsdatum van het onderzoek.<br>Er wordt contact met u opgenomen indien u geselecteerd bent voor de Bol.com-waardebon t.w.v. €10,-. U kunt deze pagina nu wegklikken.");
+			p.html( "Het onderzoek is afgelopen. Hartelijk dank voor uw deelname. <hr style='margin: 5px; height:1pt; visibility:hidden;'/> De loting zal plaatsvinden na de sluitingsdatum van het onderzoek. Er wordt via uw e-mail contact met u opgenomen indien u geselecteerd bent voor de Bol.com-waardebon t.w.v. €10,-. <hr style='margin: 5px; height:1pt; visibility:hidden;'/> Als u voor één of meerdere maatregelen heeft aangegeven meer informatie te wensen, krijgt u krijgt binnen 2 weken een mail met de betreffende informatie. <hr/> <b> U kunt deze pagina nu wegklikken. </b>");
 		  container.show();
     }
 	}

@@ -41,10 +41,10 @@ var DataConsentView = function ( model, container ){
 	model.addObserver ( this );
 	this.update = function( args ){
 		//if( args == "userCreated"){
-		if ( args == "demographicsDone" ){
+		/*if ( args == "demographicsDone" ){
 			container.append( form, comments, endButton );
 			container.show();
-		}
+		}*/
 
 		if ( args == "expDone" ){
 			container.hide();

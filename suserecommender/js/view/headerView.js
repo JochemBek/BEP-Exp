@@ -68,14 +68,10 @@ var HeaderView = function ( model, container ){
 		}
 
 		if( args == "manCheckDone" ){
-			h2.html( "Afsluitende vragen 1/2");
+			h2.html( "Afsluitende vragen");
 		}
 
 		if( args == "demographicsDone"){
-			h2.html( "Afsluitende vragen 2/2");
-		}
-
-		if( args == "expDone"){
 			h2.html( "Hartelijk dank!");
 		}
 

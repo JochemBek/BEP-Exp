@@ -202,26 +202,27 @@ var RaschRecommenderModel = function( options ){
       });
 
     notifyObservers('userCreated');
+    
+    //notifyObservers('manCheckDone');
+
 
   }
 
   // After the user has filled out everything, update the user data.
-  updateUser = function(){
+  updateUser = function(mail, age){
+    var email = mail;
+    leeftijd = age;
 
-    $.post( "ajax/updateUser.php",
+    $.post( "ajax/insertDemo.php",
       {
         userId: currentUserId,
-        ability: ability,
-        woonsituatie: woon,
+        conditie: o.condition,
+        email: email,
         leeftijd: leeftijd,
         opleiding: opleiding,
         man: geslacht,
-        inkomen: inkomen,
-        interested: interested,
-        email: email,
-        emailSent: emailSent,
-        consent: consent,
-        comments: commentaar
+      }).done(function(){
+        console.log("They are saved. Or not prob.");
       });
   }
 
@@ -626,12 +627,8 @@ var RaschRecommenderModel = function( options ){
     var firstExpert = shuffle(experts);
     return firstExpert[0];
   }
-
-  setLeeftijd = function( value ){
-    leeftijd = value;
-  }
-
-setInterested = function (value){
+  
+  setInterested = function (value){
     interested = value;
   }
 
@@ -639,18 +636,15 @@ setInterested = function (value){
     consent = value;
   }
 
-  setEmailInterest = function (value){
-    emailSent = value;
-    //alert("value="+value);
-	if(value == 1 && email != null){
-	//alert(email);
-	//alert(bericht);
-		$.post("ajax/sendEmail.php",
+  sendEmail = function (){
+    
+    
+    $.post("ajax/sendEmail.php",
       {
         email: email,
         bericht: bericht
       });
-    }
+  
   }
 
   trackWoonsituatie = function ( value ){
@@ -692,6 +686,7 @@ setInterested = function (value){
   }
 
   demographicsDone = function(){
+    //sendEmail();
     notifyObservers( "demographicsDone" );
   }
 
@@ -751,10 +746,7 @@ setInterested = function (value){
   this.demographicsCheck    = demographicsCheck;
   this.setConsent           = setConsent;
   this.setInterested        = setInterested;
-  this.setEmail             = setEmail;
-  this.setEmailInterest     = setEmailInterest;
   this.setCommentaar        = setCommentaar;
-  this.setLeeftijd          = setLeeftijd;
   this.experimentDone       = experimentDone;
   this.introProbingDone     = introProbingDone;
 
