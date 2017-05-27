@@ -1,7 +1,3 @@
-/* JOCHEM:
-Dit wordt de view voor de recommendations; slide 5 van de mockup
-*/
-
 var RecommendationView = function( model,container ){
 
 	/***********************************************************
@@ -120,19 +116,16 @@ var RecommendationView = function( model,container ){
 			cursor: "hand"
 		});
 
-		console.log("I'm making droppables etc!");
 		$('#slotOne').droppable({
 			accept: ".rec",
 			tolerance: "pointer",
 			activate: function(event, ui) {
-				console.log("You can now drop!");
 				$(this).addClass("highlightDrop");
 			},
       deactivate: function(event, ui) {
         $(this).removeClass("highlightDrop");
       },
 			over: function(event, ui) {
-				console.log("Over!");
 				$(this).removeClass("highlightDrop");
 				$(this).addClass("over");
 			},
@@ -142,7 +135,6 @@ var RecommendationView = function( model,container ){
       },
 			drop: function(event , ui) {
 				$(this).droppable('option', 'accept', ui.draggable);
-				console.log("Dropped!");
 				$(this).removeClass("over");
 				$(this).addClass("dropped");
 				var rec = $(ui.draggable).attr('id');
@@ -156,14 +148,12 @@ var RecommendationView = function( model,container ){
 			accept: ".rec",
 			tolerance: "pointer",
 			activate: function(event, ui) {
-				console.log("You can now drop!");
 				$(this).addClass("highlightDrop");
 			},
       deactivate: function(event, ui) {
         $(this).removeClass("highlightDrop");
       },
 			over: function(event, ui) {
-				console.log("Over!");
 				$(this).removeClass("highlightDrop");
 				$(this).addClass("over");
 			},
@@ -173,7 +163,6 @@ var RecommendationView = function( model,container ){
       },
 			drop: function(event , ui) {
 				$(this).droppable('option', 'accept', ui.draggable);
-				console.log("Dropped!");
 				$(this).removeClass("over");
 				$(this).addClass("dropped");
 				var rec = $(ui.draggable).attr('id');
@@ -187,14 +176,12 @@ var RecommendationView = function( model,container ){
 			accept: ".rec",
 			tolerance: "pointer",
 			activate: function(event, ui) {
-				console.log("You can now drop!");
 				$(this).addClass("highlightDrop");
 			},
       deactivate: function(event, ui) {
         $(this).removeClass("highlightDrop");
       },
 			over: function(event, ui) {
-				console.log("Over!");
 				$(this).removeClass("highlightDrop");
 				$(this).addClass("over");
 			},
@@ -204,7 +191,6 @@ var RecommendationView = function( model,container ){
       },
 			drop: function(event , ui) {
 				$(this).droppable('option', 'accept', ui.draggable);
-				console.log("Dropped!");
 				$(this).removeClass("over");
 				$(this).addClass("dropped");
 				var rec = $(ui.draggable).attr('id');
@@ -217,7 +203,6 @@ var RecommendationView = function( model,container ){
 	}
 
 	clearUp = function() {
-		console.log("Clearing up!");
 		$('.advisorDescr').remove();
 		$('#dropspot').sortable("destroy");
 		$('#dropspot').remove();
@@ -257,13 +242,11 @@ var RecommendationView = function( model,container ){
 		}
 		if( args == "recommendationsDone" ){
 			$('#mainApplication').css('padding-top', '20px')
-			console.log(args);
 			container.hide();
 		}
 		if( args == "nextRecommendation") {
 			$('#mainApplication').css('padding-top', '15px')
 			$.when(clearUp()).then(findRecommendations(makeDraggable));
-			console.log(args);
 			container.show();
 		}
 	}

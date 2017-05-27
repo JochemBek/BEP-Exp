@@ -38,7 +38,4 @@ $(function(){
 	var demographicsView				= new DemographicsView( raschRecommenderModel, $( "#demographics" ) );
 	var demographicsController 			= new DemographicsController( raschRecommenderModel, demographicsView );
 
-	var dataConsentView					= new DataConsentView( raschRecommenderModel, $( "#dataConsent" ) );
-	var dataConsentController			= new DataConsentController( raschRecommenderModel, dataConsentView );
-
 })

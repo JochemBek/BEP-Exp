@@ -1,11 +1,11 @@
 <?php
 
-require 'medoo.min.php';
+  require 'medoo.min.php';
 
-$database = new medoo();
+  $database = new medoo();
 
-$data = $database->select("measures","*");
+  $data = $database->select("measures","*");
 
-echo json_encode($data);
+  echo json_encode($data);
 
 ?>

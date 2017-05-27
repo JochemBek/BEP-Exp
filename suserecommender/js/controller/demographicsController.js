@@ -6,15 +6,12 @@ var DemographicsController = function( model, view ){
 		var gender = $( '#geslacht').val();
 		var study =  $( '#opleiding').val();
 		
-		console.log("Email: " + email + "And age: " + age + "And gender" + gender + " And study: " + study);
-		
 		if(email != "" && age != "" && (gender == 1 || gender == 0)  && (study == 4 || study == 1 || study == 2 || study == 3 || study == 5 || study == 6 || study == 7 || study == 8 || study == 9) ) {
 			model.updateUser(email, age);
 			model.demographicsDone();
-		}
-		else{
+		} else {
 			alert( 'U bent waarschijnlijk een vraag vergeten!' );
 		}
-	
 	});
+	
 }

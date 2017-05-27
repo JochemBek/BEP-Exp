@@ -80,9 +80,6 @@
                 <div id="demographics">
                 </div>
 
-                <div id="dataConsent">
-                </div>
-
             </div>
 
           <div id="boxFooter" class='col-md-8 col-md-offset-0' style='width:100%'>
@@ -138,9 +135,6 @@
 
         <script src="js/view/demographicsView.js"></script>
         <script src="js/controller/demographicsController.js"></script>
-
-        <script src="js/view/dataConsentView.js"></script>
-        <script src="js/controller/dataConsentController.js"></script>
 
     </body>
 </html>

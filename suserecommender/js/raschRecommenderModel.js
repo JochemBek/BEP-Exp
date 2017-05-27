@@ -112,7 +112,6 @@ var RaschRecommenderModel = function( options ){
   // Fill the array with all the measures in the database
 
   $.get( "ajax/selectMeasures.php", function( data ){
-    //console.log("Data: " + data);
     measures = $.parseJSON( data );
     // Sort according to difficulty
     measures = measures.sort(function (a,b){
@@ -131,7 +130,7 @@ var RaschRecommenderModel = function( options ){
   ****Kort gezegd: huurhuizen onder 4; tuinen zijn even ****
   *********************************************************/
   var filterMeasures = function(){
-    for( i=0; i<measures.length; i++ ){
+    /*for( i=0; i<measures.length; i++ ){
       console.log("Going through measure " + i + " now: Filter: " + measures[i].filter);
       // Excluding recommendations that are inappropriate for the user's housing situation.
       if( measures[i].filter == 0 ){
@@ -145,7 +144,7 @@ var RaschRecommenderModel = function( options ){
       } else {
         console.log("Should be filtered");
       }
-    }
+    }*/
     createMeasures();
   }
 
@@ -156,7 +155,6 @@ var RaschRecommenderModel = function( options ){
 
   // Array shuffle function
   shuffle = function( array ){
-    console.log("Array to shuffle: " + array);
     var currentIndex = array.length,
     temporaryValue, randomIndex;
 
@@ -204,8 +202,6 @@ var RaschRecommenderModel = function( options ){
     notifyObservers('userCreated');
     
     //notifyObservers('manCheckDone');
-
-
   }
 
   // After the user has filled out everything, update the user data.
@@ -222,7 +218,6 @@ var RaschRecommenderModel = function( options ){
         opleiding: opleiding,
         man: geslacht,
       }).done(function(){
-        console.log("They are saved. Or not prob.");
       });
   }
 
@@ -233,7 +228,7 @@ var RaschRecommenderModel = function( options ){
 
     selectedMeasures  = [];
 
-    setArray = split( filteredMeasures, o.numberOfSets );
+    setArray = split( measures, o.numberOfSets );
     for( i=0; i < o.numberOfSets; i++ ){
       var rand = Math.floor( Math.random() * setArray[i].length );
       selectedMeasures.push( setArray[i][rand] );
@@ -401,6 +396,11 @@ var RaschRecommenderModel = function( options ){
     // select the set where the user is in and check if questions were NVT and extrapolate accordingly
     abilitySpot     = Math.round( yes + ( ( yes / o.numberOfSets ) * nvt ) ) - 1;
     abilitySet      = setArray[Math.round( yes + ( ( yes / o.numberOfSets ) * nvt ) ) - 1];
+    console.log("Ability: " + abilitySpot);
+    
+    if(abilitySpot == 0) {
+      abilitySpot = 1; 
+    }
 
     // calculate mean ability of set
     var count       = 0;
@@ -412,10 +412,12 @@ var RaschRecommenderModel = function( options ){
     var recomArray    = [];
     for( i=0; i<measures.length; i++ ){
       // Not adding recommendations that user is already doing. Returns -1 if not in both arrays
+
       if( $.inArray( measures[i], measureHistory ) == -1 ){
         recomArray.push( measures[i] );
       }
     }
+    
 
     // Take all measures that are not yet shown in phase 1, and check whether they are at the ability of the user, or one above, or two above
     for (i=0; i < recomArray.length; i++) {
@@ -496,8 +498,8 @@ var RaschRecommenderModel = function( options ){
     atRecom++;
     notifyObservers("extraQuestionsDone");
     if(atRecom < 5) {
-      console.log("Next Recommendation plox!");
-      console.log("I am now at atRecom " + atRecom);
+      console.log("Next Recommendation!");
+      console.log("I am now at screen: " + atRecom);
       notifyObservers( "nextRecommendation" );
     } else {
       var expertise = Math.floor(Math.random() * 1);
@@ -507,14 +509,11 @@ var RaschRecommenderModel = function( options ){
       } else {
         expertDone = 1;
         notifyObservers( "manCheckExpert" );
-        console.log("ExpertDone: " + expertDone);
       }
     }
   }
 
   manCheckQuestionsDone = function() {
-    console.log("ExpertDone: " + expertDone + " and nonExpertDone: " + nonExpertDone);
-
     if(expertDone == 1 && nonExpertDone == 0){
       nonExpertDone = 1;
       notifyObservers("manCheckNonExpert");
@@ -593,7 +592,6 @@ var RaschRecommenderModel = function( options ){
       }
     }
 
-    console.log("De vorm is in model: " + form);
     return form;
   }
 

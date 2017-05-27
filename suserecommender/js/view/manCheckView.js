@@ -10,9 +10,9 @@ var ManCheckView = function (model, container){
 	var legend 					= $( "<div id='legend'><span style='float:left'>Helemaal oneens</span><span>Neutraal</span><span  style='float:right'>Helemaal eens</span>" );
 
 	var imageNon = $('<img src="img/JoeriCuijpers.jpg" height="133px" width="133px" align="middle">');
-	var textNon = $('<p> Ben Cuijpers </p>');
+	var textNon = $('<p style="font-weight: bold"> Ben Cuijpers </p>');
 	var imageExp = $('<img src="img/RichardDaelmans.jpg" height="133px" width="133px" align="middle">');
-	var textExp = $('<p> Peter Daelmans </p>');
+	var textExp = $('<p style="font-weight: bold"> Peter Daelmans </p>');
 
 	container.append( advisorContainer, volgendeButton, clearfix );
 
