@@ -18,6 +18,7 @@ var SatisfactionQuestionsView = function (model, container){
 	updateQuestions = function(){
 		console.log("I'm here");
 		var questions = model.getQualityQuestions();
+		var advisor = model.getAdvisor();
 		measureQuestionList.empty();
 
 		var legend 					= $( "<div id='legend'><span style='float:left'>Helemaal oneens</span><span>Neutraal</span><span  style='float:right'>Helemaal eens</span>" );
@@ -26,7 +27,20 @@ var SatisfactionQuestionsView = function (model, container){
 			var item 			= $( "<div class='list-group-item'>" );
 				item 			.attr( 'id', value.nr );
 			var text 			= $( "<p style='margin-top:5px; float:left; width:50%' class='list-group-item-text'>" );
-				text 			.html(value.question)
+			if( value.nr == 5 ) {
+				var q = value.question;
+				var newq;
+				if(advisor == 0) {
+					newq = q.replace('@', 'Ben');
+					console.log("In principe zou hij hier Ben moeten zetten nu. q: " + newq);
+				} else {
+					newq = q.replace('@', 'Richard');
+					console.log("In principe zou hij hier Richard moeten zetten nu." + newq);
+				}
+				text			.html(newq);
+			} else {
+				text 			.html(value.question);
+			}
 				item 			.append(text);
 			var radioContainer  = $( "<div class='radioContainer'>" );
 

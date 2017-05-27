@@ -45,18 +45,32 @@ var RecommendationView = function( model,container ){
 		var dropContainer 			= $( "<div class='child'><ul id='dropspot'> <li style='display: table' id='slotOne' class='drop'> </li> <li style='display: table' id='slotTwo' class='drop'> </li> <li style='display: table' id='slotThree' class='drop'> </li> </ul></div>" );
 
 		var advisor = model.getAdvisor();
-		if (advisor == 0) { // non-expert
+		var form = model.getForm();
+		if (advisor == 0 && form == 0) { // non-expert & telling
 			console.log("Advisor is een non-expert");
-			description = $("<div class='advisorDescr' id='descrright'> <p> Hallo, ik ben Ben Cuijpers. Ik ben afgestudeerd in bedrijfseconomie en werk als financieel analist in Utrecht. Ik heb al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden. Na uw energieprofiel te hebben bekeken, heb ik 3 suggesties die misschien relevant voor u zijn:</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Hallo, ik ben Ben Cuijpers. Ik ben afgestudeerd in bedrijfseconomie en werk als financieel analist in Utrecht. Ik heb al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden. Na uw energieprofiel te hebben bekeken, heb ik drie suggesties voor u:</p> </div>");
 			image = $('<img src="img/JoeriCuijpers.jpg" height="200px" width="200px">');
 			nameadvisor = "Ben";
 		}
-		if (advisor == 1) { // expert
+		if (advisor == 1 && form == 0) { // expert & telling
 			console.log("Advisor is een expert");
-			description = $("<div class='advisorDescr' id='descrright'> <p> Goededag, ik ben Peter Daelmans. Ik ben een expert op het gebied van energiebesparing. Ik ben al tien jaar werkzaam als energieconsulent. Ik heb uw energieprofiel bekeken en heb op basis daarvan drie tips voor u:</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Peter Daelmans. Ik ben afgestuurd in duurzaamheidswetenschappen en werk als energieconsulent in Leiden. Ik ben bekend met deze besparingshulp, en heb op basis van uw energieprofiel drie suggesties voor u:</p> </div>");
 			image = $('<img src="img/RichardDaelmans.jpg" height="200px" width="200px">');
 			nameadvisor = "Peter";
 		}
+		if (advisor == 0 && form == 1) { // non-expert & sharing
+			console.log("Advisor is een non-expert");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Hallo, ik ben Ben Cuijpers. Ik ben afgestudeerd in bedrijfseconomie en werk als financieel analist in Utrecht. Ik heb al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden. Ik pas de volgende drie maatregelen toe, die ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
+			image = $('<img src="img/JoeriCuijpers.jpg" height="200px" width="200px">');
+			nameadvisor = "Ben";
+		}
+		if (advisor == 1 && form == 1) { // expert & sharing
+			console.log("Advisor is een expert");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Peter Daelmans. Ik ben afgestuurd in duurzaamheidswetenschappen en werk als energieconsulent in Leiden. Ik ben bekend met deze besparingshulp. Ik pas de volgende drie maatregelen toe, die ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
+			image = $('<img src="img/RichardDaelmans.jpg" height="200px" width="200px">');
+			nameadvisor = "Peter";
+		}
+
 
 		var form = model.getForm();
 		console.log("De vorm is: " + form);
@@ -238,14 +252,17 @@ var RecommendationView = function( model,container ){
 	model.addObserver( this );
 	this.update = function( args ){
 		if( args == "informationDone" ){
+			$('#mainApplication').css('padding-top', '15px')
 			findRecommendations(makeDraggable);
 			container.show();
 		}
 		if( args == "recommendationsDone" ){
+			$('#mainApplication').css('padding-top', '20px')
 			console.log(args);
 			container.hide();
 		}
 		if( args == "nextRecommendation") {
+			$('#mainApplication').css('padding-top', '15px')
 			$.when(clearUp()).then(findRecommendations(makeDraggable));
 			console.log(args);
 			container.show();

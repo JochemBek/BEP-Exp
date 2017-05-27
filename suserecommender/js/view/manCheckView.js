@@ -12,7 +12,7 @@ var ManCheckView = function (model, container){
 	var imageNon = $('<img src="img/JoeriCuijpers.jpg" height="133px" width="133px" align="middle">');
 	var textNon = $('<p> Ben Cuijpers </p>');
 	var imageExp = $('<img src="img/RichardDaelmans.jpg" height="133px" width="133px" align="middle">');
-	var textExp = $('<p> Richard Daelmans </p>');
+	var textExp = $('<p> Peter Daelmans </p>');
 
 	container.append( advisorContainer, volgendeButton, clearfix );
 
@@ -49,7 +49,14 @@ var ManCheckView = function (model, container){
 			var item 			= $( "<div class='list-group-item'>" );
 					item 			.attr( 'id', value.nr );
 				var text 			= $( "<p style='margin-top:5px; float:left; width:50%' class='list-group-item-text'>" );
-					text 			.html(value.text)
+					var q = value.text;
+					var newq;
+					if(expert == 0) {
+						newq = q.replace('Hij', 'Ben');
+					} else {
+						newq = q.replace('Hij', 'Peter');
+					}
+					text 			.html(newq)
 					item 			.append(text);
 				var radioContainer  = $( "<div class='radioContainer'>" );
 

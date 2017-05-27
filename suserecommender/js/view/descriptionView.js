@@ -41,14 +41,20 @@ var DescriptionView = function ( model, container ){
     }
 
 		if( args == "recommendationReady"){
-			p.html( "U krijgt nu energietips van twee verschillende adviseurs. Zij hebben hun aanbevelingen gebaseerd op uw energieprofiel dat we in de vorige stap hebben vastgesteld. Elke adviseur zal zijn/haar advies aanbieden in twee sets van drie aanbevelingen. Na elke set zal u kort om een evaluatie gevraagd worden.");
+			p.html( "U krijgt nu energietips van verschillende personen. Zij hebben hun aanbevelingen gebaseerd op uw energieprofiel dat we in de vorige stap hebben vastgesteld. U krijgt vier keer drie suggesties. Na elke set zal u kort om een evaluatie gevraagd worden.");
       container.show();
 		}
 
 		if( args == "informationDone" ){
-			p.html("Lees alstublieft eerst de instructies en voer daarna de opdracht uit.");
-      container.show();
+			var curadvisor = model.getAdvisor();
+			if (curadvisor == 0) {
+				p.html("Lees alstublieft eerst de tekst van Ben Cuijpers hieronder. Volg daarna de instructie daaronder.");
+			} else {
+				p.html("Lees alstublieft eerst de tekst van Peter Daelmans hieronder. Volg daarna de instructie daaronder.");
+			}
+			container.show();
 		}
+		
 		if( args == "recommendationsDone" ){
 			var curadvisor = model.getAdvisor();
 			if (curadvisor == 0){
@@ -61,12 +67,17 @@ var DescriptionView = function ( model, container ){
 
 
 		if( args == "nextRecommendation" ){
-			p.html("Lees alstublieft eerst de instructies en voer daarna de opdracht uit.");
-      container.show();
+			var curadvisor = model.getAdvisor();
+			if (curadvisor == 0) {
+				p.html("Lees alstublieft eerst de tekst van Ben Cuijpers hieronder. Volg daarna de instructie daaronder.");
+      } else {
+				p.html("Lees alstublieft eerst de tekst van Peter Daelmans hieronder. Volg daarna de instructie daaronder.");
+			}
+			container.show();
 		}
 
 		if( args == "qualityQuestionsDone" ){
-			p.html("We willen u graag op weg helpen naar een bewuste leefstijl. U kunt daarom, indien u dit wenst, meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. U zal dan na afloop van dit experiment een mail ontvangen met de betreffende details. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan.");
+			p.html("U kunt meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. U zal dan na afloop van dit experiment een mail ontvangen met de betreffende details. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan.");
       container.show();
 		}
 
@@ -77,11 +88,11 @@ var DescriptionView = function ( model, container ){
 		}
 		
 		if( args == 'manCheckExpert' ){
-			p.html("Beantwoord alstublieft de onderstaande vragen over Ben Cuijpers.");
+			p.html("Beantwoord alstublieft de onderstaande vragen over Peter Daelmans.");
 		}
 		
 		if( args == 'manCheckNonExpert' ) {
-			p.html("Beantwoord alstublieft de onderstaande vragen over Richard Daelmans.");
+			p.html("Beantwoord alstublieft de onderstaande vragen over Ben Cuijpers.");
 		}
 
 		if( args == "manCheckDone" ){

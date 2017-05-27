@@ -67,12 +67,12 @@ var RaschRecommenderModel = function( options ){
     },
     {
       nr: 5,
-      question: "Deze adviseur heeft te veel slechte besparingsmaatregelen voorgesteld.",
+      question: "@ heeft te veel slechte besparingsmaatregelen voorgesteld.",
       scale: 7
     },
     {
       nr: 6,
-      question: "Ik ben van plan om de maatregelen die zijn voorgesteld door deze adviseur op te volgen.",
+      question: "Ik ben van plan om de maatregelen die zijn voorgesteld op te volgen.",
       scale: 7
     }
   ];
