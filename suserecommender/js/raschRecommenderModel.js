@@ -42,7 +42,7 @@ var RaschRecommenderModel = function( options ){
     email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
     stepCounter = 0, ability = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
-    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [];
+    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [], initial = [];
 
   defaultQualityQuestions = [
     {
@@ -293,14 +293,18 @@ var RaschRecommenderModel = function( options ){
       });
   }
 
-  setSuitabilityScale = function( array ) {
-    var scale = array;
+  setSuitabilityScale = function( scaled ) {
+    console.log( "Initial array was: " + initial[0] + " " + initial[1] + " " + initial[2] );
+    var scale = scaled;
 
     $.post("ajax/insertSuitabilityScale.php",
       {
         userId: currentUserId,
         conditie: o.condition,
         screen: atRecom,
+        first: initial[0].id,
+        second: initial[1].id,
+        third: initial[2].id,
         mostSuitable: scale[0],
         averageSuitable: scale[1],
         leastSuitable: scale[2]
@@ -329,8 +333,9 @@ var RaschRecommenderModel = function( options ){
     });
   }
 
-  setExtraQuestion = function(question, wantEmail, alreadyDo) {
+  setExtraQuestion = function(question, order, wantEmail, alreadyDo) {
     var questionId = question;
+    var atPlace    = order;
     var wantEmailB = wantEmail;
     var alreadyDoB = alreadyDo;
     var wantEmail;
@@ -354,6 +359,7 @@ var RaschRecommenderModel = function( options ){
         conditie: o.condition,
         screen: atRecom,
         questionId: questionId,
+        atPlace: atPlace,
         wantEmail: wantEmail,
         alreadyDo: alreadyDo
       }).done(function(){
@@ -362,10 +368,11 @@ var RaschRecommenderModel = function( options ){
     });
   }
 
-  setManCheckQuestion = function(expertise, question, value) {
+  setManCheckQuestion = function(expertise, question, value, ord) {
     var isExpert = expertise;
     var questionId = question;
     var val = value;
+    var order = ord;
 
     $.post("ajax/insertManCheck.php",
       {
@@ -373,7 +380,8 @@ var RaschRecommenderModel = function( options ){
         conditie: o.condition,
         isExpert: expertise,
         questionId: questionId,
-        value: val
+        value: val,
+        order: order,
       }).done(function(){
 
       console.log("The ManChecks are saved in the DB");
@@ -597,6 +605,8 @@ var RaschRecommenderModel = function( options ){
     setOfRec.push(twoAboveLevel[atRecom-1]);
 
     shuffledSetOfRec = shuffle(setOfRec);
+    
+    initial = shuffledSetOfRec;
 
     return shuffledSetOfRec;
   }

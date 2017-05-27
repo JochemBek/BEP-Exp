@@ -60,19 +60,18 @@ var RecommendationView = function( model,container ){
 		}
 		if (advisor == 0 && form == 1) { // non-expert & sharing
 			console.log("Advisor is een non-expert");
-			description = $("<div class='advisorDescr' id='descrright'> <p> Hallo, ik ben Ben Cuijpers. Ik ben afgestudeerd in bedrijfseconomie en werk als financieel analist in Utrecht. Ik heb al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden. Ik pas de volgende drie maatregelen toe, die ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Hallo, ik ben Ben Cuijpers. Ik ben afgestudeerd in bedrijfseconomie en werk als financieel analist in Utrecht. Ik heb al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
 			image = $('<img src="img/JoeriCuijpers.jpg" height="200px" width="200px">');
 			nameadvisor = "Ben";
 		}
 		if (advisor == 1 && form == 1) { // expert & sharing
 			console.log("Advisor is een expert");
-			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Peter Daelmans. Ik ben afgestuurd in duurzaamheidswetenschappen en werk als energieconsulent in Leiden. Ik ben bekend met deze besparingshulp. Ik pas de volgende drie maatregelen toe, die ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Peter Daelmans. Ik ben afgestuurd in duurzaamheidswetenschappen en werk als energieconsulent in Leiden. Ik ben bekend met deze besparingshulp. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
 			image = $('<img src="img/RichardDaelmans.jpg" height="200px" width="200px">');
 			nameadvisor = "Peter";
 		}
 
 
-		var form = model.getForm();
 		console.log("De vorm is: " + form);
 
 		recommendations = model.getRecommendations();

@@ -55,15 +55,6 @@ var ExtraQuestionsView = function (model, container){
 
 		});
 
-		/*
-		for(var i = 0; i < recommendations.length; i++) {
-			units[i] = $("<div id='" + recommendations[i].id + "' class='recomunit'> <p> " + recommendations[i].description + " </p> <input type='checkbox' name='wantEmail' value='wantEmail' class='wantEmail'> <input type='checkbox' name='alreadyDo' value='alreadyDo' class='alreadyDo'>  </div> ");
-		}
-
-		for(var i = 0; i < units.length; i++) {
-			extraQuestionList.append(units[i]);
-		}*/
-
 	}
 
 	/***********************************************************

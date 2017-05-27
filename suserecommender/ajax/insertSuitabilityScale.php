@@ -7,9 +7,12 @@
 	$data = $database->insert("suitabilityscale",array(
 
 			"userId" 				=> $_POST['userId'],
-			"conditie"				=> $_POST['conditie'],
+			"conditie"			=> $_POST['conditie'],
 			"screen" 				=> $_POST['screen'],
-      "mostSuitable" => $_POST['mostSuitable'],
+			"first"					=> $_POST['first'],
+			"second"				=> $_POST['second'],
+			"third"		 			=> $_POST['third'],
+      "mostSuitable"  => $_POST['mostSuitable'],
       "averageSuitable" => $_POST['averageSuitable'],
       "leastSuitable" => $_POST['leastSuitable'],
       

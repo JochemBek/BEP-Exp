@@ -11,6 +11,7 @@
 			"value" => $_POST['value'],
       "isExpert" => $_POST['isExpert'],
 			"questionId" => $_POST['questionId'],
+			"order" => $_POST['order'],
 
       
 	));

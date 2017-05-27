@@ -58,9 +58,9 @@ var DescriptionView = function ( model, container ){
 		if( args == "recommendationsDone" ){
 			var curadvisor = model.getAdvisor();
 			if (curadvisor == 0){
-			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Ben Cuijpers zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Ben Cuijpers zijn voorgelegd. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
   		} else {
-  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Daelmans zijn aangeraden. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Daelmans zijn voorgelegd. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
   		}
       container.show();
     }
