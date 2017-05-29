@@ -101,7 +101,7 @@ var DescriptionView = function ( model, container ){
 		}
 
 		if( args == "demographicsDone"){
-			p.html( "Het onderzoek is afgelopen. Hartelijk dank voor uw deelname. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> De loting zal plaatsvinden na de sluitingsdatum van het onderzoek. Er wordt via uw e-mail contact met u opgenomen indien u geselecteerd bent voor de Bol.com-waardebon t.w.v. €10,-. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> Als u voor één of meerdere maatregelen heeft aangegeven meer informatie te willen ontvangen, krijgt u krijgt binnen 2 weken een mail met de betreffende details. <hr/> <b> U kunt deze pagina nu wegklikken. </b>");
+			p.html( "Het onderzoek is afgelopen. Hartelijk dank voor uw deelname. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> De loting zal plaatsvinden na de sluitingsdatum van het onderzoek. Er wordt via uw e-mail contact met u opgenomen indien u geselecteerd bent voor de Bol.com-waardebon t.w.v. €10,-. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> Als u voor één of meerdere maatregelen heeft aangegeven meer informatie te willen ontvangen, krijgt u binnen 2 weken een mail met de betreffende details. <hr/> <b> U kunt deze pagina nu wegklikken. </b>");
 		  container.show();
     }
 	}

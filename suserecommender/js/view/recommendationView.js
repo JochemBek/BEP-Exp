@@ -71,6 +71,7 @@ var RecommendationView = function( model,container ){
 		console.log("De vorm is: " + form);
 
 		recommendations = model.getRecommendations();
+		console.log(recommendations);
 
 		if (form == 0) { // telling
 			recommend = $("<center><div class='addmargin'><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].telling + " </p> </div> <div id='" + recommendations[1].id + "' class='rec   buttonrec rec2'> <p>" + recommendations[1].telling + " </p> </div> <div id='" + recommendations[2].id + "' class='rec   buttonrec rec3'> <p>" + recommendations[2].telling + " </p> </div></div><center>");
@@ -91,7 +92,6 @@ var RecommendationView = function( model,container ){
 		titleRecom.append(h5);
 		recomButtons.append(recommend);
 
-		console								.log(dropContainer);
 		callback							.call();
 	}
 

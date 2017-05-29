@@ -85,7 +85,6 @@ var DemographicsView = function( model, container ){
 
 		if( args == "demographicsDone"){
 			container.hide();
-			console.log(args);
 		}
 	}
 

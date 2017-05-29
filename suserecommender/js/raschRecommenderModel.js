@@ -9,7 +9,7 @@ var RaschRecommenderModel = function( options ){
 
   var defaults = {
 
-    numberOfSets            : 12, // Size for each sample measure, change to 12 for new experiment
+    numberOfSets            : 13, // Size for each sample measure, change to 12 for new experiment
     numberOfRecommendations : 6,  //number of recommendations, total for three sets
     logitSize               : 0.5,  // the size of a logit in the used scale
     //als het goed is hoort hier de relatie bij: Probability = 1 / (1+e^(-(ability - difficulty )))
@@ -173,12 +173,24 @@ var RaschRecommenderModel = function( options ){
   }
 
   // Array split function - ik denk alleen met het bins maken
-  split = function( a, n ){
+  // Deze functie is NIET correct
+  split = function( msrs, nr ){
+    var out = new Array();
+    
+    for(i = 0; i < o.numberOfSets; i++) {
+      out[i] = new Array();
+      for(j = 0; j < msrs.length; j++) {
+        if(msrs[j].bin == (i + 1)) {
+          out[i].push(msrs[j]);
+        }
+      }
+    }
+    /*
     var len = a.length, out = [], i = 0;
     while ( i < len ){
       var size = Math.ceil( ( len - i ) / n--);
       out.push( a.slice( i, i+= size ));
-    }
+    }*/
     return out;
   }
 
@@ -225,8 +237,6 @@ var RaschRecommenderModel = function( options ){
   createMeasures = function(){
 
 //FILTER HIER************
-
-    selectedMeasures  = [];
 
     setArray = split( measures, o.numberOfSets );
     for( i=0; i < o.numberOfSets; i++ ){
@@ -340,6 +350,11 @@ var RaschRecommenderModel = function( options ){
     if(wantEmailB == false) {
       wantEmail = 0;
     } else {
+      for(i=0; i<measures.length; i++){
+        if(measures[i].id == questionId) {
+        wantedRecommendations.push(measures[i]);
+        }
+      }
       wantEmail = 1;
     }
 
@@ -461,34 +476,37 @@ var RaschRecommenderModel = function( options ){
   }
 
   //Collects recommendations that the user has indicated to like
-  sendRecommendation = function ( measureId ){
+  /*sendRecommendation = function ( measureId ){
     for(i=0; i<recommendation.length; i++){
       if(recommendation[i].id == measureId) {
       wantedRecommendations.push(recommendation[i]);
       }
     }
     //createMessage();
-  }
+  }*/
 
   createMessage = function(){
+    console.log("User has selected : " + wantedRecommendations.length + " recommendations for mail.")
     var textstring="";
     for(i=0; i<wantedRecommendations.length; i++){
       var tabelrij = "<tr><td>"+wantedRecommendations[i].name+"</td><td>"+wantedRecommendations[i].description+"</td></tr>";
       textstring = textstring + tabelrij;
     }
-	  bericht = "<html><body><p>Dit zijn de door u geselecteerde tips van besparinghulp.nl! Veel succes met besparen.</p><table border=1><tr><th>Titel van de aanbeveling</th><th>Omschrijving</th></tr>"+textstring+"</table></body></html>";
-     //console.log(textstring);
-	 console.log(wantedRecommendations);
+	  bericht = "<html><body><p>Dit zijn de door u geselecteerde tips van de besparingshulp! Veel succes met besparen.</p><table border=1><tr><th>Titel van de aanbeveling</th><th>Omschrijving</th></tr>"+textstring+"</table></body></html>";
+    console.log(textstring);
+	  //console.log(wantedRecommendations);
   }
 
   informationDone = function(){
     notifyObservers( "informationDone" );
   }
 
+
   setRecommendationDone = function(){
     createMessage();
-	   notifyObservers( "setRecommendationDone" );
+	  notifyObservers( "setRecommendationDone" );
   }
+
 
   qualityQuestionsDone = function(){
     notifyObservers( "qualityQuestionsDone" );
@@ -598,16 +616,19 @@ var RaschRecommenderModel = function( options ){
   getRecommendations = function(){
     var setOfRec = [];
     var shuffledSetOfRec = [];
-
+    
     setOfRec.push(onLevel[atRecom-1]);
     setOfRec.push(oneAboveLevel[atRecom-1]);
     setOfRec.push(twoAboveLevel[atRecom-1]);
 
     shuffledSetOfRec = shuffle(setOfRec);
-    
+      
     initial = shuffledSetOfRec;
-
+      
+    console.log("Shuffled set of recommendations: " + shuffledSetOfRec);
+    
     return shuffledSetOfRec;
+        
   }
 
   getQualityQuestions = function(){
@@ -634,15 +655,19 @@ var RaschRecommenderModel = function( options ){
     consent = value;
   }
 
-  sendEmail = function (){
+  sendEmail = function (mail){
+    var email = mail;
     
-    
-    $.post("ajax/sendEmail.php",
-      {
-        email: email,
-        bericht: bericht
-      });
-  
+    $.when( createMessage() ).then( function() {
+      console.log("Sending Email to adress:" + email + ", with message: " + bericht);
+      $.post("ajax/sendEmail.php",
+        {
+          email: email,
+          bericht: bericht
+        });    
+      }
+    );    
+      
   }
 
   trackWoonsituatie = function ( value ){
@@ -747,6 +772,7 @@ var RaschRecommenderModel = function( options ){
   this.setCommentaar        = setCommentaar;
   this.experimentDone       = experimentDone;
   this.introProbingDone     = introProbingDone;
+  this.sendEmail            = sendEmail;
 
   /***********************************************************
             Observable Pattern

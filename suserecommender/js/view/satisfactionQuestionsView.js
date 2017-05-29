@@ -16,7 +16,6 @@ var SatisfactionQuestionsView = function (model, container){
 	***********************************************************/
 
 	updateQuestions = function(){
-		console.log("I'm here");
 		var questions = model.getQualityQuestions();
 		var advisor = model.getAdvisor();
 		measureQuestionList.empty();
@@ -32,10 +31,8 @@ var SatisfactionQuestionsView = function (model, container){
 				var newq;
 				if(advisor == 0) {
 					newq = q.replace('@', 'Ben');
-					console.log("In principe zou hij hier Ben moeten zetten nu. q: " + newq);
 				} else {
-					newq = q.replace('@', 'Richard');
-					console.log("In principe zou hij hier Richard moeten zetten nu." + newq);
+					newq = q.replace('@', 'Peter');
 				}
 				text			.html(newq);
 			} else {
@@ -86,7 +83,6 @@ var SatisfactionQuestionsView = function (model, container){
 		}
 
 		if( args == 'qualityQuestionsDone' ){
-			console.log(args);
 			container.hide();
 		}
 	}
