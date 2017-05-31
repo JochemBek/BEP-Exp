@@ -36,7 +36,7 @@ var DescriptionView = function ( model, container ){
     }
 
 		if( args == "recommendationReady"){
-			p.html( "U krijgt nu energietips van verschillende personen. Zij hebben eerder aanbevelingen gedaan aan een energieprofiel dat vergelijkbaar is met dat van u. U krijgt vier keer drie suggesties. Na elke set wordt u kort om uw mening gevraagd.");
+			p.html( "U krijgt nu energietips van verschillende personen. Zij hebben eerder aanbevelingen gedaan aan een energieprofiel dat vergelijkbaar is met de uwe. U krijgt vier keer drie suggesties. Na elke set wordt u kort om uw mening gevraagd.");
       container.show();
 		}
 
