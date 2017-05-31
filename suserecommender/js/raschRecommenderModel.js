@@ -560,8 +560,8 @@ var RaschRecommenderModel = function( options ){
   }
 
   manCheckQuestionsDone = function() {
+    atMancheck++;
     if(atMancheck < 4){
-      atMancheck++;
       notifyObservers("manCheck");
     } else {
       notifyObservers("manCheckDone");

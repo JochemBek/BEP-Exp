@@ -48,7 +48,7 @@ var ManCheckView = function (model, container){
 		} else if (adv == 3) {
 			advisor.append(text3);
 			advisor.append(image3);
-			advisorContainer.attr('id', 'a4');
+			advisorContainer.attr('id', 'a3');
 		} else if (adv == 4) {
 			advisor.append(text4);
 			advisor.append(image4);
