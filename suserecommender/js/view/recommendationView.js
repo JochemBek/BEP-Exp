@@ -10,10 +10,12 @@ var RecommendationView = function( model,container ){
 	var cont = 1;
 	var nameadvisor;
 	var taskExpl;
+	var empty1 							= $("<div class='col-md-3' id='fixedwidth'></div>");
+	var empty2 							= $("<div class='col-md-1'></div>");
 
 	var completecontainer		= $("<div class=''></div>");
 	var upperhalf						= $("<div class='list-group-item' id='parentupper'></div>");
-	var lowerhalf						= $("<div class='parentlower'></div>");
+	var lowerhalf						= $("<div class='parentlower row'></div>");
 	var upperleft						= $("<div class='' id='leftupper'></div>");
 	var upperright					= $("<div class='parentrightupper' id='rightupper'></div>");
 	var advDescr						= $("<div class='childrightupper'></div>");
@@ -26,8 +28,8 @@ var RecommendationView = function( model,container ){
 		var list									= $( "<div class='list-group'>" );
 		var item									= $( "<div class='list-group-item' id='parentbox'>" );
 		var image 								= $( "<div class='image' id='imgleft'>");
-		var mostSuit							= $( "<div class='child'><h5>Meest Toepasselijk</h5></div>");
-		var leastSuit							= $( "<div class='child'><h5>Minst Toepasselijk</h5></div>");
+		var mostSuit							= $( "<div class='child smallpad'><h5>Meest Toepasselijk</h5></div>");
+		var leastSuit							= $( "<div class='child smallpad'><h5>Minst Toepasselijk</h5></div>");
 
 
 
@@ -104,12 +106,12 @@ var RecommendationView = function( model,container ){
 		if (form == 1) { // sharing
 			recommend = $("<center><div class='addmargin'><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].sharing + " </p> </div> <div id='" + recommendations[1].id + "' class='rec   buttonrec rec2'> <p>" + recommendations[1].sharing + " </p> </div> <div id='" + recommendations[2].id + "' class='rec   buttonrec rec3'> <p>" + recommendations[2].sharing + " </p> </div></div><center>");
 		}
-		taskExpl						= $("<p class='childlower'>Sorteer de drie energietips van "+nameadvisor+". Sleep het advies dat u in uw huidige situatie als ‘meest toepasselijk’ ervaart naar het bovenste vakje. Sleep het advies dat u in uw huidige situatie als ‘minst toepasselijk’ ervaart naar het onderste vakje. Als u de volgorde nog wil veranderen, kunt u de vakjes in de lijst ook onderling verslepen.</p>");
+		taskExpl						= $("<p class='childlower' id='textExpl'>Sorteer de drie energietips van "+nameadvisor+". Sleep het advies dat u in uw huidige situatie als ‘meest toepasselijk’ ervaart naar het bovenste vakje. Sleep het advies dat u in uw huidige situatie als ‘minst toepasselijk’ ervaart naar het onderste vakje. Als u de volgorde nog wil veranderen, kunt u de vakjes in de lijst ook onderling verslepen.</p>");
 		var h5 										= $( "<b><h4>"+nameadvisor+" heeft de volgende aanbevelingen voor u: </h4></b>")
 		container.append(completecontainer, volgendeButton, clearfix);
 		completecontainer.append(upperhalf, lowerhalf);
 		upperhalf.append(upperleft, upperright);
-		lowerhalf.append(taskExpl, scaleDrop);
+		lowerhalf.append(empty1, taskExpl, scaleDrop, empty2);
 		upperleft.append(image);
 		upperright.append(advDescr, recomButtons);
 		scaleDrop.append(mostSuit, dropContainer, leastSuit);
