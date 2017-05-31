@@ -198,6 +198,8 @@ var RaschRecommenderModel = function( options ){
         leeftijd: leeftijd,
         opleiding: opleiding,
         man: geslacht,
+        woon: woon,
+        inkomen: inkomen,
       }).done(function(){
       });
   }
@@ -215,6 +217,8 @@ var RaschRecommenderModel = function( options ){
     shuffle( selectedMeasures );
     
     notifyObservers("userCreated");
+    //notifyObservers("manCheckDone");
+
   }
 
   // Get a measure to present to the user
@@ -415,16 +419,6 @@ var RaschRecommenderModel = function( options ){
     twoAboveLevel.splice(3, 1);
 
     notifyObservers( "recommendationReady" );
-  }
-
-  trackHover = function ( index, hoverIn ){
-    $.post( "ajax/insertTrackHover.php",
-      {
-        userId: currentUserId,
-        ability: ability,
-        measureId: recommendation[index].id,
-        hoverIn: hoverIn
-      });
   }
 
   createMessage = function(){
@@ -695,7 +689,6 @@ var RaschRecommenderModel = function( options ){
   this.getQualityQuestions      = getQualityQuestions;
   this.demographicsDone         = demographicsDone;
 
-  this.trackHover                   = trackHover;
   this.setUserMeasure               = setUserMeasure;
   this.setSuitabilityScale          = setSuitabilityScale;
   this.setQualityQuestion           = setQualityQuestion;

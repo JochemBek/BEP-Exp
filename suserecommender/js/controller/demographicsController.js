@@ -5,8 +5,10 @@ var DemographicsController = function( model, view ){
 		var age = $("#leeftijd").val();
 		var gender = $( '#geslacht').val();
 		var study =  $( '#opleiding').val();
-		
-		if(email != "" && age != "" && (gender == 1 || gender == 0)  && (study == 4 || study == 1 || study == 2 || study == 3 || study == 5 || study == 6 || study == 7 || study == 8 || study == 9) ) {
+		var living = $( '#woonsitu').val();
+		var money = $( '#inkomst').val();
+				
+		if( (gender == 1 || gender == 0)  && study != 0 && living != 0 && money != 0 ) {
 			model.updateUser(email, age);
 			model.sendEmail(email);
 			model.demographicsDone();

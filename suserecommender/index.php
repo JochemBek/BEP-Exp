@@ -106,9 +106,6 @@
         <script src="js/view/informedConsentView.js"></script>
         <script src="js/controller/informedConsentController.js"></script>
 
-        <script src="js/view/filterMeasureView.js"></script>
-        <script src="js/controller/filterMeasureController.js"></script>
-
         <script src="js/view/introProbingView.js"></script>
         <script src="js/controller/introProbingController.js"></script>
 

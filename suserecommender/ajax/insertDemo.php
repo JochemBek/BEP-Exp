@@ -12,6 +12,8 @@
       "leeftijd" 		=> $_POST['leeftijd'],
       "opleiding" 		=> $_POST['opleiding'],
       "man" 		=> $_POST['man'],
+			"woon" 		=> $_POST['woon'],
+			"inkomen" 		=> $_POST['inkomen'],
       
 	));
 

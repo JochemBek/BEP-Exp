@@ -11,9 +11,6 @@ $(function(){
 	var informedConsentView 			= new InformedConsentView( raschRecommenderModel, $( "#informedConsent" ) );
 	var informedConsentController 		= new InformedConsentController( raschRecommenderModel, informedConsentView );
 
-	var filterMeasureView				= new FilterMeasureView( raschRecommenderModel, $( "#filterMeasure") );
-	var filterMeasureController			= new FilterMeasureController( raschRecommenderModel, filterMeasureView );
-
 	var introProbingView				= new IntroProbingView( raschRecommenderModel, $( "#introduceProbes" ) );
 	var introProbingController		= new IntroProbingController( raschRecommenderModel, introProbingView );
 
