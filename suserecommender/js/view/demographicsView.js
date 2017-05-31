@@ -8,7 +8,7 @@ var DemographicsView = function( model, container ){
 	var form				= $( "<form role='form'>" );
 
 	var emailContainer			= $( "<div style='margin-bottom: 25px' class='form-group'>" );
-	var emailInput				= $('<div style="font-weight:bold; font-size: 16px; margin-bottom: 25px; width: 100%" class="input-group">Wat is uw e-mailadres? <br><input type="email" style="font-weight: normal; width: 250px" type="text" pattern="\d*" id="emailInput" placeholder="Vul hier uw e-mailadres in">');
+	var emailInput				= $('<div style="font-weight:bold; font-size: 16px; margin-bottom: 25px; width: 100%" class="input-group">Wat is uw e-mailadres? (optioneel, maar vereist voor kans op een waardebon) <br><input type="email" style="font-weight: normal; width: 250px" type="text" pattern="\d*" id="emailInput" placeholder="Vul hier uw e-mailadres in">');
 	var volgendeButton	 	= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 	var clearfix			= $( '<div class="clearfix">' );
 	var leeftijd			= $( '<div style="font-weight:bold; font-size: 16px; margin-bottom: 25px; width: 100%" class="input-group">Hoe oud bent u? <br><input style="font-weight: normal; width: 250px" type="text" pattern="\d*" id="leeftijd" placeholder="Vul hier uw leeftijd in">');

@@ -9,7 +9,7 @@
 			"userId" 				=> $_POST['userId'],
 			"conditie"			=> $_POST['conditie'],
 			"screen" 				=> $_POST['screen'],
-			"advisor" 			=> $_POST['advisor']
+			"advisor" 			=> $_POST['advisor'],
 			"first"					=> $_POST['first'],
 			"second"				=> $_POST['second'],
 			"third"		 			=> $_POST['third'],
