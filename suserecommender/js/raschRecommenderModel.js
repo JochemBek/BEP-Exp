@@ -339,30 +339,19 @@ var RaschRecommenderModel = function( options ){
     });
   }
 
-  setExtraQuestion = function(question, order, wantEmail, alreadyDo) {
+  setExtraQuestion = function(question, order, val) {
     var questionId = question;
     var atPlace    = order;
-    var wantEmailB = wantEmail;
-    var alreadyDoB = alreadyDo;
-    var wantEmail;
-    var alreadyDo;
-
-    if(wantEmailB == false) {
-      wantEmail = 0;
-    } else {
+    var mailAlreadyNeither = val;
+    
+    if(mailAlreadyNeither == 1) {
       for(i=0; i<measures.length; i++){
         if(measures[i].id == questionId) {
-        wantedRecommendations.push(measures[i]);
+          wantedRecommendations.push(measures[i]);
+          console.log("Added measure " + questionId + " to mail");
         }
       }
-      wantEmail = 1;
-    }
-
-    if(alreadyDoB == false) {
-      alreadyDo = 0;
-    } else {
-      alreadyDo = 1;
-    }
+    } 
 
     $.post("ajax/insertExtraQuestion.php",
       {
@@ -371,8 +360,7 @@ var RaschRecommenderModel = function( options ){
         screen: atRecom,
         questionId: questionId,
         atPlace: atPlace,
-        wantEmail: wantEmail,
-        alreadyDo: alreadyDo
+        mailAlreadyNeither: mailAlreadyNeither 
       }).done(function(){
 
       console.log("The checkbox answers are saved in the DB");

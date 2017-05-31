@@ -4,12 +4,12 @@ var ExtraQuestionsController = function(model, view) {
 		$('#extraQuestions .list-group-item').each(function() {
 			var qs = $(this).attr('id');
 			var order = $("#extraQuestions .list-group-item").index(this)+1;
-		
-			var wantEmailElement = $(this).find(".wantEmail");
-			var alreadyDoElement = $(this).find(".alreadyDo");
-			var wantEmail = wantEmailElement.is(':checked');
-			var alreadyDo = alreadyDoElement.is(':checked');
-			model.setExtraQuestion(qs, order, wantEmail, alreadyDo);
+			
+			var val = $(this).find('input:checked').val();
+	
+			console.log("Value of measure " + qs + " is " + val);
+			
+			model.setExtraQuestion(qs, order, val);
 		});
 		model.extraQuestionsDone();
 		

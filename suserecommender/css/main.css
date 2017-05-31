@@ -71,6 +71,14 @@ h1 small{
 	display:flex;justify-content:center;align-items:center;
 }
 
+#btnno {
+	width: 160px;
+}
+
+#btnyes {
+	width: 160px;
+}
+
 .dropped{
 	vertical-align: middle;
 	text-align: center;

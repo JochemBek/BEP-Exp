@@ -11,8 +11,7 @@
 			"screen" 				=> $_POST['screen'],
       "questionId" => $_POST['questionId'],
 			"atPlace"		=> $_POST['atPlace'],
-      "wantEmail" => $_POST['wantEmail'],
-      "alreadyDo" => $_POST['alreadyDo'],
+      "mailAlreadyNeither" => $_POST['mailAlreadyNeither'],
       
 	));
 
