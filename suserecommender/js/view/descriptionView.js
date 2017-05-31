@@ -36,7 +36,7 @@ var DescriptionView = function ( model, container ){
     }
 
 		if( args == "recommendationReady"){
-			p.html( "U krijgt nu energietips van verschillende personen. Zij hebben eerder aanbevelingen gedaan aan een energieprofiel dat vergelijkbaar is met de uwe. U krijgt vier keer drie suggesties. Na elke set wordt u kort om uw mening gevraagd.");
+			p.html( "U krijgt nu energietips van verschillende personen. Zij hebben eerder aanbevelingen gedaan aan een energieprofiel dat vergelijkbaar is met die van u. Nu krijgt u vier keer drie suggesties. Na elke set zal u kort om uw mening gevraagd worden.");
       container.show();
 		}
 
@@ -91,7 +91,7 @@ var DescriptionView = function ( model, container ){
 		}
 
 		if( args == "qualityQuestionsDone" ){
-			p.html("U kunt meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen? Vink dit dan bij de juiste maatregel(en) in de eerste kolom aan. U zal dan na afloop van dit experiment een mail ontvangen met de betreffende details. Voert u een of meerdere van de maatregelen al uit? Vink dit dan bij de juiste maatregel(en) in de tweede kolom aan.");
+			p.html("U kunt meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen, of voert u een of meerdere van de maatregelen al uit? Geef voor de maatregelen hieronder uw antwoord aan. U kunt ook aangeven dat geen van beide van toepassing is.");
       container.show();
 		}
 
