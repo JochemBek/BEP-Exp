@@ -42,7 +42,7 @@ var RaschRecommenderModel = function( options ){
     email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
     stepCounter = 0, ability = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
-    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [], initial = [], doneExpert = 0, doneNonexpert = 0;
+    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [], initial = [], advisors = [], forms = [];
 
   defaultQualityQuestions = [
     {
@@ -119,7 +119,107 @@ var RaschRecommenderModel = function( options ){
       return a.difficulty-b.difficulty;
     });
   });
-
+  
+  var rand1 = Math.floor(Math.random()*2) + 1; // first non-expert
+  var rand2 = Math.floor(Math.random()*2) + 3; // first expert
+  
+  console.log("I'm in condition: " + o.condition + " and the first non-expert is: " + rand1);
+  console.log("I'm in condition: " + o.condition + " and the first expert is: " + rand2);
+  
+  if(o.condition == 1) {
+    if(rand1 == 1) {
+      advisors[0] = 1; 
+      advisors[2] = 2;
+    } else {
+      advisors[0] = 2; 
+      advisors[2] = 1;
+    }
+    
+    if(rand2 == 3) {
+      advisors[1] = 3;
+      advisors[3] = 4;
+    } else {
+      advisors[1] = 4;
+      advisors[3] = 3;
+    }
+    
+    forms[0] = 1;
+    forms[1] = 1;
+    forms[2] = 0;
+    forms[3] = 0;
+  }
+  
+  if(o.condition == 2) {
+    if(rand1 == 1) {
+      advisors[2] = 1; 
+      advisors[3] = 2;
+    } else {
+      advisors[2] = 2; 
+      advisors[3] = 1;
+    }
+    
+    if(rand2 == 3) {
+      advisors[0] = 3;
+      advisors[1] = 4;
+    } else {
+      advisors[0] = 4;
+      advisors[1] = 3;
+    }
+    
+    forms[0] = 1;
+    forms[1] = 0;
+    forms[2] = 1;
+    forms[3] = 0;
+  }
+  
+  if(o.condition == 3) {
+    if(rand1 == 1) {
+      advisors[0] = 1; 
+      advisors[1] = 2;
+    } else {
+      advisors[0] = 2; 
+      advisors[1] = 1;
+    }
+    
+    if(rand2 == 3) {
+      advisors[2] = 3;
+      advisors[3] = 4;
+    } else {
+      advisors[2] = 4;
+      advisors[3] = 3;
+    }
+    
+    forms[0] = 0;
+    forms[1] = 1;
+    forms[2] = 0;
+    forms[3] = 1;
+  }
+  
+  if(o.condition == 4) {
+    if(rand1 == 1) {
+      advisors[1] = 1; 
+      advisors[3] = 2;
+    } else {
+      advisors[1] = 2; 
+      advisors[3] = 1;
+    }
+    
+    if(rand2 == 3) {
+      advisors[0] = 3;
+      advisors[2] = 4;
+    } else {
+      advisors[0] = 4;
+      advisors[2] = 3;
+    }
+    
+    forms[0] = 0;
+    forms[1] = 0;
+    forms[2] = 1;
+    forms[3] = 1;
+  }
+  
+  console.log(advisors);
+  console.log(forms);
 
   /***********************************************************
             Helper Functions
@@ -157,12 +257,6 @@ var RaschRecommenderModel = function( options ){
         }
       }
     }
-    /*
-    var len = a.length, out = [], i = 0;
-    while ( i < len ){
-      var size = Math.ceil( ( len - i ) / n--);
-      out.push( a.slice( i, i+= size ));
-    }*/
     return out;
   }
 
@@ -227,7 +321,6 @@ var RaschRecommenderModel = function( options ){
     
     notifyObservers("userCreated");
     //notifyObservers("manCheckDone");
-
   }
 
   // Get a measure to present to the user
@@ -497,131 +590,13 @@ var RaschRecommenderModel = function( options ){
   }
 
   getAdvisor = function(){
-    console.log("User gaat naar recommendation set " + atRecom + " en heeft conditie " + o.condition);
-    var advisor;
-    if (atRecom == 1) {
-      if (o.condition == 1 || o.condition == 3) {
-        if (doneNonexpert == 0) {
-          var random = Math.floor(Math.random() *(2-1)) + 1;
-          doneNonexpert = random;
-          advisor = random;
-        } else if (doneNonexpert == 1) {
-          advisor = 2;
-        } else if (doneNonexpert == 2) {
-          advisor = 1;
-        }
-      } else {
-        if (doneExpert == 0) {
-          var random = Math.floor(Math.random() *(4-3)) + 3;
-          doneExpert = random;
-          advisor = random;
-        } else if (doneExpert == 3) {
-          advisor = 4;
-        } else if (doneExpert == 4) {
-          advisor = 3;
-        }
-      }
-    } else if (atRecom == 2) {
-      if (o.condition == 1 || o.condition == 2) {
-        if (doneExpert == 0) {
-          var random = Math.floor(Math.random() *(4-3)) + 3;
-          doneExpert = random;
-          advisor = random;
-        } else if (doneExpert == 3) {
-          advisor = 4;
-        } else if (doneExpert == 4) {
-          advisor = 3;
-        }
-      } else {
-        if (doneNonexpert == 0) {
-          var random = Math.floor(Math.random() *(2-1)) + 1;
-          doneNonexpert = random;
-          advisor = random;
-        } else if (doneNonexpert == 1) {
-          advisor = 2;
-        } else if (doneNonexpert == 2) {
-          advisor = 1;
-        }
-      }
-    } else if (atRecom == 3) {
-      if (o.condition == 1 || o.condition == 2) {
-        if (doneNonexpert == 0) {
-          var random = Math.floor(Math.random() *(2-1)) + 1;
-          doneNonexpert = random;
-          advisor = random;
-        } else if (doneNonexpert == 1) {
-          advisor = 2;
-        } else if (doneNonexpert == 2) {
-          advisor = 1;
-        }
-      } else {
-        if (doneExpert == 0) {
-          var random = Math.floor(Math.random() *(4-3)) + 3;
-          doneExpert = random;
-          advisor = random;
-        } else if (doneExpert == 3) {
-          advisor = 4;
-        } else if (doneExpert == 4) {
-          advisor = 3;
-        }
-      }
-    } else {
-      if (o.condition == 1 || o.condition == 3) {
-        if (doneExpert == 0) {
-          var random = Math.floor(Math.random() *(4-3)) + 3;
-          doneExpert = random;
-          advisor = random;
-        } else if (doneExpert == 3) {
-          advisor = 4;
-        } else if (doneExpert == 4) {
-          advisor = 3;
-        }
-      } else {
-        if (doneNonexpert == 0) {
-          var random = Math.floor(Math.random() *(2-1)) + 1;
-          doneNonexpert = random;
-          advisor = random;
-        } else if (doneNonexpert == 1) {
-          advisor = 2;
-        } else if (doneNonexpert == 2) {
-          advisor = 1;
-        }
-      }
-    }
-    console.log("DoneNonexpert is now : " + doneNonexpert + " and doneExpert is now : " + doneExpert);
-    console.log(advisor);
-    return advisor;
+    console.log("Advisor is : " + advisors[atRecom-1]);
+    return advisors[atRecom-1];
   }
 
   getForm = function(){
-    var form;
-    if (atRecom == 1) {
-      if (o.condition == 1 || o.condition == 2) {
-        form = 1;
-      } else {
-        form = 0;
-      }
-    } else if (atRecom == 2) {
-      if (o.condition == 1 || o.condition == 3) {
-        form = 1;
-      } else {
-        form = 0;
-      }
-    } else if (atRecom == 3) {
-      if (o.condition == 1 || o.condition == 3) {
-        form = 0;
-      } else {
-        form = 1;
-      }
-    } else {
-      if (o.condition == 1 || o.condition == 2) {
-        form = 0;
-      } else {
-        form = 1;
-      }
-    }
-
-    return form;
+    console.log("Form is : " + forms[atRecom-1]);
+    return forms[atRecom-1];
   }
 
   getRecommendations = function(){

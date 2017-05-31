@@ -42,10 +42,18 @@ var DescriptionView = function ( model, container ){
 
 		if( args == "informationDone" ){
 			var curadvisor = model.getAdvisor();
-			if (curadvisor == 0) {
+			console.log("In Description view, adivsor: " + curadvisor);
+			if (curadvisor == 1) {
 				p.html("Lees alstublieft eerst de tekst van Ben Cuijpers hieronder. Volg daarna de instructie daaronder.");
-			} else {
+			} 
+			if (curadvisor == 2) {
+				p.html("Lees alstublieft eerst de tekst van Geert Louws hieronder. Volg daarna de instructie daaronder.");
+			}
+			if (curadvisor == 3) {
 				p.html("Lees alstublieft eerst de tekst van Peter Daelmans hieronder. Volg daarna de instructie daaronder.");
+			}
+			if (curadvisor == 4) {
+				p.html("Lees alstublieft eerst de tekst van Jan Kleinsma hieronder. Volg daarna de instructie daaronder.");
 			}
 			container.show();
 		}
@@ -63,10 +71,17 @@ var DescriptionView = function ( model, container ){
 
 		if( args == "nextRecommendation" ){
 			var curadvisor = model.getAdvisor();
-			if (curadvisor == 0) {
+			if (curadvisor == 1) {
 				p.html("Lees alstublieft eerst de tekst van Ben Cuijpers hieronder. Volg daarna de instructie daaronder.");
-      } else {
+			} 
+			if (curadvisor == 2) {
+				p.html("Lees alstublieft eerst de tekst van Geert Louws hieronder. Volg daarna de instructie daaronder.");
+			}
+			if (curadvisor == 3) {
 				p.html("Lees alstublieft eerst de tekst van Peter Daelmans hieronder. Volg daarna de instructie daaronder.");
+			}
+			if (curadvisor == 4) {
+				p.html("Lees alstublieft eerst de tekst van Jan Kleinsma hieronder. Volg daarna de instructie daaronder.");
 			}
 			container.show();
 		}
