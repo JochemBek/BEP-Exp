@@ -113,7 +113,7 @@ var RecommendationView = function( model,container ){
 			axis: "y",
 			containment: "parent",
 			tolerance: "pointer",
-			cursor: "hand"
+			cursor: "pointer"
 		});
 
 		$('#slotOne').droppable({

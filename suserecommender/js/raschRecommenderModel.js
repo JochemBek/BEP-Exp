@@ -143,9 +143,9 @@ var RaschRecommenderModel = function( options ){
       return array;
   }
 
-  // Array split function - ik denk alleen met het bins maken
+  // Array arraySplit function - ik denk alleen met het bins maken
   // Deze functie is NIET correct
-  split = function( msrs, nr ){
+  arraySplit = function( msrs, nr ){
     var out = new Array();
     
     for(i = 0; i < o.numberOfSets; i++) {
@@ -174,10 +174,18 @@ var RaschRecommenderModel = function( options ){
 
   createUser = function(){
     console.log("Creating user");
+    
+    var path = window.location.href; 
+    var arr = path.split('/');
+    var tidstring = arr[arr.length-1];
+    var tid = tidstring.replace( /^\D+/g, '');
+    console.log("tid is: " + tid);
+    
 
     $.post( "ajax/insertUser.php",
       {
-        conditie: o.condition
+        conditie: o.condition,
+        tid: tid
       }).done( function( data ) {
         currentUserId = data;
       });
@@ -207,7 +215,7 @@ var RaschRecommenderModel = function( options ){
   // Take samples from the pool of measures after they've been loaded
   createMeasures = function(){
 
-    setArray = split( measures, o.numberOfSets );
+    setArray = arraySplit( measures, o.numberOfSets );
     for( i=0; i < o.numberOfSets; i++ ){
       var rand = Math.floor( Math.random() * setArray[i].length );
       selectedMeasures.push( setArray[i][rand] );
@@ -594,15 +602,17 @@ var RaschRecommenderModel = function( options ){
   sendEmail = function (mail){
     var email = mail;
     
-    $.when( createMessage() ).then( function() {
-      console.log("Sending Email to adress:" + email + ", with message: " + bericht);
-      $.post("ajax/sendEmail.php",
-        {
-          email: email,
-          bericht: bericht
-        });    
-      }
-    );    
+    if(wantedRecommendations.length != 0) {
+      $.when( createMessage() ).then( function() {
+        console.log("Sending Email to adress:" + email + ", with message: " + bericht);
+        $.post("ajax/sendEmail.php",
+          {
+            email: email,
+            bericht: bericht
+          });    
+        }
+      );    
+    }
       
   }
 
