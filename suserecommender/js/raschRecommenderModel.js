@@ -69,14 +69,9 @@ var RaschRecommenderModel = function( options ){
       nr: 5,
       question: "@ heeft te veel slechte besparingsmaatregelen voorgesteld.",
       scale: 7
-    },
-    {
-      nr: 6,
-      question: "Ik ben van plan om de maatregelen die zijn voorgesteld op te volgen.",
-      scale: 7
     }
   ];
-  
+
 
   defaultManCheckQuestions = [
     {
@@ -148,7 +143,7 @@ var RaschRecommenderModel = function( options ){
   // Deze functie is NIET correct
   arraySplit = function( msrs, nr ){
     var out = new Array();
-    
+
     for(i = 0; i < o.numberOfSets; i++) {
       out[i] = new Array();
       for(j = 0; j < msrs.length; j++) {
@@ -175,13 +170,13 @@ var RaschRecommenderModel = function( options ){
 
   createUser = function(){
     console.log("Creating user");
-    
-    var path = window.location.href; 
+
+    var path = window.location.href;
     var arr = path.split('/');
     var tidstring = arr[arr.length-1];
     var tid = tidstring.replace( /^\D+/g, '');
     console.log("tid is: " + tid);
-    
+
 
     $.post( "ajax/insertUser.php",
       {
@@ -190,7 +185,7 @@ var RaschRecommenderModel = function( options ){
       }).done( function( data ) {
         currentUserId = data;
       });
-    
+
   	createMeasures();
   }
 
@@ -224,7 +219,7 @@ var RaschRecommenderModel = function( options ){
 
     // randomize the order of the selected measures
     shuffle( selectedMeasures );
-    
+
     notifyObservers("userCreated");
     //notifyObservers("manCheckDone");
 
@@ -324,7 +319,7 @@ var RaschRecommenderModel = function( options ){
     var questionId = question;
     var atPlace    = order;
     var mailAlreadyNeither = val;
-    
+
     if(mailAlreadyNeither == 1) {
       for(i=0; i<measures.length; i++){
         if(measures[i].id == questionId) {
@@ -332,7 +327,7 @@ var RaschRecommenderModel = function( options ){
           console.log("Added measure " + questionId + " to mail");
         }
       }
-    } 
+    }
 
     $.post("ajax/insertExtraQuestion.php",
       {
@@ -341,7 +336,7 @@ var RaschRecommenderModel = function( options ){
         screen: atRecom,
         questionId: questionId,
         atPlace: atPlace,
-        mailAlreadyNeither: mailAlreadyNeither 
+        mailAlreadyNeither: mailAlreadyNeither
       }).done(function(){
 
       console.log("The checkbox answers are saved in the DB");
@@ -381,9 +376,9 @@ var RaschRecommenderModel = function( options ){
     abilitySpot     = Math.round( yes + ( ( yes / o.numberOfSets ) * nvt ) ) - 1;
     abilitySet      = setArray[Math.round( yes + ( ( yes / o.numberOfSets ) * nvt ) ) - 1];
     console.log("Ability: " + abilitySpot);
-    
+
     if(abilitySpot == 0) {
-      abilitySpot = 1; 
+      abilitySpot = 1;
     }
 
     // calculate mean ability of set
@@ -401,7 +396,7 @@ var RaschRecommenderModel = function( options ){
         recomArray.push( measures[i] );
       }
     }
-    
+
 
     // Take all measures that are not yet shown in phase 1, and check whether they are at the ability of the user, or one above, or two above
     for (i=0; i < recomArray.length; i++) {
@@ -627,19 +622,19 @@ var RaschRecommenderModel = function( options ){
   getRecommendations = function(){
     var setOfRec = [];
     var shuffledSetOfRec = [];
-    
+
     setOfRec.push(onLevel[atRecom-1]);
     setOfRec.push(oneAboveLevel[atRecom-1]);
     setOfRec.push(twoAboveLevel[atRecom-1]);
 
     shuffledSetOfRec = shuffle(setOfRec);
-      
+
     initial = shuffledSetOfRec;
-      
+
     console.log("Shuffled set of recommendations: " + shuffledSetOfRec);
-    
+
     return shuffledSetOfRec;
-        
+
   }
 
   getQualityQuestions = function(){
@@ -657,7 +652,7 @@ var RaschRecommenderModel = function( options ){
     var firstExpert = shuffle(experts);
     return firstExpert[0];
   }
-  
+
   setInterested = function (value){
     interested = value;
   }
@@ -668,7 +663,7 @@ var RaschRecommenderModel = function( options ){
 
   sendEmail = function (mail){
     var email = mail;
-    
+
     if(wantedRecommendations.length != 0) {
       $.when( createMessage() ).then( function() {
         console.log("Sending Email to adress:" + email + ", with message: " + bericht);
@@ -676,11 +671,11 @@ var RaschRecommenderModel = function( options ){
           {
             email: email,
             bericht: bericht
-          });    
+          });
         }
-      );    
+      );
     }
-      
+
   }
 
   trackWoonsituatie = function ( value ){

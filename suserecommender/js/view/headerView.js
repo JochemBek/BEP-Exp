@@ -29,11 +29,7 @@ var HeaderView = function ( model, container ){
 	this.update = function( args ){
 
 		if( args == "userCreated" ){
-			h2.html( "Korte vragen" );
-		}
-
-		if( args == "filterReady" ){
-			h2.html( "Vragen Energiegebruik - Introductie" );
+			h2.html( "Vragen Energiegebruik - Introductie");
 		}
 
 		if( args == "measureReady"){
@@ -48,7 +44,7 @@ var HeaderView = function ( model, container ){
 		if( args == "informationDone" ){
 			h2.html( "Aanbevelingen - "+model.atRecom+"/4" );
 		}
-		
+
 		if( args == "recommendationsDone" ){
 			h2.html( "Aanbevelingen - "+recom+"/4 - Evaluatie " );
 		}

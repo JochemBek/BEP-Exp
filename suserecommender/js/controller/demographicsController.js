@@ -7,8 +7,8 @@ var DemographicsController = function( model, view ){
 		var study =  $( '#opleiding').val();
 		var living = $( '#woonsitu').val();
 		var money = $( '#inkomst').val();
-				
-		if( (gender == 1 || gender == 0)  && study != 0 && living != 0 && money != 0 ) {
+
+		if( (gender == 1 || gender == 0)  && study != 0 && living != 0 && money != 0 && age.length != 0) {
 			model.updateUser(email, age);
 			model.sendEmail(email);
 			model.demographicsDone();
@@ -16,5 +16,5 @@ var DemographicsController = function( model, view ){
 			alert( 'U bent waarschijnlijk een vraag vergeten!' );
 		}
 	});
-	
+
 }

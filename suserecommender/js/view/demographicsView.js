@@ -1,15 +1,14 @@
 var DemographicsView = function( model, container ){
 
-	
-	
+
+
 	/***********************************************************
 					  Variable Declarations
 	***********************************************************/
 	var form				= $( "<form role='form'>" );
 
 	var emailContainer			= $( "<div style='margin-bottom: 25px' class='form-group'>" );
-	var emailLabel 				= $( "<label for='emailInput'>Email</label>" );
-	var emailInput				= $( "<input type='email' class='form-control' id='emailInput' placeholder='uw email adres'>");
+	var emailInput				= $('<div style="font-weight:bold; font-size: 16px; margin-bottom: 25px; width: 100%" class="input-group">Wat is uw e-mailadres? <br><input type="email" style="font-weight: normal; width: 250px" type="text" pattern="\d*" id="emailInput" placeholder="Vul hier uw e-mailadres in">');
 	var volgendeButton	 	= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
 	var clearfix			= $( '<div class="clearfix">' );
 	var leeftijd			= $( '<div style="font-weight:bold; font-size: 16px; margin-bottom: 25px; width: 100%" class="input-group">Hoe oud bent u? <br><input style="font-weight: normal; width: 250px" type="text" pattern="\d*" id="leeftijd" placeholder="Vul hier uw leeftijd in">');
@@ -20,7 +19,7 @@ var DemographicsView = function( model, container ){
 
 	var value2, value3, value4, value5;
 
-	emailContainer.append( emailLabel, emailInput );
+	emailContainer.append(emailInput );
 	form.append( emailContainer);
 
 	container.append( emailContainer, leeftijd, geslacht, opleidingsniveau, woonsituatie, inkomen, clearfix, volgendeButton );
@@ -51,7 +50,7 @@ var DemographicsView = function( model, container ){
 			model.trackGeslacht(value3);
 		}
 	});
-	
+
 
 	$( "#woonsitu" ).selectmenu({
 
@@ -80,7 +79,7 @@ var DemographicsView = function( model, container ){
 		}
 	});
 
-	
+
 
 
 
