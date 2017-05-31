@@ -475,6 +475,10 @@ var RaschRecommenderModel = function( options ){
     if(abilitySpot == 0) {
       abilitySpot = 1;
     }
+    
+    if(abilitySpot == 12) { 
+      abilitySpot = 11;
+    }
 
     // calculate mean ability of set
     var count       = 0;
