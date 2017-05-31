@@ -25,12 +25,12 @@ var DescriptionView = function ( model, container ){
 	this.update = function( args ){
 
 
-		if( args == "userCreated" ){
+		/*if( args == "userCreated" ){
 			p.html( "Als onderdeel van ons aanbevelingssysteem stellen we u eerst twee vragen over uw woonsituatie en inkomensniveau. Deze informatie gebruiken wij om onze aanbevelingen te verbeteren.");
 		  container.show();
-    }
+    }*/
 
-		if( args == "filterReady" ){
+		if( args == "userCreated" ){
 			p.html("Om uw huidige besparingsniveau te bepalen, stellen we u eerst een aantal vragen over uw huidige energiebesparende activiteiten. U krijgt zometeen 13 willekeurige energiebesparingsmaatregelen te zien. Geef steeds aan of u de weergegeven maatregel al uitvoert of niet. Als de maatregel voor u onmogelijk uit te voeren is - bijvoorbeeld: u heeft geen tuin, dus daarom geen zuinige tuinlampen - klik dan op N.V.T. (niet van toepassing).");
       container.show();
 		}
@@ -58,9 +58,9 @@ var DescriptionView = function ( model, container ){
 		if( args == "recommendationsDone" ){
 			var curadvisor = model.getAdvisor();
 			if (curadvisor == 0){
-			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Ben Cuijpers zijn voorgedragen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Ben Cuijpers heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
   		} else {
-  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Daelmans zijn voorgedragen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Ben Cuijpers heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
   		}
       container.show();
     }
@@ -101,7 +101,7 @@ var DescriptionView = function ( model, container ){
 		}
 
 		if( args == "demographicsDone"){
-			p.html( "Het onderzoek is afgelopen. Hartelijk dank voor uw deelname. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> De loting zal plaatsvinden na de sluitingsdatum van het onderzoek. Er wordt via uw e-mail contact met u opgenomen indien u geselecteerd bent voor de Bol.com-waardebon t.w.v. €10,-. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> Als u voor één of meerdere maatregelen heeft aangegeven meer informatie te willen ontvangen, krijgt u binnen 2 weken een mail met de betreffende details. <hr/> <b> U kunt deze pagina nu wegklikken. </b>");
+			p.html( "Het onderzoek is afgelopen. Hartelijk dank voor uw deelname. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> Indien u een e-mail adres heeft opgegeven, maakt u kans op één van de Bol.com waardebonnen t.w.v. €10,-. De loting zal plaatsvinden na de sluitingsdatum van het onderzoek. Indien u geselecteerd bent, wordt u via e-mail gecontacteerd. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> Als u voor één of meerdere maatregelen heeft aangegeven meer informatie te willen ontvangen en u een e-mail adres heeft opgegeven, krijgt u binnen 2 weken een mail met de betreffende details. <hr/> <b> U kunt deze pagina nu wegklikken. </b>");
 		  container.show();
     }
 	}

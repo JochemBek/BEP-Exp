@@ -8,7 +8,7 @@ var IntroProbingView = function (model, container) {
   model.addObserver( this );
   this.update = function(args){
     //if( args == "userCreated"){
-    if ( args == "filterReady"){
+    if ( args == "userCreated"){
         //The container is visible, the elements within it might be hidden
         container.show()
         container.append( clearfix, volgendeButton);

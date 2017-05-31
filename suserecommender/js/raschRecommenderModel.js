@@ -95,7 +95,7 @@ var RaschRecommenderModel = function( options ){
     },
     {
       nr: 4,
-      text: "Hij is gekwalificeerd.",
+      text: "Hij is deskundig.",
       scale: 7
     },
     {
@@ -118,35 +118,6 @@ var RaschRecommenderModel = function( options ){
       return a.difficulty-b.difficulty;
     });
   });
-
-
-  /*************UITLEG FILTERING****************************
-  *** 0. = geschikt voor alle woonsituaties             ****
-  *** 1. = niet geschikt voor huurwoningen              ****
-  *** 2. = niet geschikt voor woningen zonder tuin      ****
-  *** 3. = niet geschikt voor 1. en 2.                  ****
-  **********************************************************
-  ****Zie voor woonsituatie-waarde filterMeasureView.js ****
-  ****Kort gezegd: huurhuizen onder 4; tuinen zijn even ****
-  *********************************************************/
-  var filterMeasures = function(){
-    /*for( i=0; i<measures.length; i++ ){
-      console.log("Going through measure " + i + " now: Filter: " + measures[i].filter);
-      // Excluding recommendations that are inappropriate for the user's housing situation.
-      if( measures[i].filter == 0 ){
-        filteredMeasures.push( measures[i] );
-      }else if( measures[i].filter == 1 && woon > 3) {
-        filteredMeasures.push( measures[i] ); // maatregelen voor koophuizen alleen erin voor degene met een koophuis
-      }else if( measures[i].filter == 2 && woon % 2 === 0){
-        filteredMeasures.push( measures[i] ); // maatregelen voor tuinen alleen erin voor degene met een tuin
-      }else if( measures[i].filter == 3 && woon > 3 && woon % 2 === 0){
-        filteredMeasures.push( measures[i] ); // een combinatie van de 2 is evident
-      } else {
-        console.log("Should be filtered");
-      }
-    }*/
-    createMeasures();
-  }
 
 
   /***********************************************************
@@ -201,7 +172,7 @@ var RaschRecommenderModel = function( options ){
   // Create the user, add it to the database, and assign the
   // experimental condition.
 
-  createUser = function( ){
+  createUser = function(){
     console.log("Creating user");
 
     $.post( "ajax/insertUser.php",
@@ -210,10 +181,8 @@ var RaschRecommenderModel = function( options ){
       }).done( function( data ) {
         currentUserId = data;
       });
-
-    notifyObservers('userCreated');
     
-    //notifyObservers('manCheckDone');
+  	createMeasures();
   }
 
   // After the user has filled out everything, update the user data.
@@ -236,8 +205,6 @@ var RaschRecommenderModel = function( options ){
   // Take samples from the pool of measures after they've been loaded
   createMeasures = function(){
 
-//FILTER HIER************
-
     setArray = split( measures, o.numberOfSets );
     for( i=0; i < o.numberOfSets; i++ ){
       var rand = Math.floor( Math.random() * setArray[i].length );
@@ -246,7 +213,8 @@ var RaschRecommenderModel = function( options ){
 
     // randomize the order of the selected measures
     shuffle( selectedMeasures );
-    filterMeasureDone();
+    
+    notifyObservers("userCreated");
   }
 
   // Get a measure to present to the user
@@ -449,10 +417,6 @@ var RaschRecommenderModel = function( options ){
     notifyObservers( "recommendationReady" );
   }
 
-  filterMeasureDone = function(){
-    notifyObservers( "filterReady" );
-  }
-
   trackHover = function ( index, hoverIn ){
     $.post( "ajax/insertTrackHover.php",
       {
@@ -462,16 +426,6 @@ var RaschRecommenderModel = function( options ){
         hoverIn: hoverIn
       });
   }
-
-  //Collects recommendations that the user has indicated to like
-  /*sendRecommendation = function ( measureId ){
-    for(i=0; i<recommendation.length; i++){
-      if(recommendation[i].id == measureId) {
-      wantedRecommendations.push(recommendation[i]);
-      }
-    }
-    //createMessage();
-  }*/
 
   createMessage = function(){
     console.log("User has selected : " + wantedRecommendations.length + " recommendations for mail.")
@@ -721,7 +675,6 @@ var RaschRecommenderModel = function( options ){
 
   this.createUser                 = createUser;
   this.updateUser                 = updateUser;
-  this.filterMeasures             = filterMeasures;
   this.createMeasures             = createMeasures;
   this.newMeasure                 = newMeasure;
   this.newQualityQuestions        = newQualityQuestions;

@@ -56,14 +56,14 @@ var FilterMeasureView = function (model, container){
 
 	model.addObserver ( this );
 	this.update = function( args ){
-		if ( args == "userCreated" ){
+		/*if ( args == "userCreated" ){
 			container.show();
-		}
+		}*/
 
-		if ( args == "filterReady" ){
+		/*if ( args == "filterReady" ){
 			console.log("Close Filter Measures, proceed to Intro Probing.");
 			container.hide();
-		}
+		}*/
 	}
 
 	container.hide();

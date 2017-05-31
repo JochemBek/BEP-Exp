@@ -27,7 +27,7 @@ var InformedConsentView = function(model, container){
 	model.addObserver( this );
 	this.update = function( args ){
 		if( args == "userCreated" ){
-			console.log("Close informed consent, proceed to Filter Measures");
+			console.log("Close informed consent, proceed to Ability Measures");
 			container.hide();
 		}
 		/*if( args == "manCheckDone" ){

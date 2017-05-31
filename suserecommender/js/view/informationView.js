@@ -7,12 +7,10 @@ var InformationView = function( model, container, facebookApi){
 
   model.addObserver( this );
   this.update = function(args){
-    //if( args == "userCreated"){
     if ( args == "recommendationReady"){
-        //The container is visible, the elements within it might be hidden
         container.show()
         container.append( clearfix, volgendeButton);
-      }
+    }
 
     if ( args == "informationDone" ){
       container.hide();
