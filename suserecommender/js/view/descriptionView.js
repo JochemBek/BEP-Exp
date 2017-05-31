@@ -60,10 +60,14 @@ var DescriptionView = function ( model, container ){
 		
 		if( args == "recommendationsDone" ){
 			var curadvisor = model.getAdvisor();
-			if (curadvisor == 0){
+			if (curadvisor == 1){
 			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Ben Cuijpers heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
-  		} else {
-  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Ben Cuijpers heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  		} else if (curadvisor == 2) {
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Geert Louws heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  		} else if (curadvisor == 3) {
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Peter Daelmans heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  		} else if (curadvisor == 4) {
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Jan Kleinsma heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
   		}
       container.show();
     }
@@ -92,7 +96,7 @@ var DescriptionView = function ( model, container ){
 		}
 
 		if( args == "extraQuestionsDone" ){
-			p.html("U heeft van twee personen suggesties ontvangen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen over deze personen.");
+			p.html("U heeft van vier personen suggesties ontvangen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen over deze personen.");
       container.show();
 		}
 		

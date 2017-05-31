@@ -9,10 +9,14 @@ var ManCheckView = function (model, container){
 	var clearfix				= $( "<div class='clearfix'>" );
 	var legend 					= $( "<div id='legend'><span style='float:left'>Helemaal oneens</span><span>Neutraal</span><span  style='float:right'>Helemaal eens</span>" );
 
-	var imageNon = $('<img src="img/JoeriCuijpers.jpg" height="133px" width="133px" align="middle">');
-	var textNon = $('<p style="font-weight: bold"> Ben Cuijpers </p>');
-	var imageExp = $('<img src="img/RichardDaelmans.jpg" height="133px" width="133px" align="middle">');
-	var textExp = $('<p style="font-weight: bold"> Peter Daelmans </p>');
+	var image1 = $('<img src="img/JoeriCuijpers.jpg" height="133px" width="133px" align="middle">');
+	var text1 = $('<p style="font-weight: bold"> Ben Cuijpers </p>');
+	var image2 = $('<img src="img/tree-off.png" height="133px" width="133px" align="middle">');
+	var text2 = $('<p style="font-weight: bold"> Geert Louws </p>');
+	var image3 = $('<img src="img/RichardDaelmans.jpg" height="133px" width="133px" align="middle">');
+	var text3 = $('<p style="font-weight: bold"> Peter Daelmans </p>');
+	var image4 = $('<img src="img/tree-on.png" height="133px" width="133px" align="middle">');
+	var text4 = $('<p style="font-weight: bold"> Jan Kleinsma </p>');
 
 	container.append( advisorContainer, volgendeButton, clearfix );
 
@@ -27,23 +31,30 @@ var ManCheckView = function (model, container){
 		$('#adv').remove();
 	}
 
-	displayManCheckQuestions = function(expert){
+	displayManCheckQuestions = function(adv){
 		var questions  = model.getManCheckQuestions();
 
 		var checkQuestionList		= $( "<div class='col-md-10' id='setQuestions'>" );
 		var advisor = $("<div id='adv' style='padding-top: 25px' class='col-md-2'>");
 
-		if(expert == 0) {
-			advisor.append(textNon);
-			advisor.append(imageNon);
-			advisorContainer.attr('id', 'nonexpert');
-			expertDone = 1;
-		} else {
-			advisor.append(textExp);
-			advisor.append(imageExp);
-			advisorContainer.attr('id', 'expert');
-			nonExpertDone = 1;
+		if(adv == 1) {
+			advisor.append(text1);
+			advisor.append(image1);
+			advisorContainer.attr('id', 'a1');
+		} else if (adv == 2) {
+			advisor.append(text2);
+			advisor.append(image2);
+			advisorContainer.attr('id', 'a2');
+		} else if (adv == 3) {
+			advisor.append(text3);
+			advisor.append(image3);
+			advisorContainer.attr('id', 'a4');
+		} else if (adv == 4) {
+			advisor.append(text4);
+			advisor.append(image4);
+			advisorContainer.attr('id', 'a4');
 		}
+			
 
 		$.each( questions, function(key, value) {
 			var item 			= $( "<div class='list-group-item'>" );
@@ -51,10 +62,14 @@ var ManCheckView = function (model, container){
 				var text 			= $( "<p style='margin-top:5px; float:left; width:50%' class='list-group-item-text'>" );
 					var q = value.text;
 					var newq;
-					if(expert == 0) {
+					if(adv == 1) {
 						newq = q.replace('Hij', 'Ben');
-					} else {
+					} else if (adv == 2){
+						newq = q.replace('Hij', 'Geert');
+					} else if (adv == 3) {
 						newq = q.replace('Hij', 'Peter');
+					} else if (adv == 4) { 
+						newq = q.replace('Hij', 'Jan');
 					}
 					text 			.html(newq)
 					item 			.append(text);
@@ -98,15 +113,10 @@ var ManCheckView = function (model, container){
 
 	this.update = function( args ){
 
-		if( args == 'manCheckNonExpert' ){
+		if( args == 'manCheck' ){
 			clean();
-			displayManCheckQuestions(0);
-			container.show();
-		}
-
-		if( args == 'manCheckExpert' ){
-			clean();
-			displayManCheckQuestions(1);
+			var adv = model.getAdvMan();
+			displayManCheckQuestions(adv);
 			container.show();
 		}
 

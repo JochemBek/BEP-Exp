@@ -42,7 +42,7 @@ var RaschRecommenderModel = function( options ){
     email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
     stepCounter = 0, ability = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
-    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [], initial = [], advisors = [], forms = [];
+    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [], initial = [], advisors = [], forms = [], atMancheck = 0, advisor = 0; 
 
   defaultQualityQuestions = [
     {
@@ -371,12 +371,14 @@ var RaschRecommenderModel = function( options ){
   setSuitabilityScale = function( scaled ) {
     console.log( "Initial array was: " + initial[0] + " " + initial[1] + " " + initial[2] );
     var scale = scaled;
+    console.log("Adv db: " + advisor);
 
     $.post("ajax/insertSuitabilityScale.php",
       {
         userId: currentUserId,
         conditie: o.condition,
         screen: atRecom,
+        advisor: advisor,
         first: initial[0].id,
         second: initial[1].id,
         third: initial[2].id,
@@ -436,8 +438,8 @@ var RaschRecommenderModel = function( options ){
     });
   }
 
-  setManCheckQuestion = function(expertise, question, value, ord) {
-    var isExpert = expertise;
+  setManCheckQuestion = function(advs, question, value, ord) {
+    var advis = advs;
     var questionId = question;
     var val = value;
     var order = ord;
@@ -446,7 +448,7 @@ var RaschRecommenderModel = function( options ){
       {
         userId: currentUserId,
         conditie: o.condition,
-        isExpert: expertise,
+        advis: advis,
         questionId: questionId,
         value: val,
         order: order,
@@ -553,24 +555,14 @@ var RaschRecommenderModel = function( options ){
       console.log("I am now at screen: " + atRecom);
       notifyObservers( "nextRecommendation" );
     } else {
-      var expertise = Math.floor(Math.random() * 1);
-      if(expertise == 0) {
-        nonExpertDone = 1;
-        notifyObservers( "manCheckNonExpert" );
-      } else {
-        expertDone = 1;
-        notifyObservers( "manCheckExpert" );
-      }
+      notifyObservers( "manCheck" );
     }
   }
 
   manCheckQuestionsDone = function() {
-    if(expertDone == 1 && nonExpertDone == 0){
-      nonExpertDone = 1;
-      notifyObservers("manCheckNonExpert");
-    } else if(expertDone == 0 && nonExpertDone == 1) {
-      expertDone = 1;
-      notifyObservers("manCheckExpert")
+    if(atMancheck < 4){
+      atMancheck++;
+      notifyObservers("manCheck");
     } else {
       notifyObservers("manCheckDone");
     }
@@ -586,7 +578,12 @@ var RaschRecommenderModel = function( options ){
 
   getAdvisor = function(){
     console.log("Advisor is : " + advisors[atRecom-1]);
+    advisor = advisors[atRecom-1];
     return advisors[atRecom-1];
+  }
+  
+  getAdvMan = function() {
+    return advisors[atMancheck];
   }
 
   getForm = function(){
@@ -723,6 +720,7 @@ var RaschRecommenderModel = function( options ){
 
   this.getMeasure               = getMeasure;
   this.getAdvisor               = getAdvisor;
+  this.getAdvMan                = getAdvMan;
   this.getForm                  = getForm;
   this.getRecommendations       = getRecommendations;
   this.informationDone          = informationDone;
