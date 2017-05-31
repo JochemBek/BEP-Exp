@@ -42,7 +42,7 @@ var RaschRecommenderModel = function( options ){
     email, currentMeasure, inkomen, satisfactionQuestions, abilitySpot, wantedRecommendations = [],
     setArray = [], abilitySet = [], filteredMeasures = [], measureHistory = [], selectedMeasures = [], recommendation = [],
     stepCounter = 0, ability = 0, yes = 0, nvt = 0, leeftijd = 0, onLevel = [], oneAboveLevel = [], twoAboveLevel = [],
-    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [], initial = [];
+    atRecom = 1, qualityQuestions = [], defaultQualityQuestions = [], defaultManCheckQuestions = [], initial = [], doneExpert = 0, doneNonexpert = 0;
 
   defaultQualityQuestions = [
     {
@@ -76,6 +76,7 @@ var RaschRecommenderModel = function( options ){
       scale: 7
     }
   ];
+  
 
   defaultManCheckQuestions = [
     {
@@ -500,29 +501,95 @@ var RaschRecommenderModel = function( options ){
     var advisor;
     if (atRecom == 1) {
       if (o.condition == 1 || o.condition == 3) {
-        advisor = 0;
+        if (doneNonexpert == 0) {
+          var random = Math.floor(Math.random() *(2-1)) + 1;
+          doneNonexpert = random;
+          advisor = random;
+        } else if (doneNonexpert == 1) {
+          advisor = 2;
+        } else if (doneNonexpert == 2) {
+          advisor = 1;
+        }
       } else {
-        advisor = 1;
+        if (doneExpert == 0) {
+          var random = Math.floor(Math.random() *(4-3)) + 3;
+          doneExpert = random;
+          advisor = random;
+        } else if (doneExpert == 3) {
+          advisor = 4;
+        } else if (doneExpert == 4) {
+          advisor = 3;
+        }
       }
     } else if (atRecom == 2) {
       if (o.condition == 1 || o.condition == 2) {
-        advisor = 1;
+        if (doneExpert == 0) {
+          var random = Math.floor(Math.random() *(4-3)) + 3;
+          doneExpert = random;
+          advisor = random;
+        } else if (doneExpert == 3) {
+          advisor = 4;
+        } else if (doneExpert == 4) {
+          advisor = 3;
+        }
       } else {
-        advisor = 0;
+        if (doneNonexpert == 0) {
+          var random = Math.floor(Math.random() *(2-1)) + 1;
+          doneNonexpert = random;
+          advisor = random;
+        } else if (doneNonexpert == 1) {
+          advisor = 2;
+        } else if (doneNonexpert == 2) {
+          advisor = 1;
+        }
       }
     } else if (atRecom == 3) {
       if (o.condition == 1 || o.condition == 2) {
-        advisor = 0;
+        if (doneNonexpert == 0) {
+          var random = Math.floor(Math.random() *(2-1)) + 1;
+          doneNonexpert = random;
+          advisor = random;
+        } else if (doneNonexpert == 1) {
+          advisor = 2;
+        } else if (doneNonexpert == 2) {
+          advisor = 1;
+        }
       } else {
-        advisor = 1;
+        if (doneExpert == 0) {
+          var random = Math.floor(Math.random() *(4-3)) + 3;
+          doneExpert = random;
+          advisor = random;
+        } else if (doneExpert == 3) {
+          advisor = 4;
+        } else if (doneExpert == 4) {
+          advisor = 3;
+        }
       }
     } else {
       if (o.condition == 1 || o.condition == 3) {
-        advisor = 1;
+        if (doneExpert == 0) {
+          var random = Math.floor(Math.random() *(4-3)) + 3;
+          doneExpert = random;
+          advisor = random;
+        } else if (doneExpert == 3) {
+          advisor = 4;
+        } else if (doneExpert == 4) {
+          advisor = 3;
+        }
       } else {
-        advisor = 0;
+        if (doneNonexpert == 0) {
+          var random = Math.floor(Math.random() *(2-1)) + 1;
+          doneNonexpert = random;
+          advisor = random;
+        } else if (doneNonexpert == 1) {
+          advisor = 2;
+        } else if (doneNonexpert == 2) {
+          advisor = 1;
+        }
       }
     }
+    console.log("DoneNonexpert is now : " + doneNonexpert + " and doneExpert is now : " + doneExpert);
+    console.log(advisor);
     return advisor;
   }
 
@@ -576,13 +643,13 @@ var RaschRecommenderModel = function( options ){
   }
 
   getQualityQuestions = function(){
-    qualityQuestions = shuffle(defaultQualityQuestions);
-    return qualityQuestions;
+    //qualityQuestions = shuffle(defaultQualityQuestions);
+    return defaultQualityQuestions;
   }
 
   getManCheckQuestions = function(){
-    var manCheckQuestions = shuffle(defaultManCheckQuestions);
-    return manCheckQuestions;
+    //var manCheckQuestions = shuffle(defaultManCheckQuestions);
+    return defaultManCheckQuestions;
   }
 
   getRandomAdvisor = function(){
