@@ -51,7 +51,7 @@ var RecommendationView = function( model,container ){
 		if (advisor == 2 && form == 0) { // non-expert2 & telling
 			console.log("Advisor is een non-expert");
 			description = $("<div class='advisorDescr' id='descrright'> <p> Hallo, ik ben Geert Louws. Ik ben afgestudeerd in rechten en werk als advocaat in Utrecht. Ik heb al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden. Na uw energieprofiel te hebben bekeken, heb ik drie suggesties voor u:</p> </div>");
-			image = $('<img src="img/tree-off.png" height="200px" width="200px">');
+			image = $('<img src="img/GeertLouws.jpg" height="200px" width="200px">');
 			nameadvisor = "Geert";
 		}
 		if (advisor == 3 && form == 0) { // expert3 & telling
@@ -63,10 +63,10 @@ var RecommendationView = function( model,container ){
 		if (advisor == 4 && form == 0) { // expert4 & telling
 			console.log("Advisor is een expert");
 			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Jan Kleinsma. Ik ben afgestuurd in ecologie en werk als besparingsdeskundige in Rotterdam. Ik ben bekend met deze besparingshulp, en heb op basis van uw energieprofiel drie suggesties voor u:</p> </div>");
-			image = $('<img src="img/tree-on.png" height="200px" width="200px">');
+			image = $('<img src="img/JanKleinsma.jpg" height="200px" width="200px">');
 			nameadvisor = "Jan";
 		}
-		
+
 		if (advisor == 1 && form == 1) { // non-expert1 & sharing
 			console.log("Advisor is een non-expert");
 			description = $("<div class='advisorDescr' id='descrright'> <p> Hallo, ik ben Ben Cuijpers. Ik heb afgestudeerd in Japanstudies en werk als vertaler in Den Haag. Ik heb al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
@@ -76,7 +76,7 @@ var RecommendationView = function( model,container ){
 		if (advisor == 2 && form == 1) { // non-expert2 & sharing
 			console.log("Advisor is een non-expert");
 			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Geert Louws. Ik ben afgestudeerd in rechten en werk als advocaat in Utrecht. Ik heb al eerder de besparingshulp gebruikt om een aantal geschikte energiemaatregelen te vinden. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
-			image = $('<img src="img/tree-off.png" height="200px" width="200px">');
+			image = $('<img src="img/GeertLouws.jpg" height="200px" width="200px">');
 			nameadvisor = "Geert";
 		}
 		if (advisor == 3 && form == 1) { // expert3 & sharing
@@ -88,7 +88,7 @@ var RecommendationView = function( model,container ){
 		if (advisor == 4 && form == 1) { // expert4 & sharing
 			console.log("Advisor is een expert");
 			description = $("<div class='advisorDescr' id='descrright'> <p>  Hallo, ik ben Jan Kleinsma. Ik ben afgestuurd in ecologie en werk als besparingsdeskundige in Rotterdam. Ik ben bekend met deze besparingshulp. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
-			image = $('<img src="img/tree-on.png" height="200px" width="200px">');
+			image = $('<img src="img/JanKleinsma.jpg" height="200px" width="200px">');
 			nameadvisor = "Jan";
 		}
 
@@ -243,8 +243,8 @@ var RecommendationView = function( model,container ){
 			$(this).droppable("destroy");
 			$(this).remove();
 		});
-		
-		
+
+
 	}
 
 	/***********************************************************

@@ -11,11 +11,11 @@ var ManCheckView = function (model, container){
 
 	var image1 = $('<img src="img/JoeriCuijpers.jpg" height="133px" width="133px" align="middle">');
 	var text1 = $('<p style="font-weight: bold"> Ben Cuijpers </p>');
-	var image2 = $('<img src="img/tree-off.png" height="133px" width="133px" align="middle">');
+	var image2 = $('<img src="img/GeertLouws.jpg" height="133px" width="133px" align="middle">');
 	var text2 = $('<p style="font-weight: bold"> Geert Louws </p>');
 	var image3 = $('<img src="img/RichardDaelmans.jpg" height="133px" width="133px" align="middle">');
 	var text3 = $('<p style="font-weight: bold"> Peter Daelmans </p>');
-	var image4 = $('<img src="img/tree-on.png" height="133px" width="133px" align="middle">');
+	var image4 = $('<img src="img/JanKleinsma.jpg" height="133px" width="133px" align="middle">');
 	var text4 = $('<p style="font-weight: bold"> Jan Kleinsma </p>');
 
 	container.append( advisorContainer, volgendeButton, clearfix );
@@ -54,7 +54,7 @@ var ManCheckView = function (model, container){
 			advisor.append(image4);
 			advisorContainer.attr('id', 'a4');
 		}
-			
+
 
 		$.each( questions, function(key, value) {
 			var item 			= $( "<div class='list-group-item'>" );
@@ -68,7 +68,7 @@ var ManCheckView = function (model, container){
 						newq = q.replace('Hij', 'Geert');
 					} else if (adv == 3) {
 						newq = q.replace('Hij', 'Peter');
-					} else if (adv == 4) { 
+					} else if (adv == 4) {
 						newq = q.replace('Hij', 'Jan');
 					}
 					text 			.html(newq)
