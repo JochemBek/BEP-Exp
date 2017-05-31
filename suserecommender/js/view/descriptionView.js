@@ -61,13 +61,13 @@ var DescriptionView = function ( model, container ){
 		if( args == "recommendationsDone" ){
 			var curadvisor = model.getAdvisor();
 			if (curadvisor == 1){
-			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Ben Cuijpers heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+			  p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Ben Cuijpers zijn voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens bent met de volgende stellingen:");
   		} else if (curadvisor == 2) {
-  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Geert Louws heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Geert Louws zijn voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens bent met de volgende stellingen:");
   		} else if (curadvisor == 3) {
-  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Peter Daelmans heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Peter Daelmans zijn voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens bent met de volgende stellingen:");
   		} else if (curadvisor == 4) {
-  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die Jan Kleinsma heeft voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen:");
+  			p.html("U heeft zojuist drie energiebesparingsmaatregelen gezien die door Jan Kleinsma zijn voorgesteld om uit te voeren. Geef alstublieft aan in hoeverre u het eens bent met de volgende stellingen:");
   		}
       container.show();
     }
@@ -109,12 +109,12 @@ var DescriptionView = function ( model, container ){
 		}
 
 		if( args == "manCheckDone" ){
-			p.html( "Beantwoord ten slotte alstublieft de volgende korte vragen. Zorg ervoor dat u een e-mailadres opgeeft waar u toegang tot heeft. Wij contacteren u namelijk via e-mail over besparingsmaatregelen waar u meer informatie over wenst en eventueel over de loting van de cadeaukaarten.");
+			p.html( "Beantwoord ten slotte alstublieft de volgende korte vragen. Als u mee wilt doen aan de loting van de waardebonnen en extra informatie wilt ontvangen over de geselecteerde maatregelen, zorg er dan voor dat u een e-mailadres opgeeft waar u toegang tot heeft. Wij contacteren u daarover namelijk via e-mail.");
       container.show();
 		}
 
 		if( args == "demographicsDone"){
-			p.html( "Het onderzoek is afgelopen. Hartelijk dank voor uw deelname. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> Indien u een e-mail adres heeft opgegeven, maakt u kans op één van de Bol.com waardebonnen t.w.v. €10,-. De loting zal plaatsvinden na de sluitingsdatum van het onderzoek. Indien u geselecteerd bent, wordt u via e-mail gecontacteerd. <hr style='margin: 2px; height:1pt; visibility:hidden;'/> Als u voor één of meerdere maatregelen heeft aangegeven meer informatie te willen ontvangen en u een e-mail adres heeft opgegeven, krijgt u binnen 2 weken een mail met de betreffende details. <hr/> <b> U kunt deze pagina nu wegklikken. </b>");
+			p.html( "Het onderzoek is afgelopen. Hartelijk dank voor uw deelname. <hr style='margin: 5px; height:1pt; visibility:hidden;'/> Indien u een e-mail adres heeft opgegeven, maakt u kans op één van de Bol.com waardebonnen t.w.v. €10,-. De loting zal plaatsvinden na de sluitingsdatum van het onderzoek. Indien u geselecteerd bent, wordt u via e-mail gecontacteerd. <hr style='margin: 5px; height:1pt; visibility:hidden;'/> Als u voor één of meerdere maatregelen heeft aangegeven meer informatie te willen ontvangen en u een e-mail adres heeft opgegeven, krijgt u binnen 2 weken een mail met de betreffende details. <hr/> <b> U kunt deze pagina nu wegklikken. </b>");
 		  container.show();
     }
 	}
