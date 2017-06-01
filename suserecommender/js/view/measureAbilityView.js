@@ -8,6 +8,7 @@ var MeasureAbilityView = function(model, container){
 	var list									= $( "<div class='list-group'>" );
 	var item									= $( "<div class='list-group-item'>" );
 	var h3										= $( "<h3 class='list-group-item-heading'>" );
+	var clearfix			= $( '<div class="clearfix">' );
 	var description	 					= $( "<p style='font-style: italic;' class='list-group-item-text'>" );
 	var yesButton                            = $( "<a id='btnyes' class='btn btn-default button glow-button-green btn-lg' role='button'> Ja </a>" );
 	    var noButton                            = $( "<a id='btnno' class='btn btn-default button glow-button-red btn-lg' role='button'>Nee </a>" );
@@ -23,7 +24,7 @@ var MeasureAbilityView = function(model, container){
 			buttonGroup 	.append( noButton, yesButton);
 			list 					.append( item );
 			item 					.append( h3, description );
-			container			.append( h2, list, wrapper, wrapperNvt ); // die container staat ook in de model-functie en betekent dat ie weergegeven wordt.
+			container			.append( h2, list, wrapper, wrapperNvt, clearfix ); // die container staat ook in de model-functie en betekent dat ie weergegeven wordt.
 
 	/***********************************************************
 						Private Variables

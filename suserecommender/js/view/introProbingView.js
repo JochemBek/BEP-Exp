@@ -11,7 +11,7 @@ var IntroProbingView = function (model, container) {
     if ( args == "userCreated"){
         //The container is visible, the elements within it might be hidden
         container.show()
-        container.append( clearfix, volgendeButton);
+        container.append( volgendeButton, clearfix);
       }
 
     if ( args == "introProbingDone" ){
