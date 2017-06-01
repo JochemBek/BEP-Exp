@@ -6,7 +6,7 @@ var RecommendationView = function( model,container ){
 
 	var recommendations 		= [];
 	var omschrijvingsblok		= $( "<div id='description'>");
-	var volgendeButton	 		= $( "<a class='btn button btn-default pull-right' role='button'>Volgende &raquo;</a>" );
+	var volgendeButton	 		= $( "<a class='btn button btn-default row pull-right' id='buttonmargin' role='button'>Volgende &raquo;</a>" );
 	var cont = 1;
 	var nameadvisor;
 	var taskExpl;
@@ -14,16 +14,16 @@ var RecommendationView = function( model,container ){
 	var empty2 							= $("<div class='col-md-1'></div>");
 
 	var completecontainer		= $("<div class=''></div>");
-	var upperhalf						= $("<div class='list-group-item' id='parentupper'></div>");
+	var upperhalf						= $("<div class='list-group-item row' id='parentupper'></div>");
 	var lowerhalf						= $("<div class='parentlower row'></div>");
-	var upperleft						= $("<div class='' id='leftupper'></div>");
-	var upperright					= $("<div class='parentrightupper' id='rightupper'></div>");
+	var upperleft						= $("<div class='col-md-2' id='leftupper'></div>");
+	var upperright					= $("<div class='col-md-8 parentrightupper' id='rightupper'></div>");
 	var advDescr						= $("<div class='childrightupper'></div>");
 	var titleRecom					= $("<div class='childrightupper'></div>");
-	var recomButtons				= $("<div class='childrightupper'></div>");
+	var recomButtons				= $("<div class='row childrightupper buttoncontainer'></div>");
 
-	var scaleDrop 					= $("<div class='childlower parent' id='scaleDrop'></div>");
-	var clearfix 						= $("<div class='clearfix'></div>")
+	var scaleDrop 					= $("<div class='col-md-4 childlower parent' id='scaleDrop'></div>");
+	var clearfix 						= $("<div class='clearfix' ></div>")
 
 		var list									= $( "<div class='list-group'>" );
 		var item									= $( "<div class='list-group-item' id='parentbox'>" );
@@ -58,13 +58,13 @@ var RecommendationView = function( model,container ){
 		}
 		if (advisor == 3 && form == 0) { // expert3 & telling
 			console.log("Advisor is een expert");
-			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Peter Daelmans. Ik ben afgestuurd in duurzaamheidswetenschappen en werk als energieconsulent in Leiden. <hr style='margin: 2px; height:1pt; visibility:hidden;'/>Ik ben bekend met deze besparingshulp, en heb op basis van uw energieprofiel drie suggesties voor u:</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Peter Daelmans. Ik ben afgestudeerd in duurzaamheidswetenschappen en werk als energieconsulent in Leiden. <hr style='margin: 2px; height:1pt; visibility:hidden;'/>Ik ben bekend met deze besparingshulp, en heb op basis van uw energieprofiel drie suggesties voor u:</p> </div>");
 			image = $('<img src="img/RichardDaelmans.jpg" height="200px" width="200px">');
 			nameadvisor = "Peter";
 		}
 		if (advisor == 4 && form == 0) { // expert4 & telling
 			console.log("Advisor is een expert");
-			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Jan Kleinsma. Ik ben afgestuurd in ecologie en werk als besparingsdeskundige in Rotterdam. <hr style='margin: 2px; height:1pt; visibility:hidden;'/>Ik ben bekend met deze besparingshulp, en heb op basis van uw energieprofiel drie suggesties voor u:</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Jan Kleinsma. Ik ben afgestudeerd in ecologie en werk als besparingsdeskundige in Rotterdam. <hr style='margin: 2px; height:1pt; visibility:hidden;'/>Ik ben bekend met deze besparingshulp, en heb op basis van uw energieprofiel drie suggesties voor u:</p> </div>");
 			image = $('<img src="img/JanKleinsma.jpg" height="200px" width="200px">');
 			nameadvisor = "Jan";
 		}
@@ -83,13 +83,13 @@ var RecommendationView = function( model,container ){
 		}
 		if (advisor == 3 && form == 1) { // expert3 & sharing
 			console.log("Advisor is een expert");
-			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Peter Daelmans. Ik ben afgestuurd in duurzaamheidswetenschappen en werk als energieconsulent in Leiden. <hr style='margin: 2px; height:1pt; visibility:hidden;'/>Ik ben bekend met deze besparingshulp. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p> Goedendag, ik ben Peter Daelmans. Ik ben afgestudeerd in duurzaamheidswetenschappen en werk als energieconsulent in Leiden. <hr style='margin: 2px; height:1pt; visibility:hidden;'/>Ik ben bekend met deze besparingshulp. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
 			image = $('<img src="img/RichardDaelmans.jpg" height="200px" width="200px">');
 			nameadvisor = "Peter";
 		}
 		if (advisor == 4 && form == 1) { // expert4 & sharing
 			console.log("Advisor is een expert");
-			description = $("<div class='advisorDescr' id='descrright'> <p>  Hallo, ik ben Jan Kleinsma. Ik ben afgestuurd in ecologie en werk als besparingsdeskundige in Rotterdam. <hr style='margin: 2px; height:1pt; visibility:hidden;'/>Ik ben bekend met deze besparingshulp. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
+			description = $("<div class='advisorDescr' id='descrright'> <p>  Hallo, ik ben Jan Kleinsma. Ik ben afgestudeerd in ecologie en werk als besparingsdeskundige in Rotterdam. <hr style='margin: 2px; height:1pt; visibility:hidden;'/>Ik ben bekend met deze besparingshulp. Ik pas de volgende drie maatregelen toe, die wellicht ook voor u geschikt kunnen zijn op basis van uw energieprofiel:</p> </div>");
 			image = $('<img src="img/JanKleinsma.jpg" height="200px" width="200px">');
 			nameadvisor = "Jan";
 		}
@@ -101,12 +101,12 @@ var RecommendationView = function( model,container ){
 		console.log(recommendations);
 
 		if (form == 0) { // telling
-			recommend = $("<center><div class='addmargin'><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].telling + " </p> </div> <div id='" + recommendations[1].id + "' class='rec   buttonrec rec2'> <p>" + recommendations[1].telling + " </p> </div> <div id='" + recommendations[2].id + "' class='rec   buttonrec rec3'> <p>" + recommendations[2].telling + " </p> </div></div><center>");
+			recommend = $("<center><div><div id='" + recommendations[0].id + "' class='rec col-md-3 buttonrec rec1'> <p>" + recommendations[0].telling + " </p> </div> <div id='" + recommendations[1].id + "' class='rec col-md-3 buttonrec rec2'> <p>" + recommendations[1].telling + " </p> </div> <div id='" + recommendations[2].id + "' class='rec col-md-3 buttonrec rec3'> <p>" + recommendations[2].telling + " </p> </div></div><center>");
 		}
 		if (form == 1) { // sharing
-			recommend = $("<center><div class='addmargin'><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].sharing + " </p> </div> <div id='" + recommendations[1].id + "' class='rec   buttonrec rec2'> <p>" + recommendations[1].sharing + " </p> </div> <div id='" + recommendations[2].id + "' class='rec   buttonrec rec3'> <p>" + recommendations[2].sharing + " </p> </div></div><center>");
+			recommend = $("<center><div><div id='" + recommendations[0].id + "' class='rec col-md-3 buttonrec rec1'> <p>" + recommendations[0].sharing + " </p> </div> <div id='" + recommendations[1].id + "' class='rec  col-md-3  buttonrec rec2'> <p>" + recommendations[1].sharing + " </p> </div> <div id='" + recommendations[2].id + "' class='rec col-md-3 buttonrec rec3'> <p>" + recommendations[2].sharing + " </p> </div></div><center>");
 		}
-		taskExpl						= $("<p class='childlower' id='textExpl'>Sorteer de drie energietips van "+nameadvisor+". Sleep het advies dat u in uw huidige situatie als ‘meest toepasselijk’ ervaart naar het bovenste vakje. Sleep het advies dat u in uw huidige situatie als ‘minst toepasselijk’ ervaart naar het onderste vakje. Als u de volgorde nog wil veranderen, kunt u de vakjes in de lijst ook onderling verslepen.</p>");
+		taskExpl						= $("<p class='col-md-4 childlower' id='textExpl'>Sorteer de drie energietips van "+nameadvisor+". Sleep het advies dat u in uw huidige situatie als ‘meest toepasselijk’ ervaart naar het bovenste vakje. Sleep het advies dat u in uw huidige situatie als ‘minst toepasselijk’ ervaart naar het onderste vakje. Als u de volgorde nog wil veranderen, kunt u de vakjes in de lijst ook onderling verslepen.</p>");
 		var h5 										= $( "<b><h4>"+nameadvisor+" heeft de volgende aanbevelingen voor u: </h4></b>")
 		container.append(completecontainer, volgendeButton, clearfix);
 		completecontainer.append(upperhalf, lowerhalf);

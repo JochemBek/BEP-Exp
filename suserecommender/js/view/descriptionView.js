@@ -45,7 +45,7 @@ var DescriptionView = function ( model, container ){
 			console.log("In Description view, adivsor: " + curadvisor);
 			if (curadvisor == 1) {
 				p.html("Lees alstublieft eerst de tekst van Ben Cuijpers hieronder. Volg daarna de instructie daaronder.");
-			} 
+			}
 			if (curadvisor == 2) {
 				p.html("Lees alstublieft eerst de tekst van Geert Louws hieronder. Volg daarna de instructie daaronder.");
 			}
@@ -57,7 +57,7 @@ var DescriptionView = function ( model, container ){
 			}
 			container.show();
 		}
-		
+
 		if( args == "recommendationsDone" ){
 			var curadvisor = model.getAdvisor();
 			if (curadvisor == 1){
@@ -77,7 +77,7 @@ var DescriptionView = function ( model, container ){
 			var curadvisor = model.getAdvisor();
 			if (curadvisor == 1) {
 				p.html("Lees alstublieft eerst de tekst van Ben Cuijpers hieronder. Volg daarna de instructie daaronder.");
-			} 
+			}
 			if (curadvisor == 2) {
 				p.html("Lees alstublieft eerst de tekst van Geert Louws hieronder. Volg daarna de instructie daaronder.");
 			}
@@ -91,7 +91,7 @@ var DescriptionView = function ( model, container ){
 		}
 
 		if( args == "qualityQuestionsDone" ){
-			p.html("U kunt meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. Wenst u meer informatie te ontvangen over een of meerdere besparingsmaatregelen, of voert u een of meerdere van de maatregelen al uit? Geef voor de maatregelen hieronder uw antwoord aan. U kunt ook aangeven dat geen van beide van toepassing is.");
+			p.html("Als u wilt kunt meer informatie ontvangen over de drie besparingsmaatregelen die u zojuist heeft gezien. We zullen u dan de details van de betreffende maatregelen per e-mail toesturen. Het kan ook zijn dat u een of meerdere van deze maatregelen al toepast. Kies hierbeneden voor elke maatregel de relevante optie. U kunt ook aangeven dat geen van beide van toepassing is.");
       container.show();
 		}
 
@@ -99,11 +99,11 @@ var DescriptionView = function ( model, container ){
 			p.html("U heeft van vier personen suggesties ontvangen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen over deze personen.");
       container.show();
 		}
-		
+
 		if( args == 'manCheckExpert' ){
 			p.html("Beantwoord alstublieft de onderstaande vragen over Peter Daelmans.");
 		}
-		
+
 		if( args == 'manCheckNonExpert' ) {
 			p.html("Beantwoord alstublieft de onderstaande vragen over Ben Cuijpers.");
 		}
@@ -118,7 +118,7 @@ var DescriptionView = function ( model, container ){
 		  container.show();
     }
 	}
-  
+
   container.hide();
 
 }
