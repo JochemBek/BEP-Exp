@@ -14,14 +14,16 @@ var MeasureAbilityView = function(model, container){
 	    var notusefulButton                = $( "<a id='btnnvt' class='btn btn-default button glow-button-yellow pull-right' role='button'>N.V.T.</a>" );
 	    var buttonGroup                     = $( "<center><div class='btn-group col-md-8 text-align:center' id='btnyesno'><center> ");
 	    var wrapper                             = $( "<div class='wrapper1'>")
+			var wrapperNvt =$("<div class='wraper2'>");
 
 
 
 			wrapper				.append( buttonGroup);
+			wrapperNvt		.append( notusefulButton);
 			buttonGroup 	.append( noButton, yesButton);
 			list 					.append( item );
 			item 					.append( h3, description );
-			container			.append( h2, list, wrapper, notusefulButton ); // die container staat ook in de model-functie en betekent dat ie weergegeven wordt.
+			container			.append( h2, list, wrapper, wrapperNvt ); // die container staat ook in de model-functie en betekent dat ie weergegeven wordt.
 
 	/***********************************************************
 						Private Variables
