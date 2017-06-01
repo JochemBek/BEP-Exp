@@ -101,10 +101,10 @@ var RecommendationView = function( model,container ){
 		console.log(recommendations);
 
 		if (form == 0) { // telling
-			recommend = $("<center><div><div id='" + recommendations[0].id + "' class='rec col-md-3 buttonrec rec1'> <p>" + recommendations[0].telling + " </p> </div> <div id='" + recommendations[1].id + "' class='rec col-md-3 buttonrec rec2'> <p>" + recommendations[1].telling + " </p> </div> <div id='" + recommendations[2].id + "' class='rec col-md-3 buttonrec rec3'> <p>" + recommendations[2].telling + " </p> </div></div><center>");
+			recommend = $("<center><div><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].telling + " </p> </div> <div id='" + recommendations[1].id + "' class='rec buttonrec rec2'> <p>" + recommendations[1].telling + " </p> </div> <div id='" + recommendations[2].id + "' class='rec buttonrec rec3'> <p>" + recommendations[2].telling + " </p> </div></div><center>");
 		}
 		if (form == 1) { // sharing
-			recommend = $("<center><div><div id='" + recommendations[0].id + "' class='rec col-md-3 buttonrec rec1'> <p>" + recommendations[0].sharing + " </p> </div> <div id='" + recommendations[1].id + "' class='rec  col-md-3  buttonrec rec2'> <p>" + recommendations[1].sharing + " </p> </div> <div id='" + recommendations[2].id + "' class='rec col-md-3 buttonrec rec3'> <p>" + recommendations[2].sharing + " </p> </div></div><center>");
+			recommend = $("<div class='row'><div class='col-sm-4 col-md-4'><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].sharing + " </p> </div></div><div class='col-sm-4 col-md-4'><div id='" + recommendations[1].id + "' class='rec  buttonrec rec2'> <p>" + recommendations[1].sharing + " </p> </div></div><div class='col-sm-4 col-md-4'><div id='" + recommendations[2].id + "' class='rec buttonrec rec3'> <p>" + recommendations[2].sharing + " </p> </div></div></div>");
 		}
 		taskExpl						= $("<p class='col-md-4 childlower' id='textExpl'>Sorteer de drie energietips van "+nameadvisor+". Sleep het advies dat u in uw huidige situatie als ‘meest toepasselijk’ ervaart naar het bovenste vakje. Sleep het advies dat u in uw huidige situatie als ‘minst toepasselijk’ ervaart naar het onderste vakje. Als u de volgorde nog wil veranderen, kunt u de vakjes in de lijst ook onderling verslepen.</p>");
 		var h5 										= $( "<b><h4>"+nameadvisor+" heeft de volgende aanbevelingen voor u: </h4></b>")

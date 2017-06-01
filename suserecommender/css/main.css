@@ -354,3 +354,20 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 		margin-left: 10px;
 	}
 }
+
+.childrightupper {
+	margin-left: 0px;
+	padding-top: 10px;
+}
+
+.rec1 {
+	text-align: center;
+}
+
+.rec2 {
+	text-align: center;
+}
+
+.rec3 {
+	text-align: center;
+}
