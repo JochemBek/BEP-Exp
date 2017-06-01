@@ -48,32 +48,35 @@ h1 small{
  text-decoration: none;
  color: white;
  background: #195B94;
- width: 16vw;
  height: 80px;
  padding: 5px;
  margin-left: 5px;
  margin-right: 5px;
  font-size: 1vw;
 }
-@media screen and (min-width: 1275px) {
-.buttonrec p { font-size: 14px !important; }
+
+
+@media screen and (min-width: 1200px) {
+.buttonrec p { font-size: 14px !important; } 
+.droppedtext p { font-size: 14px !important; }
 }
 @media (max-width:1200px) and (min-width:1000px) {
-.buttonrec p {
-font-size: 13px !important;
-}
+.buttonrec p { font-size: 13px !important; }
+.droppedtext p { font-size: 13px !important; }
 }
 
 @media (max-width:800px) {
     .buttonrec p {
         font-size: 11px !important;
     }
+		.droppedtext p { font-size: 11px !important; }
 }
 
 @media (max-width:1000px) and (min-width:800px) {
     .buttonrec p {
         font-size: 12px !important;
     }
+		.droppedtext p { font-size: 12px !important; }
 }
 .buttonright{
 	margin-left:auto; margin-right:0;
@@ -253,6 +256,7 @@ ul {
 #leftupper {
   width: 220px;
 	display:flex;justify-content:center;align-items:center;
+	padding-left: 0px;
 }
 #rightupper {
   flex: 1;
@@ -370,4 +374,13 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 
 .rec3 {
 	text-align: center;
+}
+
+.rec {
+	margin-bottom: 3px;
+	width:100%;
+}
+
+.droppedtext p {
+	margin-bottom: 0px;
 }
