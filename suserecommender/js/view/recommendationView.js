@@ -101,7 +101,7 @@ var RecommendationView = function( model,container ){
 		console.log(recommendations);
 
 		if (form == 0) { // telling
-			recommend = $("<center><div><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].telling + " </p> </div> <div id='" + recommendations[1].id + "' class='rec buttonrec rec2'> <p>" + recommendations[1].telling + " </p> </div> <div id='" + recommendations[2].id + "' class='rec buttonrec rec3'> <p>" + recommendations[2].telling + " </p> </div></div><center>");
+      recommend = $("<div class='row'><div class='col-sm-4 col-md-4'><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].telling + " </p> </div></div><div class='col-sm-4 col-md-4'><div id='" + recommendations[1].id + "' class='rec  buttonrec rec2'> <p>" + recommendations[1].telling + " </p> </div></div><div class='col-sm-4 col-md-4'><div id='" + recommendations[2].id + "' class='rec buttonrec rec3'> <p>" + recommendations[2].telling + " </p> </div></div></div>");
 		}
 		if (form == 1) { // sharing
 			recommend = $("<div class='row'><div class='col-sm-4 col-md-4'><div id='" + recommendations[0].id + "' class='rec buttonrec rec1'> <p>" + recommendations[0].sharing + " </p> </div></div><div class='col-sm-4 col-md-4'><div id='" + recommendations[1].id + "' class='rec  buttonrec rec2'> <p>" + recommendations[1].sharing + " </p> </div></div><div class='col-sm-4 col-md-4'><div id='" + recommendations[2].id + "' class='rec buttonrec rec3'> <p>" + recommendations[2].sharing + " </p> </div></div></div>");

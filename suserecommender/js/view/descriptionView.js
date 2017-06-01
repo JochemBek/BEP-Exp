@@ -96,7 +96,7 @@ var DescriptionView = function ( model, container ){
 		}
 
 		if( args == "extraQuestionsDone" ){
-			p.html("U heeft van vier personen suggesties ontvangen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen over deze personen.");
+			p.html("U heeft van vier personen suggesties ontvangen. We zijn benieuwd wat voor indruk u had van deze personen. Geef alstublieft aan in hoeverre u het eens met de volgende stellingen over deze personen.");
       container.show();
 		}
 
